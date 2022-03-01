@@ -1,0 +1,11 @@
+#main{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.router-inner{
+    flex: 1;
+    padding-bottom: 50px;
+    background-color: rgb(230, 230, 230);
+}

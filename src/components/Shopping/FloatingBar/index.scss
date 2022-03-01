@@ -1,0 +1,14 @@
+.floating-bar{
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(252, 78, 78);
+    .icon{
+        margin-top: 5px;
+        cursor: pointer;
+    }
+}
+

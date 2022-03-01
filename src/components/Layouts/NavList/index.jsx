@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu,Avatar, Image } from 'antd';
 import './index.scss'
 import { withRouter } from 'react-router-dom';
 
@@ -15,19 +15,19 @@ const NavList = (props) => {
     }
 
     return (
-        <>
-            <Menu onClick={handleClick} mode="horizontal" theme='dark' className='nav-list'>
+        <div className='menu'>
+            <Menu onClick={handleClick} mode="horizontal" theme='light' className='nav-list'>
                 <Menu.Item key="home">
-                    Home
+                    主页
                 </Menu.Item>
                 <Menu.Item key="shopping">
-                    shopping
+                    商品
                 </Menu.Item>
                 <Menu.Item key="user" className='user-menu'>
-                    user
+                    <Avatar src="#" />
                 </Menu.Item>
             </Menu>
-        </>
+        </div>
     );
 }
 

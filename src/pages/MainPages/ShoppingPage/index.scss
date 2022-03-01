@@ -1,0 +1,25 @@
+.header-carousel{
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-selector{
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 80px;
+}
+.main-shoppings{
+    display: flex;
+    justify-content: center;
+
+    margin-top: 80px;
+}
+
+.fixed-bar{
+    position: fixed;
+    right: 10px;
+    top: 60vh;
+    
+}
