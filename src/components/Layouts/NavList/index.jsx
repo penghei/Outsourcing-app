@@ -4,12 +4,12 @@ import './index.scss'
 import { withRouter } from 'react-router-dom';
 import UserAvatar from '../../User/UserAvatar';
 import { useRecoilState } from 'recoil';
-import { userInformation } from '@/store/atoms.js'
+import { UserInformation } from '@/store/atoms.js'
 
 const NavList = (props) => {
     //获取和设置用户信息
-    const [userInfo, setUserInfo] = useRecoilState(userInformation)
-   
+    const [userInfo, setUserInfo] = useRecoilState(UserInformation)
+
     const handleClick = (e) => {
         if (e.key === 'home') return;
         props.history.push(e.key === 'login' ? {
@@ -25,11 +25,11 @@ const NavList = (props) => {
     return (
         <div className='menu'>
             <Menu onClick={handleClick} mode="horizontal" theme='light' className='nav-list'>
-                <Menu.Item key="home">
+                <Menu.Item key="goods">
                     主页
                 </Menu.Item>
                 <Menu.Item key="shopping">
-                    商品
+                    其他秒杀商品
                 </Menu.Item>
                 <Menu.Item key={userInfo.ifLogin ? 'user' : 'login'} className='user-menu'>
                     <UserAvatar userInfo={userInfo} />

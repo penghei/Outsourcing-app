@@ -1,24 +1,31 @@
 import React, { useEffect } from 'react';
 import GoodsPurchase from 'components/Goods/GoodsPurchase';
-import './index.scss'
 import GoodsIntroduction from 'components/Goods/GoodsDetail/GoodsIntroduction';
 import GoodsRecommand from 'components/Goods/GoodsDetail/GoodsRecommand';
-import { useRecoilValue } from 'recoil';
-import {selectedGoodsInfo} from '@/store/atoms.js'
+import { useRecoilState } from 'recoil';
+import { SeckillingGoodsInfo } from '@/store/atoms.js'
+import './index.scss'
+import axios from 'axios';
 
 /**该组件在被挂载时通过atom中的 当前选择商品 状态获取商品信息,并传给几个子组件*/
 const GoodsPage = () => {
 
-    const goodsInfo = useRecoilValue(selectedGoodsInfo)
+    const [goodsInfo,setGoodsInfo] = useRecoilState(SeckillingGoodsInfo)
+
+    useEffect(async () => {
+        let res = await axios.get('/api/goods');
+        console.log(res)
+        setGoodsInfo(res.data)
+    }, [])
 
     return (
         <div className='goods-page'>
             <header className='goods-purchase'>
-                <GoodsPurchase goodsInfo={goodsInfo} />
+                <GoodsPurchase />
             </header>
             <main className='goods-details'>
-                <GoodsIntroduction goodsDetail={goodsInfo.details}/>
-                <GoodsRecommand  recommandList={[goodsInfo,goodsInfo]}/>
+                <GoodsIntroduction/>
+                <GoodsRecommand recommandList={[goodsInfo]} />
             </main>
         </div>
     );

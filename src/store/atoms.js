@@ -2,8 +2,8 @@ import { atom } from "recoil";
 
 
 /**被选的商品 */
-export const selectedGoodsInfo = atom({
-  key: "selectedGoodsInfo",
+export const SeckillingGoodsInfo = atom({
+  key: "SeckillingGoodsInfo",
   default: {
     pic: "#",
     name: "aaaaaaaaaaaaaaa",
@@ -17,11 +17,12 @@ export const selectedGoodsInfo = atom({
 });
 
 /**用户信息,如果没有登录除了ifLogin之外都为空 */
-export const userInformation = atom({
-  key:'userInformation',
+export const UserInformation = atom({
+  key:'UserInformation',
   default:{
     ifLogin:false,
     userName:'xiaoming',
     avatarPic:'#'
   }
 })
+

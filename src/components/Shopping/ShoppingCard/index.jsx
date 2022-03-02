@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
 import { useSetRecoilState } from 'recoil';
-import { selectedGoodsInfo } from '@/store/atoms';
+import { SeckillingGoodsInfo } from '@/store/atoms';
 import { withRouter } from 'react-router-dom';
 
 import './index.scss'
@@ -10,15 +10,16 @@ import './index.scss'
 const ShoppingCard = ({ goodsProps,history }) => {
     const {name,pic,...otherProps} = goodsProps;
 
-    const setSelectedGoodsInfo = useSetRecoilState(selectedGoodsInfo)
+    const setSeckillingGoodsInfo = useSetRecoilState(SeckillingGoodsInfo)
 
     const routeToGoods = (item) => {
         console.log(item)
-        setSelectedGoodsInfo(item)
+        setSeckillingGoodsInfo(item)
         history.push({
-            pathname: '/home/goods'
+            pathname: '/home/goods',
         })
     }
+
     return (
         <>
             <Card
