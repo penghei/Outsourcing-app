@@ -6,7 +6,7 @@ import './index.scss'
 const GoodsIntroduction = ({goodsDetail}) => {
     return (
         <div className='goods-introduction'>
-            <Card hoverable>
+            <Card hoverable className='introduction-card'>
                 <p>{goodsDetail}</p>
             </Card>
         </div>

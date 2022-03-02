@@ -1,10 +1,7 @@
 import { atom } from "recoil";
 
-export const counterState = atom({
-  key: "counterState",
-  default: 0,
-});
 
+/**被选的商品 */
 export const selectedGoodsInfo = atom({
   key: "selectedGoodsInfo",
   default: {
@@ -18,3 +15,13 @@ export const selectedGoodsInfo = atom({
     details: "这是一个很好的理财产品,孩子吃了还要吃,敏感肌也能用,下次还会再买",
   },
 });
+
+/**用户信息,如果没有登录除了ifLogin之外都为空 */
+export const userInformation = atom({
+  key:'userInformation',
+  default:{
+    ifLogin:false,
+    userName:'xiaoming',
+    avatarPic:'#'
+  }
+})

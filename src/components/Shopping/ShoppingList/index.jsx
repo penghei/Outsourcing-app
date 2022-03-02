@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { selectedGoodsInfo } from '@/store/atoms';
 import ShoppingCard from '../ShoppingCard';
 import './index.scss'
 import { withRouter } from 'react-router-dom';
@@ -61,22 +59,13 @@ const ShoppingList = (props) => {
 
 
     ])
-    const setSelectedGoodsInfo = useSetRecoilState(selectedGoodsInfo)
-
-    const routeToGoods = (item,e) => {
-        console.log(item)
-        setSelectedGoodsInfo(item)
-        props.history.push({
-            pathname: '/home/goods'
-        })
-    }
-
+   
     return (
         <div className='shopping-list'>
             {
                 shoppingsList.map(item =>
-                    <div key={item.id} onClick={(e) => { routeToGoods(item,e) }}>
-                        <ShoppingCard {...item} />
+                    <div key={item.id}>
+                        <ShoppingCard goodsProps={item} />
                     </div>
 
                 )

@@ -1,9 +1,18 @@
 import React from 'react';
+import ShoppingCard from 'components/Shopping/ShoppingCard';
+import './index.scss'
 
-const GoodsRecommand = () => {
+const GoodsRecommand = ({ recommandList }) => {
+
     return (
-        <div>
-            
+        <div className='goods-recommand'>
+            {
+                recommandList.map(item => {
+                    return (
+                        <ShoppingCard goodsProps={item} key={item.id} />
+                    )
+                })
+            }
         </div>
     );
 }

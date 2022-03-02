@@ -2,9 +2,15 @@ import React from 'react';
 import './index.scss'
 
 const FloatingBar = () => {
+
+    const backtoTop = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0
+    }
+
     return (
         <div className='floating-bar'>
-            <div className='icon icon-top'>
+            <div className='icon icon-top' onClick={backtoTop}>
                 <svg t="1646148860758" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2041" width="30" height="30"><path d="M614.9 402.6V692c0 14.3-11.6 25.9-25.9 25.9H433.4c-14.3 0-25.9-11.6-25.9-25.9V402.6H262c-14.3 0-25.9-11.7-25.9-26 0-6.8 2.7-13.3 7.4-18.1L492.7 106c10.1-10.2 26.5-10.3 36.7-0.3l0.3 0.3 249.2 252.5c10 10.2 9.9 26.7-0.4 36.7-4.8 4.7-11.3 7.4-18.1 7.4H614.9zM123 823.1h778.1c14.3 0 25.9 11.6 25.9 25.9v53.2c0 14.3-11.6 25.9-25.9 25.9H123c-14.3 0-25.9-11.6-25.9-25.9V849c0-14.3 11.6-25.9 25.9-25.9z" p-id="2042"></path></svg>
             </div>
             <div className='icon icon-shoppings'>

@@ -7,4 +7,11 @@
     .goods-purchase{
         max-width: 80vw;
     }
+    .goods-details{
+        margin: 100px 0;
+        min-width: 70vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 }

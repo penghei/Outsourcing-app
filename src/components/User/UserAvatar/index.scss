@@ -1,0 +1,26 @@
+// .user-avatar{
+//     .avatar-pic:hover{
+
+//     }
+// }
+.user-modal{
+    width: 200px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    main{
+        display: grid;
+        grid-template-columns: repeat(2,auto);
+        grid-template-rows: repeat(2,auto);
+        p{
+            flex: 1;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+    }
+    footer{
+        color: red;
+        cursor: pointer;
+    }
+}

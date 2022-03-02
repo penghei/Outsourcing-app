@@ -2,8 +2,6 @@ import React from 'react';
 import { Radio } from 'antd';
 
 const SelectorRadios = ({ title, type, size = "middle", defaultValue }) => {
-
-
     const cateRadios = (
         <div className='selector-category'>
             <header>{title}</header>
@@ -29,11 +27,9 @@ const SelectorRadios = ({ title, type, size = "middle", defaultValue }) => {
                     <Radio value={4}>{`>2000`}</Radio>
                 </Radio.Group>
             </main>
-
         </div>
     )
     return (
-
         type === 'category'
             ? cateRadios
             : priceRadios
