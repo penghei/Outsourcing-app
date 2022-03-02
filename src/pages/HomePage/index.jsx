@@ -5,6 +5,7 @@ import Shoppingpage from 'pages/MainPages/ShoppingPage';
 import Userinfopage from 'pages/MainPages/UserInfoPage';
 import Footer from 'components/Layouts/Footer'
 import './index.scss'
+import GoodsPage from 'pages/MainPages/GoodsPage';
 
 
 const Homepage = (props) => {
@@ -14,6 +15,7 @@ const Homepage = (props) => {
             <div className='router-inner'>
                 <Route path="/home/shopping" component={Shoppingpage}></Route>
                 <Route path="/home/user" component={Userinfopage}></Route>
+                <Route path="/home/goods" component={GoodsPage}></Route>
             </div>
             <Footer />
         </div>

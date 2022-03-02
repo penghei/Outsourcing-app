@@ -1,0 +1,10 @@
+.goods-page{
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    .goods-purchase{
+        max-width: 80vw;
+    }
+}

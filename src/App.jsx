@@ -10,7 +10,6 @@ const App = () => {
     <div className='app-root'>
       <Route path="/login" component={LoginPage}></Route>
       <Route path="/home" component={HomePage}></Route>
-      <Redirect to="/home" />
     </div>
   )
 }

@@ -3,17 +3,16 @@ import { Card } from 'antd';
 import './index.scss'
 
 
-const ShoppingCard = ({ pic, title }) => {
-
+const ShoppingCard = ({ pic, name }) => {
 
     return (
         <>
             <Card
                 hoverable
-                cover={<img alt={title} src={pic} />}
+                cover={<img alt={name} src={pic} />}
                 className="shopping-card"
             >
-                <p>{title}</p>
+                <p>{name}</p>
             </Card>
         </>
     );
