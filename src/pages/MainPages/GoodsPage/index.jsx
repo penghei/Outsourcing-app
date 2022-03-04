@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { SeckillingGoodsInfo } from '@/store/atoms.js'
 import './index.scss'
 import axios from 'axios';
+import service from '@/myaxios/interceptors'
 
 /**该组件在被挂载时通过atom中的 当前选择商品 状态获取商品信息,并传给几个子组件*/
 const GoodsPage = () => {
@@ -13,7 +14,7 @@ const GoodsPage = () => {
     const [goodsInfo,setGoodsInfo] = useRecoilState(SeckillingGoodsInfo)
 
     useEffect(async () => {
-        let res = await axios.get('/api/goods');
+        let res = await service.get('/api/goods');
         console.log(res)
         setGoodsInfo(res.data)
     }, [])
