@@ -1,6 +1,9 @@
 .menu {
   min-height: auto;
 
+  position: fixed;
+  width: 100%;
+  z-index: 9;
   .user-menu {
     left: 80%;
   }

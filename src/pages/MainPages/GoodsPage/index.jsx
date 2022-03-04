@@ -21,10 +21,10 @@ const GoodsPage = () => {
     return (
         <div className='goods-page'>
             <header className='goods-purchase'>
-                <GoodsPurchase />
+                <GoodsPurchase {...goodsInfo} />
             </header>
             <main className='goods-details'>
-                <GoodsIntroduction/>
+                <GoodsIntroduction {...goodsInfo} />
                 <GoodsRecommand recommandList={[goodsInfo]} />
             </main>
         </div>

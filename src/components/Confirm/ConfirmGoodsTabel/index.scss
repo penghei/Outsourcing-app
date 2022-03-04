@@ -1,0 +1,15 @@
+.confirm-goods-tabel{
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    .table-header{
+        font-size: large;
+        font-weight: 600;
+    }
+    .main-tabel{
+        .goods-img{
+            max-height: 100%;
+            width: auto;
+        }
+    }
+}

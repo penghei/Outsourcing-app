@@ -3,6 +3,14 @@
     flex-direction: row;
     justify-content: center;
 
-    max-width: 80vw;
-    min-width: 70vw
+    .table-remarks{
+        display: flex;
+        flex-direction: column;
+    }
+    .v-divider{
+        height: auto;
+        width: 2px;
+        background-color: rgb(207, 207, 207);
+        margin:10px 20px 0 20px;
+    }
 }
