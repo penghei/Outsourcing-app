@@ -1,0 +1,27 @@
+@import "@/sass/color";
+.box-container{
+    position: relative;
+    margin-top:150px ;
+    margin-left: 135px;
+    padding:10px 30px;
+    min-width: 400px;
+    max-width: 560px;
+    min-height: 30vh;
+    background-color:$myGrey;
+    border-radius: 18px;
+    .ant-form-item{
+        margin-bottom: 16px;
+    }
+    .tab-register{
+        width: 500px;
+    }
+}
+
+  .login{
+      width: 100%;
+  }
+  .register{
+      width: 100%;
+      
+  }
+
