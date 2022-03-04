@@ -1,21 +1,19 @@
 import React from 'react';
-import { Layout, Divider } from 'antd';
-import PageHeader from '@/components/Layouts/PageHeader';
-import './index.less';
 import UserInfoTable from '@/components/UserLists/UserInfoTable';
-
-const { Header, Footer, Sider, Content } = Layout;
+import PageContent from '@/components/Layouts/PageContent';
+import './index.less';
 
 interface IProps {}
 const UserListPage: React.FC<IProps> = (props) => {
   return (
-    <div className="setting-page">
-      <Layout>
-        <PageHeader text="用户信息" route="/userlist" />
-        <Content className="setting-content">
-            <UserInfoTable/>
-        </Content>
-      </Layout>
+    <div className="userlist-page">
+      <PageContent
+        headerText="用户信息"
+        headerRoute="/userlist"
+        className="userlist-content"
+      >
+        <UserInfoTable />
+      </PageContent>
     </div>
   );
 };

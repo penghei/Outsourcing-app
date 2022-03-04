@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
-import { Divider, Layout, Button, Breadcrumb } from 'antd';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
-import { history } from 'umi';
+import React from 'react';
 import DataBlocks from '@/components/Data/DataBlocks';
-import PageHeader from '@/components/Layouts/PageHeader';
+import PageContent from '@/components/Layouts/PageContent';
 
-const { Header, Footer, Sider, Content } = Layout;
 
 interface IProps {}
 const DataDisplayPage: React.FC<IProps> = (props) => {
   return (
     <>
-      <Layout className="datapage-main">
-        <PageHeader text="数据展示" route="/data" />
-        <Content className="datapage-content">
-          <DataBlocks />
-        </Content>
-      </Layout>
+      <PageContent
+        headerText="数据展示"
+        headerRoute="/data"
+        className="datapage-content"
+      >
+        <DataBlocks />
+      </PageContent>
     </>
   );
 };

@@ -41,7 +41,7 @@ const Layouts: React.FC<IProps> = (props) => {
         <Content style={{ margin: '0 16px' }}>
           <div>{props.children}</div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>GlimmerStudio @2021</Footer>
+        <Footer style={{ textAlign: 'center' }}>银行秒杀产品配置后台管理  @GlimmerStudio 2022</Footer>
       </Layout>
     </Layout>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import moment from 'moment';
 import {
   Form,
@@ -12,30 +12,21 @@ import {
   Button,
   message,
 } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import zhCN from 'antd/lib/locale/zh_CN';
+import { getBase64 } from '@/hooks/useGetBase64';
+import AvatarUpload from '../../Admin/AdminInfo/AvatarUpload';
 import './index.less';
 
-const { Option } = Select;
-
-/**获取图片base64格式 */
-function getBase64(img: File, callback: (imgBaseUrl: ImgBaseUrlType) => void) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
 interface IProps {}
-type ImgBaseUrlType = string | ArrayBuffer | null; //图片base64格式类型
 
 const SettingsForm: React.FC<IProps> = (props) => {
-  const [imgTempUrl, setTempUrl] = useState<ImgBaseUrlType>(); //上传框中显示图片
-  const [imgLoading, setImgLoading] = useState(false); //上传框显示加载中
+  
+  const baseImgUrl = useRef<File>()
 
   /**点击提交回调 */
   const onFinish = (fieldsValue: any) => {
     const rangeTimeValue = fieldsValue['actDuration'];
-    const img = fieldsValue.imgUrl.file.originFileObj;
+    
     const values = {
       ...fieldsValue,
       duration: [
@@ -43,42 +34,18 @@ const SettingsForm: React.FC<IProps> = (props) => {
         rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
       ],
     };
-    getBase64(img, (imgBase) => {
-      values['imgUrl'] = imgBase;
-    });
+    if(baseImgUrl.current){
+      getBase64(baseImgUrl.current, (imgBase) => {
+        values['imgUrl'] = imgBase;
+      });
+    }
+    
     console.log(values);
   };
 
   /**提交数据有误回调 */
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
-  };
-
-  /**上传前校验 */
-  const beforeUpload = (file: File) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-      message.error('You can only upload JPG/PNG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error('Image must smaller than 2MB!');
-    }
-    return isJpgOrPng && isLt2M;
-  };
-
-  /**上传时给框中添加预览图 */
-  const handleUploadImg = (info: any) => {
-    if (info.file.status === 'uploading') {
-      setImgLoading(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      getBase64(info.file.originFileObj, (imageUrl) => {
-        setTempUrl(imageUrl);
-        setImgLoading(false);
-      });
-    }
   };
 
   const rangeConfig = {
@@ -96,6 +63,7 @@ const SettingsForm: React.FC<IProps> = (props) => {
       name="setting-form"
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
+      className="setting-form"
     >
       <Form.Item
         name={'productName'}
@@ -152,27 +120,9 @@ const SettingsForm: React.FC<IProps> = (props) => {
         />
       </Form.Item>
       <Form.Item name={'imgUrl'} label="上传产品图片">
-        <Upload
-          name="goodsImg"
-          listType="picture-card"
-          className="goods-img-uploader"
-          showUploadList={false}
-          beforeUpload={beforeUpload}
-          onChange={handleUploadImg}
-        >
-          {imgTempUrl ? (
-            <img
-              src={imgTempUrl as string}
-              alt="avatar"
-              style={{ width: '100%' }}
-            />
-          ) : (
-            <div>
-              {imgLoading ? <LoadingOutlined /> : <PlusOutlined />}
-              <div style={{ marginTop: 8 }}>Upload</div>
-            </div>
-          )}
-        </Upload>
+        <AvatarUpload onCreateImg={(img)=>{
+          baseImgUrl.current = img;
+        }}/>
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
