@@ -1,0 +1,36 @@
+.comfirm-goods-detail {
+  margin-top: 50px;
+  min-width: 400px;
+  .title {
+    font-size: large;
+    font-weight: 600;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    .list-block {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      p:last-child {
+        color: rgb(255, 58, 58);
+        font-weight: 700;
+      }
+    }
+    footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        p:first-child{
+            font-size: large;
+        }
+    }
+  }
+  .confirm-btn{
+      margin-top: 10px;
+    float: right;
+    button{
+        margin-left: 10px;
+    }
+  }
+}
