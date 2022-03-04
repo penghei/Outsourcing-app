@@ -4,6 +4,7 @@ import NavList from 'components/NavList';
 import Shoppingpage from 'pages/MainPages/ShoppingPage.jsx';
 import Userinfopage from 'pages/MainPages/UserInfoPage.jsx';
 
+
 const Homepage = (props) => {
     return (
         <>

@@ -1,0 +1,23 @@
+@import "@/sass/color";
+.box_container{
+    position: relative;
+    margin-top:150px ;
+    margin-left: 135px;
+    padding:10px 30px;
+    width: 360px;
+    // height: 250px;
+    background-color:$myGrey;
+    border-radius: 18px;
+    .ant-form-item{
+        margin-bottom: 16px;
+    }
+}
+
+  .login{
+      width: 300px;
+  }
+  .register{
+      width: 300px;
+      margin-left: -50%;
+  }
+
