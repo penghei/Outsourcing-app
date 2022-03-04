@@ -54,7 +54,7 @@ const LoginForm = () => {
             </Form.Item>
 
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login">
+                <Button type="primary" htmlType="submit" className="login" >
                     登录
                 </Button>
             </Form.Item>

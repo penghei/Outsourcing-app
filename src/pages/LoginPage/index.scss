@@ -1,8 +1,7 @@
-
-.bg{
-   height:750px;
-   // background: linear-gradient(#ffffff -100%, #da2222);
-   background-image: url("@/assest/bg.png") ;
-   background-size: 100% 100%;
+.bg {
+  min-height: 100vh;
+  background-image: url("@/assest/bg.png");
+  background-position: 50% 50%;
+  background-size: cover;
   background-repeat: no-repeat;
 }

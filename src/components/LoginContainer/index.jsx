@@ -13,12 +13,12 @@ const LoginContainer = () => {
       }
       
     return (
-        <div className='box_container'>
+        <div className='box-container'>
             <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="登录" key="1">
                     <LoginForm/>
                 </TabPane>
-                <TabPane tab="注册" key="2">
+                <TabPane tab="注册" key="2" className='tab-register'>
                     <RegistrationForm/>
                 </TabPane>
             </Tabs>
