@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import React from 'react';
+import { withRouter,Route } from 'react-router-dom';
+import LoginContainer from 'components/LoginContainer';
+import "./index.scss"
+// import LoginForm from '../LoginForm';
+// import RegistrationForm from '../RegistrationForm';
+
+const LoginPage = (props) => {
+
+    return (
+        <div className='bg clearfix'>
+            <LoginContainer/>   
+        </div>
+                   
+=======
+>>>>>>> tree
 import { Button } from 'antd';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
@@ -18,6 +37,10 @@ const LoginPage = (props) => {
             <Button onClick={reqLogin}>Login</Button>
 
         </div>
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> tree
     );
 }
 
