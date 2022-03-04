@@ -6,11 +6,11 @@ import './index.scss'
 
 /**商品详情 */
 const GoodsIntroduction = () => {
-    const {detail} = useRecoilValue(SeckillingGoodsInfo)
+    const { productDescription } = useRecoilValue(SeckillingGoodsInfo)
     return (
         <div className='goods-introduction'>
             <Card hoverable className='introduction-card'>
-                <p>{detail}</p>
+                <p>{productDescription}</p>
             </Card>
         </div>
     );

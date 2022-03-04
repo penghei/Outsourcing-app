@@ -13,11 +13,11 @@ const GoodsPage = () => {
 
     const [goodsInfo,setGoodsInfo] = useRecoilState(SeckillingGoodsInfo)
 
-    useEffect(async () => {
-        let res = await service.get('/api/goods');
-        console.log(res)
-        setGoodsInfo(res.data)
-    }, [])
+    // useEffect(async () => {
+    //     let res = await service.get('/api/goods');
+    //     console.log(res)
+    //     setGoodsInfo(res.data)
+    // }, [])
 
     return (
         <div className='goods-page'>
@@ -26,7 +26,7 @@ const GoodsPage = () => {
             </header>
             <main className='goods-details'>
                 <GoodsIntroduction {...goodsInfo} />
-                <GoodsRecommand recommandList={[goodsInfo]} />
+                {/* <GoodsRecommand recommandList={[goodsInfo]} /> */}
             </main>
         </div>
     );
