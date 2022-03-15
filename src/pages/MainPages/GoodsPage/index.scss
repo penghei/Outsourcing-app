@@ -1,17 +1,21 @@
-.goods-page{
-    min-height: 100%;
-
+.goods-page {
+  min-height: 100%;
+  header {
+    margin-top: 500px;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .goods-purchase {
+    max-width: 65vw;
+    min-width: 1000px;
+  }
+  .goods-details {
+    margin: 100px 0;
+    min-width: 70vw;
     display: flex;
-    flex-direction: column;
-    align-items:center;
-    .goods-purchase{
-        max-width: 80vw;
-    }
-    .goods-details{
-        margin: 100px 0;
-        min-width: 70vw;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
+    flex-direction: row;
+    justify-content: center;
+  }
+  
 }

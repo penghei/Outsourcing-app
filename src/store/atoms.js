@@ -1,6 +1,9 @@
 import { atom } from "recoil";
-import { goodsInfo,userInformation } from "../response_data_example";
-
+import {
+  goodsInfo,
+  tradeInfo,
+  userInformation,
+} from "../response_data_example";
 
 /**被选的商品 */
 export const SeckillingGoodsInfo = atom({
@@ -8,9 +11,33 @@ export const SeckillingGoodsInfo = atom({
   default: goodsInfo,
 });
 
-/**用户信息,如果没有登录除了ifLogin之外都为空 */
-export const UserInformation = atom({
-  key:'UserInformation',
-  default:userInformation
-})
+export const PurchaseGoods = atom({
+  key: "PurchaseGoods",
+  default: {},
+});
 
+/**用户信息*/
+export const UserInformation = atom({
+  key: "UserInformation",
+  default: userInformation,
+});
+
+export const UserLoginState = atom({
+  key: "UserLoginState",
+  default: true,
+});
+
+/** 点击秒杀后的订单信息*/
+export const OrderInformation = atom({
+  key: "OrderInformation",
+  default: {
+    ...goodsInfo,
+    amount: 1,
+    totalPrice: 100,
+  },
+});
+
+export const TradeInformation = atom({
+  key: "TradeInformation",
+  default: tradeInfo
+})

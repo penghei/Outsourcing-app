@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import "@/bootstrap/css/bootstrap.min.css"
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import './index.scss'

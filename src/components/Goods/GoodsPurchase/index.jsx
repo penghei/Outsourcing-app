@@ -1,25 +1,73 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Image, InputNumber } from 'antd';
+import { Button, Image, InputNumber, message } from 'antd';
 import './index.scss'
 import Countdown from './Countdown';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { PurchaseGoods, SeckillingGoodsInfo, UserInformation, OrderInformation } from 'store/atoms';
+import service from '@/myaxios/interceptors.js'
+import { withRouter } from 'react-router-dom';
 
 /**商品图片及购买组件 */
 const GoodsPurchase = ({
     productName,
     productImgUrl,
-    productDescription,
     startTime,
     endTime,
     num,
     price,
     attend,
-    pass
+    pass,
+    history
 }) => {
-    const [ifCanBuy, setIfCanBuy] = useState(false)
+
+    const [ifOnTime, setIfOnTime] = useState('before')
+    const [ifCanBuy, setIfCanBuy] = useState(true)
+    const [goodsAmount, setGoodsAmount] = useState(0)
+
+    const selectedGoods = useRecoilValue(SeckillingGoodsInfo)
+    const setPurchaseGoods = useSetRecoilState(PurchaseGoods)
+    const userInfo = useRecoilValue(UserInformation)
+    const setOrderInfo = useSetRecoilState(OrderInformation)
+
+    const onTimeBtn = {
+        before: (<Button type='round' size='large' disabled>时间未到</Button>),
+        // now: (<Button type='round' size='large'>立即抢购</Button>),
+        after: (<Button type='round' size='large' disabled>活动已过期</Button>),
+        error: (<Button type='round' size='large' disabled>暂不能购买</Button>)
+    }
 
     const handleAmountChange = (value) => {
+        setGoodsAmount(value)
+    }
+
+    const handleApply = () => {
 
     }
+
+    const getIfOnTime = (ifontime) => {
+        setIfOnTime(ifontime)
+    }
+    /**点击确认购买 */
+    const handlePurchase = async () => {
+        setPurchaseGoods(selectedGoods)
+
+        const order = {
+            ...selectedGoods,
+            amount: goodsAmount,
+            totalPrice: (goodsAmount * selectedGoods.price)
+        }
+        setOrderInfo(order)
+        history.push({
+            pathname: '/home/confirm'
+        })
+
+    }
+
+    // useEffect(async () => {
+    //     const res = await service.get(`glimmer-bank/platform/product/admit?productId=${2}&userId=${userInfo.userId}`)
+    //     const { data,success } = res.data;
+    //     success && setIfCanBuy(data)
+    // }, [])
 
     return (
         <div className='goods-purchase-info'>
@@ -36,11 +84,26 @@ const GoodsPurchase = ({
                 <Countdown
                     startTime={startTime}
                     endTime={endTime}
-                    ifCanBuy={attend && pass}
+                    getIfOnTime={getIfOnTime}
                 />
+                <footer className='goods-buy-button'>
+                    {ifCanBuy
+                        ? (
+                            Object.prototype.hasOwnProperty.call(onTimeBtn, ifOnTime)
+                                ? onTimeBtn[ifOnTime]
+                                : <Button type='round' size='large' onClick={handlePurchase}>立即抢购</Button>
+                        )
+                        : (
+                            <div className='noapply-block'>
+                                <Button type='round' size='large' disabled>没有权限不能购买</Button>
+                                <Button type='round' size='large' onClick={handleApply}>申请权限</Button>
+                            </div>
+                        )
+                    }
+                </footer>
             </main>
         </div>
     );
 }
 
-export default GoodsPurchase;
+export default withRouter(GoodsPurchase);

@@ -1,32 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
 import { useFormatTime } from '@/hooks/useFormatTime.js'
+//displayArr是方便map显示图片的数组
+import { displayArr } from '@/response_data_example';
 import './index.scss'
+import { withRouter } from 'react-router-dom';
 
 const Countdown = ({
     startTime,
     endTime,
-    ifCanBuy
+    getIfOnTime
 }) => {
-    const [ifOnTime, setIfOnTime] = useState(0)
-    const [displayTime, setDisplayTime] = useState(``)
+    const [ifOnTime, setIfOnTime] = useState('before')
+    const [displayTime, setDisplayTime] = useState([])
 
-    const onTimeBtn = {
-        0: (<Button type='round' size='large' disabled>时间未到</Button>),
-        1: (<Button type='round' size='large'>立即抢购</Button>),
-        2: (<Button type='round' size='large' disabled>活动已过期</Button>),
-        3: (<Button type='round' size='large' disabled>暂不能购买</Button>)
-    }
+    let timerId = null;
+
     const onTimeTitle = {
-        0: `距离开始时间还有:`,
-        1: `秒杀时间还剩:`,
-        2: `时间已过`,
-        3: ``
+        before: `距离开始时间还有:`,
+        now: `秒杀时间还剩:`,
+        after: `时间已过`,
+        error: ``
     }
+
+    //0-9数字的图片
+    const timeImg = [
+        `https://pic.imgdb.cn/item/623058485baa1a80ab5dc62f.png`,
+        `https://pic.imgdb.cn/item/623058485baa1a80ab5dc633.png`,
+        `https://pic.imgdb.cn/item/623058485baa1a80ab5dc639.png`,
+        `https://pic.imgdb.cn/item/623058485baa1a80ab5dc641.png`,
+        `https://pic.imgdb.cn/item/623058485baa1a80ab5dc64a.png`,
+        `https://pic.imgdb.cn/item/623058805baa1a80ab5de1f2.png`,
+        `https://pic.imgdb.cn/item/623058805baa1a80ab5de1f5.png`,
+        `https://pic.imgdb.cn/item/623058805baa1a80ab5de1f9.png`,
+        `https://pic.imgdb.cn/item/623058805baa1a80ab5de201.png`,
+        `https://pic.imgdb.cn/item/623058805baa1a80ab5de20d.png`
+    ]
+
 
     useEffect(() => {
         timeFormat()
+        return () => {
+            clearTimeout(timerId)
+        }
     }, [startTime, endTime])
+
+    //处理倒计时
+    const handleTime = (ifOnTime, displayTime) => {
+        setIfOnTime(ifOnTime)
+        setDisplayTime(displayTime)
+        if (displayTime !== '') {
+            timerId = setTimeout(timeFormat, 1000)
+        }
+        getIfOnTime(ifOnTime)
+    }
 
 
     const timeFormat = () => {
@@ -40,50 +66,42 @@ const Countdown = ({
 
         if (startTimeStamp > endTimeStamp) {
             console.warn('秒杀时间格式不对')
-            setIfOnTime(3)
-            setDisplayTime('')
-            return
+            handleTime('error', '')
+            return;
         }
 
         if (startTimeStamp > nowTimeStamp) {
-            console.log('not start')
-            setIfOnTime(0)
-            setDisplayTime(useFormatTime(now, start))
-            setTimeout(timeFormat, 1000)
+            handleTime('before', useFormatTime(now, start))
         } else if (startTimeStamp < nowTimeStamp && nowTimeStamp < endTimeStamp) {
-            console.log('start')
-            setIfOnTime(1)
-            setDisplayTime(useFormatTime(now, end))
-            setTimeout(timeFormat, 1000)
+            handleTime('now', useFormatTime(now, end))
         } else if (nowTimeStamp > endTimeStamp) {
-            console.log('finish')
-            setIfOnTime(2)
-            setDisplayTime('')
+            handleTime('after', '')
         }
     }
 
     return (
         <>
             <p className='goods-time-title'>
-                {
-                    onTimeTitle[ifOnTime]
-                }
+                {onTimeTitle[ifOnTime]}
             </p>
-            <p className='goods-time'>{displayTime}</p>
-            <footer className='goods-buy-button'>
-                {
-                    ifCanBuy
-                        ? onTimeBtn[ifOnTime]
-                        : (
-                            <div className='noapply-block'>
-                                <Button type='round' size='large' disabled>没有权限不能购买</Button>
-                                <Button type='round' size='large'>申请权限</Button>
+            <div className='goods-time'>
+                {displayTime.length ?
+                    displayArr.map(({ img1, img2, text }, index) => {
+                        return (
+                            // 从displayTime数组按顺序取出每一位的数字
+                            //然后对照timeImg找到这些数字对应的图片链接
+                            <div key={index} className="time-pic-block">
+                                <img src={timeImg[displayTime[img1]]} />
+                                <img src={timeImg[displayTime[img2]]} />
+                                <p>{text}</p>
                             </div>
                         )
+                    })
+                    : ''
                 }
-            </footer>
+            </div>
         </>
     );
 }
 
-export default Countdown;
+export default withRouter(Countdown);

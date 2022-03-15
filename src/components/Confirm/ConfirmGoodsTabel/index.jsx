@@ -1,11 +1,11 @@
 import React from 'react';
 import { Table, Tag, Space } from 'antd';
-import { useRecoilValue } from 'recoil';
-import { SeckillingGoodsInfo } from '@/store/atoms.js'
+import uuid from 'uuidjs'
 import './index.scss'
 
 const ConfirmGoodsTable = ({ goodsInfo }) => {
-    const { pic, name, price } = goodsInfo;
+    const { productName, price, amount, totalPrice } = goodsInfo;
+    console.log(goodsInfo)
     const columns = [
         {
             title: '产品图片',
@@ -15,32 +15,32 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
         },
         {
             title: '产品名称',
-            dataIndex: 'goodsName',
-            key: 'goodsName',
+            dataIndex: 'productName',
+            key: 'productName',
         },
         {
             title: '产品单价',
-            dataIndex: 'goodsPrice',
-            key: 'goodsPrice',
+            dataIndex: 'price',
+            key: 'price',
         },
         {
             title: '购买数量',
-            key: 'goodsAmount',
-            dataIndex: 'goodsAmount',
+            key: 'amount',
+            dataIndex: 'amount',
         },
         {
             title: '总计',
-            key: 'total',
-            dataIndex: 'total',
+            key: 'totalPrice',
+            dataIndex: 'totalPrice',
         },
     ];
 
     const data = [{
-        goodsPic: pic,
-        goodsName: name,
-        goodsPrice: price,
-        goodsAmount: 100,
-        total: 100
+        goodsPic: '',
+        productName,
+        price,
+        amount,
+        totalPrice
     }]
 
     return (
@@ -48,7 +48,7 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
             <header className='table-header'>
                 <p>秒杀确认</p>
             </header>
-            <Table className='main-table' columns={columns} dataSource={data} pagination={false} />
+            <Table className='main-table' columns={columns} dataSource={data} pagination={false} key={uuid.generate()}/>
         </div>
     );
 }

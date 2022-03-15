@@ -47,14 +47,14 @@
         margin: 20px 0;
       }
     }
-    .goods-time-title {
-        margin: 30px 0 0 0;
-        font-size: 25px;
+    .goods-buy-button{
+      margin-top: 20px;
+      .noapply-block{
+        button{
+            margin-right: 10px;
+        }
     }
-    .goods-time{
-        margin: 10px 0 10px 0;
-        font-size: 30px;
-        color: rgb(250, 100, 100);
     }
+    
   }
 }
