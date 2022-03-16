@@ -4,8 +4,8 @@ p{
 
 .admin-info{
     min-height: 40vh;
-    width: 80%;
-
+    min-width: 50vw;
+    max-width: 70%;
     margin: 50px 0;
 
     background-color: white;
@@ -56,14 +56,24 @@ p{
         .admin-info-block{
             display: flex;
             flex-direction: column;
+            border-width:1px 1px 0 1px;
+            border-color: rgb(219, 219, 219);
+            border-style: solid;        
+        
+            
             .info{
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                border-bottom: 1px solid rgb(170, 170, 170);
+                background-color: rgb(253, 253, 253);
+                &:nth-child(2){
+                    background-color: rgb(247, 247, 247);
+                }
                 p{
                     margin: 15px;
-                    font-size: 19px;
-                    color: rgb(179, 179, 179);
+                    // font-size: 19px;
+                    // color: rgb(179, 179, 179);
                 }
                 .info-password{
                     p:last-child{

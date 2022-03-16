@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Image, Upload, Avatar, Tabs, Button } from 'antd';
 import { PictureOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import './index.less';
-import AvatarUpload from './AvatarUpload';
 import ChangeInfoModal from './ChangeInfoModal';
+import { useRecoilState } from 'recoil';
+import { loginState } from '@/atoms/atoms';
 
 
 interface IProps {}
@@ -11,6 +12,8 @@ interface IProps {}
 
 const AdminInfo: React.FC<IProps> = (props) => {
   const [codeSee, setCodeSee] = useState(false);
+  const [adminInfo,setAdminInfo] = useRecoilState(loginState)
+  const {administerTelephone:phone,administerId:userid,administerPassword:password} = adminInfo.info;
 
   return (
     <div className="admin-info">
@@ -32,17 +35,17 @@ const AdminInfo: React.FC<IProps> = (props) => {
         <main className="admin-info-block">
           <div className="info info-phone">
             <p>电话号码</p>
-            <p>123456789101</p>
+            <p>{phone}</p>
           </div>
           <div className="info info-account">
             <p>账号</p>
-            <p>123456</p>
+            <p>{userid}</p>
           </div>
           <div className="info info-password">
             <p>密码</p>
             <p>
-              {codeSee ? '123456' : '*****'}
-              {'  '}
+              {codeSee ? password : '*****'}
+              {'    '}
               <EyeInvisibleOutlined
                 onClick={() => {
                   setCodeSee(!codeSee);
@@ -52,7 +55,7 @@ const AdminInfo: React.FC<IProps> = (props) => {
           </div>
         </main>
         <footer className='modal-btn'>
-          <ChangeInfoModal />
+          <ChangeInfoModal setAdminInfo={setAdminInfo} adminInfo={adminInfo}/>
         </footer>
       </main>
     </div>

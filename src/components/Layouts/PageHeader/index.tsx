@@ -1,9 +1,11 @@
 import React from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb ,Avatar} from 'antd';
 import './index.less'
+//@ts-ignore
 import { history } from 'umi';
+import AdminAvatar from './AdminAvatar';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header} = Layout;
 
 interface IProps {
   text: string;
@@ -20,6 +22,7 @@ const PageHeader: React.FC<IProps> = ({ text, route = '/' }) => {
           {text}
         </Breadcrumb.Item>
       </Breadcrumb>
+      <AdminAvatar imgUrl='#'/>
     </Header>
   );
 };

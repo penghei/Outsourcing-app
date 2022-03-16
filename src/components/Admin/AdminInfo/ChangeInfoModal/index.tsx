@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Modal, Button, Form, Input, Checkbox } from 'antd';
-import { AdminInfoType, AdminChangeType } from '@/types';
+import { AdminInfoType, AdminChangeType, LoginStateType } from '@/types';
 import { getBase64 } from '@/hooks/useGetBase64';
 import AvatarUpload from '../AvatarUpload';
 
@@ -21,17 +21,17 @@ const CollectionCreateForm: React.FC<IProps> = ({
 
   const [form] = Form.useForm();
 
-  const handleOk = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        form.resetFields();
-        (values as any).administerAvatar = administerAvatar.current;
-        onCreate(values);
-      })
-      .catch((info) => {
+  const handleOk = async () => {
+    try {
+      let values = await form.validateFields();
+      form.resetFields();
+      (values as any).administerAvatar = administerAvatar.current;
+      onCreate(values);
+    } catch (info) {
+      {
         console.log('Validate Failed:', info);
-      });
+      }
+    }
   };
 
   return (
@@ -40,6 +40,8 @@ const CollectionCreateForm: React.FC<IProps> = ({
         title="Title"
         visible={visible}
         onOk={handleOk}
+        okText="确认更改"
+        cancelText="取消更改"
         confirmLoading={confirmLoading}
         onCancel={onCancel}
       >
@@ -69,7 +71,15 @@ const CollectionCreateForm: React.FC<IProps> = ({
   );
 };
 
-const ChangeInfoModal = () => {
+interface IPropsSecondary {
+  setAdminInfo: (infoObj: LoginStateType) => void;
+  adminInfo: LoginStateType;
+}
+
+const ChangeInfoModal: React.FC<IPropsSecondary> = ({
+  setAdminInfo,
+  adminInfo,
+}) => {
   const [visible, setVisible] = useState(false);
 
   const onCreate = (values: AdminChangeType) => {
@@ -82,6 +92,15 @@ const ChangeInfoModal = () => {
     });
     console.log(values);
     //提交接口
+    const setInfo = {
+      isLogin: true,
+      info: {
+        administerId: values.administerId, //管理员账号
+        administerTelephone: values.administerTelephone, //管理员电话
+        administerPassword: adminInfo.info.administerPassword,
+      },
+    };
+    setAdminInfo(setInfo);
     setVisible(false);
   };
 

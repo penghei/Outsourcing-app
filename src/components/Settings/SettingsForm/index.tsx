@@ -16,30 +16,32 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import { getBase64 } from '@/hooks/useGetBase64';
 import AvatarUpload from '../../Admin/AdminInfo/AvatarUpload';
 import './index.less';
+import { ProductSettingType } from '@/types';
 
 interface IProps {}
 
 const SettingsForm: React.FC<IProps> = (props) => {
-  
-  const baseImgUrl = useRef<File>()
+  const baseImgUrl = useRef<File>();
 
   /**点击提交回调 */
   const onFinish = (fieldsValue: any) => {
     const rangeTimeValue = fieldsValue['actDuration'];
-    
-    const values = {
+
+    const values: ProductSettingType = {
       ...fieldsValue,
       duration: [
         rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
         rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
       ],
+      isAdmit: fieldsValue.isAdmit ? 1 : 0,
+      productDescription: fieldsValue.productDescription || '',
     };
-    if(baseImgUrl.current){
+    if (baseImgUrl.current) {
       getBase64(baseImgUrl.current, (imgBase) => {
         values['imgUrl'] = imgBase;
       });
     }
-    
+
     console.log(values);
   };
 
@@ -112,17 +114,19 @@ const SettingsForm: React.FC<IProps> = (props) => {
       >
         <Checkbox className="form-checkbox" />
       </Form.Item>
-      <Form.Item name={'productDescription'} label="产品描述">
+      <Form.Item name='productDescription' label="产品描述">
         <Input.TextArea
           placeholder="请输入活动描述"
           showCount
           maxLength={500}
         />
       </Form.Item>
-      <Form.Item name={'imgUrl'} label="上传产品图片">
-        <AvatarUpload onCreateImg={(img)=>{
-          baseImgUrl.current = img;
-        }}/>
+      <Form.Item name='imgUrl' label="上传产品图片" rules={[{ required: true, message: '必须上传产品图片' }]}>
+        <AvatarUpload
+          onCreateImg={(img) => {
+            baseImgUrl.current = img;
+          }}
+        />
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">

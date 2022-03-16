@@ -2,19 +2,20 @@ import React from 'react';
 import UserInfoTable from '@/components/UserLists/UserInfoTable';
 import PageContent from '@/components/Layouts/PageContent';
 import './index.less';
+import UserRecordTable from '@/components/UserLists/UserRecordTable';
 
 interface IProps {}
-const UserListPage: React.FC<IProps> = (props) => {
+const UserRecordList: React.FC<IProps> = (props) => {
   return (
-    <div className="userlist-page">
+    <div className="user-record-page">
       <PageContent
-        headerText="用户信息"
-        headerRoute="/userlist"
+        headerText="用户秒杀记录"
+        headerRoute="/userlist-record"
         className="userlist-content"
       >
-        <UserInfoTable />
+        <UserRecordTable />
       </PageContent>
     </div>
   );
 };
-export default UserListPage;
+export default UserRecordList;
