@@ -3,6 +3,7 @@ import { Route, Redirect, withRouter } from 'react-router-dom'
 import LoginPage from 'pages/LoginPage';
 import HomePage from 'pages/HomePage';
 import './App.scss'
+import { Switch } from 'react-router-dom';
 
 
 const App = (props) => {
@@ -13,9 +14,11 @@ const App = (props) => {
   // }, [])
   return (
     <div className='app-root'>
-      <Route path="/login" component={LoginPage}></Route>
-      <Route path="/home" component={HomePage}></Route>
-      <Redirect to='/home/user'></Redirect>
+      <Switch>
+        <Route path="/login" component={LoginPage}></Route>
+        <Route path="/home" component={HomePage}></Route>
+        <Redirect to="/login"></Redirect>
+      </Switch>
     </div>
   )
 }

@@ -50,20 +50,10 @@ const residences = [
 ];
 const formItemLayout = {
   labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
+    span: 6
   },
   wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
+    span: 18
   },
 };
 const tailFormItemLayout = {
@@ -268,13 +258,13 @@ const RegistrationForm = () => {
       <Form.Item
         name="married"
         label="婚育状态">
-          <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />&nbsp;&nbsp;&nbsp;
-          <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={false}/>
+        <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />&nbsp;&nbsp;&nbsp;
+        <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={false} />
       </Form.Item>
       <Form.Item
         name="work"
         label="工作情况">
-          <Switch checkedChildren="就业" unCheckedChildren="待业" defaultChecked />
+        <Switch checkedChildren="就业" unCheckedChildren="待业" defaultChecked />
       </Form.Item>
 
       {/* <Form.Item

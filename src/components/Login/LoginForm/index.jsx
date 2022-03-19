@@ -1,11 +1,26 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { UserLoginState } from 'store/atoms';
 
 
-const LoginForm = () => {
-    const onFinish = (values) => {
+const LoginForm = ({ history }) => {
+
+    const setUserLoginState = useSetRecoilState(UserLoginState)
+    const onFinish = async (values) => {
         console.log('Received values of form: ', values);
+        const {username,password} = values;
+        
+        // const res = await axios.post('/api/glimmer-bank/user/login',{username,password})
+        
+
+        history.push({
+            pathname: '/home/goods'
+        })
+        setUserLoginState(true)
     };
 
     return (
@@ -61,4 +76,4 @@ const LoginForm = () => {
         </Form>
     );
 };
-export default LoginForm;
+export default withRouter(LoginForm);

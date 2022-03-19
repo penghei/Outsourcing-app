@@ -31,3 +31,35 @@ export const userInformation = {
   userIsWork: 1, //是否在工作，1代表有
   userSex: 1, //性别，1代表男性，0代表女性
 };
+
+export const tradeInfo = {
+  tradeId: 13541239, //订单编号
+  tradeUserId: 1, //交易用户ID
+  tradeMoney: 100, //交易金额
+  activityId: 1, //活动ID
+  tradeTime: "2022-04-03 12:00:00", //交易时间
+  tradeStatus: 1, //交易状况，0为失败，1为成功
+};
+
+export const displayArr = [
+  {
+    img1: "0",
+    img2: "1",
+    text: "天",
+  },
+  {
+    img1: "2",
+    img2: "3",
+    text: "时",
+  },
+  {
+    img1: "4",
+    img2: "5",
+    text: "分",
+  },
+  {
+    img1: "6",
+    img2: "7",
+    text: "秒",
+  },
+];

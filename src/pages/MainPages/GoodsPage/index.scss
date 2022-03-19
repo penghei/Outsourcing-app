@@ -1,63 +1,59 @@
-.goods-banner{
-    position: relative;
-    height: 600px;
-    width: 100%;
-    background-color: #fff;
-    overflow: hidden;
-    .circle{
-        position: absolute;
-        top: 0;
-        right: 0px;
-        width: 285px;
-        height: 600px;
-        background: url(/src/assest/circle.svg) no-repeat center center;
-        background-size: 285px 570px;
-        z-index: 0;
-    }
-    .computer{
-        position: absolute;
-        top: 156px;
-        right: 200px;
-        width: 430px;
-        height: 300px;
-        // background-color: #b64b4b;
-        background-image: url('@/assest/computer.png');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
-    .slogan{
-        position: absolute;
-        top: 61px;
-        left: 52px;
-        width: 801px;
-        height: 564px;
-        background-image: url(/src/assest/banner_words.png);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
-    // background:linear-gradient(#283491,#4045ab ,#514cad,#815eab,#cd7597);
-    // border-bottom-right-radius:500px;
-    
-}
-.ant-menu-horizontal{
-    background:#aa1724  !important;
-    color:rgb(255, 255, 255) !important;
-    line-height: 60px !important;
-}
-.goods-page{
-    // margin-top:500px;
-    min-height: 100%;
+.goods-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a20c17;
+  .goods-purchase {
+    max-width: 65vw;
+    min-width: 1000px;
+  }
+  .goods-details {
+    margin: 100px 0;
+    min-width: 70vw;
     display: flex;
-    flex-direction: column;
-    align-items:center;
-    .goods-purchase{
-        max-width: 80vw;
-    }
-    .goods-details{
-        margin: 100px 0;
-        min-width: 70vw;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.goods-banner {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  .circle {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 285px;
+    height: 600px;
+    background: url('@/assest/circle.svg') no-repeat center center;
+    background-size: 285px 570px;
+    z-index: 0;
+  }
+  .computer {
+    position: absolute;
+    top: 156px;
+    right: 200px;
+    width: 430px;
+    height: 300px;
+    // background-color: #b64b4b;
+    background-image: url("https://pic.imgdb.cn/item/6231fc9f5baa1a80ab81ceca.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .slogan {
+    position: absolute;
+    top: 61px;
+    left: 52px;
+    width: 801px;
+    height: 564px;
+    background-image: url("https://pic.imgdb.cn/item/6231fca25baa1a80ab81d422.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  // background:linear-gradient(#283491,#4045ab ,#514cad,#815eab,#cd7597);
+  // border-bottom-right-radius:500px;
 }
