@@ -16,7 +16,6 @@ const LoginForm = ({ history }) => {
         
         // const res = await axios.post('/api/glimmer-bank/user/login',{username,password})
         
-
         history.push({
             pathname: '/home/goods'
         })
@@ -37,7 +36,7 @@ const LoginForm = ({ history }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your Username!',
+                        message: '请输入用户名',
                     },
                 ]}
             >
@@ -48,7 +47,7 @@ const LoginForm = ({ history }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your Password!',
+                        message: '请输入密码',
                     },
                 ]}
             >
@@ -62,9 +61,8 @@ const LoginForm = ({ history }) => {
                 <Form.Item name="remember" valuePropName="checked" noStyle>
                     <Checkbox>记住我</Checkbox>
                 </Form.Item>
-
                 <a className="login-form-forgot" href="">
-                    忘记密码
+                    忘记密码？
                 </a>
             </Form.Item>
 

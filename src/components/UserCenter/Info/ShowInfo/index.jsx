@@ -3,6 +3,7 @@ import { Modal, Button, Form } from 'antd';
 import EditInfo from '../EditInfo';
 import axios from 'axios';
 import './index.scss'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useRecoilValue } from 'recoil';
 import { UserInformation } from '../../../../store/atoms';
 
