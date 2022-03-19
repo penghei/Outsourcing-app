@@ -39,11 +39,7 @@ export const UserLoginState = atom({
 /** 点击秒杀后的订单信息*/
 export const OrderInformation = atom({
   key: "OrderInformation",
-  default: {
-    ...goodsInfo,
-    amount: 1,
-    totalPrice: 100,
-  },
+  default: goodsInfo,
 });
 
 /**单次交易信息 */

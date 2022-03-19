@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Switch } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import {
+  Switch,
   Form,
   Input,
   InputNumber,
@@ -12,20 +12,25 @@ import {
   Checkbox,
   Button,
   AutoComplete,
+  message,
 } from 'antd';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 const { Option } = Select;
+
+//地址选择框数据
 const residences = [
   {
-    value: 'zhejiang',
-    label: 'Zhejiang',
+    value: 'sichuan',
+    label: '四川',
     children: [
       {
-        value: 'hangzhou',
-        label: 'Hangzhou',
+        value: 'chengdu',
+        label: '成都',
         children: [
           {
-            value: 'xihu',
-            label: 'West Lake',
+            value: 'chenghua',
+            label: '成华区',
           },
         ],
       },
@@ -33,21 +38,23 @@ const residences = [
   },
   {
     value: 'jiangsu',
-    label: 'Jiangsu',
+    label: '江苏',
     children: [
       {
         value: 'nanjing',
-        label: 'Nanjing',
+        label: '南京',
         children: [
           {
             value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
+            label: '中华门',
           },
         ],
       },
     ],
   },
 ];
+
+//布局
 const formItemLayout = {
   labelCol: {
     span: 6
@@ -69,11 +76,29 @@ const tailFormItemLayout = {
   },
 };
 
-const RegistrationForm = () => {
+const RegistrationForm = ({history}) => {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values) => {
+    const finalValue = {
+      ...values,
+      liveRegion: values.liveRegion.join(' '),
+      childBorn: values.childBorn || false,
+      wedded: values.wedded || false,
+      work: values.work || false
+    }
+    console.log('Received values of form: ', finalValue);
+    // const res = axios.post(`/api/glimmer-bank/user/register`, finalValue)
+    // const {success} = res.data;
+    const success = true;
+    if(success){
+      message.success('注册成功!')
+      setTimeout(() => {
+        history.push({
+          pathname:'/home'
+        })
+      }, 500);
+    }
   };
 
   const prefixSelector = (
@@ -88,32 +113,6 @@ const RegistrationForm = () => {
       </Select>
     </Form.Item>
   );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
-      </Select>
-    </Form.Item>
-  );
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
-  const onWebsiteChange = (value) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
-    }
-  };
-
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
   return (
     <Form
       {...formItemLayout}
@@ -126,22 +125,6 @@ const RegistrationForm = () => {
       }}
       scrollToFirstError
     >
-      {/* <Form.Item
-        name="email"
-        label="E-mail"
-        rules={[
-          {
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
-          {
-            required: true,
-            message: 'Please input your E-mail!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item> */}
 
       <Form.Item
         name="真实姓名"
@@ -158,19 +141,19 @@ const RegistrationForm = () => {
         <Input />
       </Form.Item>
 
-      {/* <Form.Item
-        name="residence"
-        label="Habitual Residence"
+      <Form.Item
+        name="liveRegion"
+        label="现居住地"
         rules={[
           {
             type: 'array',
             required: true,
-            message: 'Please select your habitual residence!',
+            message: '选择你的现居地',
           },
         ]}
       >
         <Cascader options={residences} />
-      </Form.Item> */}
+      </Form.Item>
 
       <Form.Item
         name="id_number"
@@ -256,17 +239,20 @@ const RegistrationForm = () => {
       </Form.Item>
 
       <Form.Item
-        name="married"
-        label="婚育状态">
-        <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />&nbsp;&nbsp;&nbsp;
+        name="wedded"
+        label="婚姻状态">
+        <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />
+      </Form.Item>
+      <Form.Item
+        name="childBorn"
+        label="子嗣状态">
         <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={false} />
       </Form.Item>
       <Form.Item
         name="work"
         label="工作情况">
-        <Switch checkedChildren="就业" unCheckedChildren="待业" defaultChecked />
+        <Switch checkedChildren="就业" unCheckedChildren="待业" />
       </Form.Item>
-
       {/* <Form.Item
         name="agreement"
         valuePropName="checked"
@@ -291,5 +277,5 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default withRouter(RegistrationForm);
 

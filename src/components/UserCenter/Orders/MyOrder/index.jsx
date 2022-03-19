@@ -31,7 +31,7 @@ const MyOrder = ({ productName, price: tradeMoney, startTime: tradeTime, product
   const allGoodsList = useRecoilValue(AllGoodsList)
   const setSelectedGoods = useSetRecoilState(SeckillingGoodsInfo)
   const routeToGoods = (e) => {
-    const foundSelectedGoods = allGoodsList.find(goods => goods.productName === productName)
+    const foundSelectedGoods = allGoodsList.find(goods => goods.productName === productName)//现在是name，后面有id了可以改成id
     if (!foundSelectedGoods) {
       message.error('未找到该商品')
       return

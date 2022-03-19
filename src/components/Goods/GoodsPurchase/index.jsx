@@ -22,7 +22,6 @@ const GoodsPurchase = ({
 
     const [ifOnTime, setIfOnTime] = useState('before')
     const [ifCanBuy, setIfCanBuy] = useState(true)
-    const [goodsAmount, setGoodsAmount] = useState(1)
 
     const selectedGoods = useRecoilValue(SeckillingGoodsInfo)
     const setPurchaseGoods = useSetRecoilState(PurchaseGoods)
@@ -36,10 +35,7 @@ const GoodsPurchase = ({
         error: (<Button type='round' size='large' disabled>暂不能购买</Button>)
     }
 
-    const handleAmountChange = (value) => {
-        setGoodsAmount(value)
-    }
-
+    
     const handleApply = () => {
 
     }
@@ -50,13 +46,7 @@ const GoodsPurchase = ({
     /**点击确认购买 */
     const handlePurchase = async () => {
         setPurchaseGoods(selectedGoods)
-
-        const order = {
-            ...selectedGoods,
-            amount: goodsAmount,
-            totalPrice: (goodsAmount * selectedGoods.price)
-        }
-        setOrderInfo(order)
+        setOrderInfo(selectedGoods)
         history.push({
             pathname: '/home/confirm'
         })
@@ -79,7 +69,7 @@ const GoodsPurchase = ({
                 <p className='goods-name'>{productName}</p>
                 <main className='goods-amount'>
                     <p>剩余数量：{num}</p>
-                    <div><InputNumber min={1} defaultValue={1} onChange={handleAmountChange} size='large' /></div>
+                    {/* <div><InputNumber min={1} defaultValue={1} onChange={handleAmountChange} size='large' /></div> */}
                 </main>
                 <Countdown
                     startTime={startTime}

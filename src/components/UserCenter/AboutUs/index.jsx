@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './index.scss'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import imgUrl from '@/assest/sanxiangBank.png' //将资源引入为url
 
 const AboutUs = () => {

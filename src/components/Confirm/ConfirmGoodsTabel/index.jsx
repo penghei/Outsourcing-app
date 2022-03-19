@@ -24,14 +24,9 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
             key: 'price',
         },
         {
-            title: '购买数量',
-            key: 'amount',
-            dataIndex: 'amount',
-        },
-        {
             title: '总计',
-            key: 'totalPrice',
-            dataIndex: 'totalPrice',
+            key: 'price',
+            dataIndex: 'price',
         },
     ];
 
@@ -39,8 +34,7 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
         goodsPic: '',
         productName,
         price,
-        amount,
-        totalPrice
+        key:uuid.generate()
     }]
 
     return (
@@ -48,7 +42,7 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
             <header className='table-header'>
                 <p>秒杀确认</p>
             </header>
-            <Table className='main-table' columns={columns} dataSource={data} pagination={false} key={uuid.generate()}/>
+            <Table className='main-table' columns={columns} dataSource={data} pagination={false} key={data.key}/>
         </div>
     );
 }

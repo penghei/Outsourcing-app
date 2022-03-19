@@ -2,7 +2,7 @@
     display: flex;
     max-width: 41vw;
     padding: 28px 38px  30px 67px;
-    justify-content: space-between;
+    justify-content: left;
     align-items: flex-start;
     border-radius: 22px;
     background-color: #fdfdfd;
@@ -17,6 +17,7 @@
         width: 14vw;
         // min-width: 50px;
         background-color: #fff;
+        margin-right:60px;
     }
     .product_info{
         // position:absolute;

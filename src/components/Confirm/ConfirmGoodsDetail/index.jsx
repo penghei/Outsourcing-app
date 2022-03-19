@@ -16,15 +16,11 @@ const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
     const filterDetailObj = {
         name: goodsInfo.productName,
         price: goodsInfo.price,
-        amount: goodsInfo.amount,
-        total: goodsInfo.totalPrice
     }
 
     const propsDictonary = {
         name: '商品名称',
         price: '单价',
-        amount: '购买数量',
-        total: '总计'
     }
 
     const handleClickBtn = async (e) => {
@@ -81,7 +77,7 @@ const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
                 <Divider></Divider>
                 <footer>
                     <p>合计</p>
-                    <p>{goodsInfo.totalPrice}</p>
+                    <p>{goodsInfo.price}</p>
                 </footer>
             </main>
             <Spin spinning={isLoading}>
