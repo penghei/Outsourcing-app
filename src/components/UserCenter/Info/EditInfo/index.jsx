@@ -36,15 +36,15 @@ export default function index(Props) {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
-  const formating = (value, prevValue, prevValues) => {
-    console.log(value, prevValue, prevValues);
-    console.log("hahah");
-    if (!prevValue) {
-      prevValues.married = 1;
-    } else {
-      prevValues.married = prevValue ? 1 : 0;
-    }
-  }
+  // const formating = (value, prevValue, prevValues) => {
+  //   console.log(value, prevValue, prevValues);
+  //   console.log("hahah");
+  //   if (!prevValue) {
+  //     prevValues.married = 1;
+  //   } else {
+  //     prevValues.married = prevValue ? 1 : 0;
+  //   }
+  // }
   return (
     <Form
       {...formItemLayout}
@@ -101,7 +101,7 @@ export default function index(Props) {
 
       <Form.Item
         name="married"
-        label="婚姻状态" valuePropName="checked" normalize={formating}>
+        label="婚姻状态" valuePropName="checked" >
         <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={userIsWedding ? true : false} />
       </Form.Item>
       <Form.Item
