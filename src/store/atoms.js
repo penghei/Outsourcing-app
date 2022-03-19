@@ -11,6 +11,7 @@ export const SeckillingGoodsInfo = atom({
   default: goodsInfo,
 });
 
+/**正在被购买的商品 */
 export const PurchaseGoods = atom({
   key: "PurchaseGoods",
   default: {},
@@ -22,6 +23,8 @@ export const UserInformation = atom({
   default: userInformation,
 });
 
+
+/**登录状态（是否登录） */
 export const UserLoginState = atom({
   key: "UserLoginState",
   default: true,
@@ -37,6 +40,7 @@ export const OrderInformation = atom({
   },
 });
 
+/**单次交易信息 */
 export const TradeInformation = atom({
   key: "TradeInformation",
   default: tradeInfo

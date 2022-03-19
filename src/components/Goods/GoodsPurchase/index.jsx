@@ -22,7 +22,7 @@ const GoodsPurchase = ({
 
     const [ifOnTime, setIfOnTime] = useState('before')
     const [ifCanBuy, setIfCanBuy] = useState(true)
-    const [goodsAmount, setGoodsAmount] = useState(0)
+    const [goodsAmount, setGoodsAmount] = useState(1)
 
     const selectedGoods = useRecoilValue(SeckillingGoodsInfo)
     const setPurchaseGoods = useSetRecoilState(PurchaseGoods)

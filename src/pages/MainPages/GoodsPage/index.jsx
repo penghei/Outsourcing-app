@@ -8,10 +8,16 @@ import GoodsList from '../../../components/Goods/GoodsList';
 
 const GoodsPage = () => {
 
-    const [goodsInfo,setGoodsInfo] = useRecoilState(SeckillingGoodsInfo)
+    const [goodsInfo, setGoodsInfo] = useRecoilState(SeckillingGoodsInfo)
 
     return (
         <div className='goods-page'>
+
+            <div className="goods-banner">
+                <div className="slogan"></div>
+                <div className="circle"></div>
+                <div className="computer"></div>
+            </div>
 
             <header className='goods-purchase'>
                 <GoodsList />

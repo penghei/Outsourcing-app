@@ -1,15 +1,17 @@
-import { Button, Divider, Modal, message } from 'antd';
-import React from 'react';
+import { Button, Divider, Modal, message, Spin } from 'antd';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import service from '@/myaxios/interceptors.js'
 import './index.scss'
 import { useSetRecoilState } from 'recoil';
-import { TradeInformation } from '../../../store/atoms';
+import { PurchaseGoods, TradeInformation } from '../../../store/atoms';
 
 
 const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
 
     const setTradeInfo = useSetRecoilState(TradeInformation)
+    const setPurchaseGoods = useSetRecoilState(PurchaseGoods)
+    const [isLoading, setIsLoading] = useState(false)
 
     const filterDetailObj = {
         name: goodsInfo.productName,
@@ -39,15 +41,18 @@ const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
             })
         } else {
             // const res = await service(`/glimmer-bank/platform/product/kill?productId=${2}&userId=${userInfo.userId}`)
+            setIsLoading(true)
             const res = await service('/api/trade')
+            setIsLoading(false)
             const { success, data: tradeInfo } = res.data;
             console.log(tradeInfo)
             if (success) {
                 setTradeInfo(tradeInfo)
                 message.success('购买成功！')
+                setPurchaseGoods({})//清除被购买商品
                 setTimeout(() => {
                     history.push({
-                        pathname:'/home'
+                        pathname: '/home'
                     })
                 }, 2000);
             } else {
@@ -79,10 +84,14 @@ const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
                     <p>{goodsInfo.totalPrice}</p>
                 </footer>
             </main>
-            <footer className='confirm-btn' onClick={handleClickBtn}>
-                <Button id='confirm' type='primary' shape='round'>确认购买</Button>
-                <Button id='back' shape='round'>我再看看</Button>
-            </footer>
+            <Spin spinning={isLoading}>
+                <footer className='confirm-btn' onClick={handleClickBtn}>
+
+                    <Button id='confirm' type='primary' shape='round'>确认购买</Button>
+
+                    <Button id='back' shape='round'>我再看看</Button>
+                </footer>
+            </Spin>
         </div>
     );
 }
