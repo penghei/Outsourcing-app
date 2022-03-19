@@ -1,5 +1,5 @@
 import React from 'react';
-import InfoForm from 'components/InfoForm';
+import InfoForm from 'components/UserCenter/Info/InfoForm';
 
 const InfoFormPage = () => {
     return (

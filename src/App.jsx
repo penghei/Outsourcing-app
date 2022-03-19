@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Route, Redirect, withRouter } from 'react-router-dom'
-import LoginPage from 'pages/LoginPage';
-import HomePage from 'pages/HomePage';
 import './App.scss'
 import { Switch } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
 
 
 const App = (props) => {

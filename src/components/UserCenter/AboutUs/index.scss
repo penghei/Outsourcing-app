@@ -1,0 +1,32 @@
+.aboutUs{
+    display: block;
+    width:70%;
+    margin-top: 20px;
+    margin-left:40px;
+    padding:5px 40px 70px 40px;
+    border-radius: 30px;
+    background-color: #ffffff;
+        img{
+            // width: 60%;
+            width: 290px;
+            height: 290px;
+        }
+    .text{
+        font-family: 宋体;
+        font-size: 16px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    .aboutUs_pic{
+        
+        top: 5px;
+        left: 5px;
+        width: 15vw;
+        height:15vw;
+        // height: 500px;
+        // height: 500px;
+        background-image: url('@/assest/sanxiangBank.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+}

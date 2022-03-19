@@ -7,12 +7,10 @@ import 'antd/dist/antd.css'
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </BrowserRouter>,
   document.getElementById('root')
 )

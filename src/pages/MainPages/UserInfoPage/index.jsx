@@ -1,11 +1,11 @@
 import React from 'react';
-import UserInfoSider from 'components/UserInfoSider';
 import { Route, withRouter, Redirect } from 'react-router-dom';
 import OrderFormPage from 'pages/UserCenterPages/OrderFormPage';
 import InfoFormPage from 'pages/UserCenterPages/InfoFormPage';
 import QuestionPage from 'pages/UserCenterPages/QuestionPage';
 import AboutUsPage from 'pages/UserCenterPages/AboutUsPage';
 import { Switch } from 'react-router-dom';
+import UserInfoSider from '../../../components/User/UserInfoSider';
 
 
 const Userinfopage = () => {

@@ -10,6 +10,76 @@ export const goodsInfo = {
   pass: true, //（参加后需要的参数）是否通过初筛
 };
 
+//商品列表测试数据
+export const allGoodsListTestData = [
+  {
+    productName: "glimmer", //产品名称
+    productImgUrl: "/glimmer/qwer.jpg", //产品图片地址
+    productDescription: "fqewt", //产品描述
+    startTime: "2022-04-01 12:00", //产品开始时间
+    endTime: "2022-04-03 12:00", //产品结束时间
+    num: 100, //产品数量
+    price: 100, //产品金额
+    attend: true, //该用户是否参加
+    pass: true, //（参加后需要的参数）是否通过初筛
+  },
+  {
+    productName: "uestc", //产品名称
+    productImgUrl: "/uestc/asdqewt.png", //产品图片地址
+    productDescription: "qwert", //产品描述
+    startTime: "2021-02-02 12:00", //产品开始时间
+    endTime: "2021-04-01 12:00", //产品结束时间
+    num: 1000, //产品数量
+    price: 2000, //产品金额
+    attend: true, //该用户是否参加
+    pass: false, //（参加后需要的参数）是否通过初筛
+  },
+  {
+    productName: "sssss", //产品名称
+    productImgUrl: "/uestc/asdq.png", //产品图片地址
+    productDescription: "qaaaa", //产品描述
+    startTime: "2022-02-02 12:00", //产品开始时间
+    endTime: "2022-04-01 12:00", //产品结束时间
+    num: 100, //产品数量
+    price: 20, //产品金额
+    attend: true, //该用户是否参加
+    pass: false, //（参加后需要的参数）是否通过初筛
+  },
+  {
+    productName: "uec", //产品名称
+    productImgUrl: "/uestc/aswt.png", //产品图片地址
+    productDescription: "aaaa", //产品描述
+    startTime: "2021-02-02 12:00", //产品开始时间
+    endTime: "2021-04-01 12:00", //产品结束时间
+    num: 0, //产品数量
+    price: 200, //产品金额
+    attend: true, //该用户是否参加
+    pass: false, //（参加后需要的参数）是否通过初筛
+  },
+  {
+    productName: "uec", //产品名称
+    productImgUrl: "/uestc/aswt.png", //产品图片地址
+    productDescription: "aaaa", //产品描述
+    startTime: "2021-02-02 12:00", //产品开始时间
+    endTime: "2021-04-01 12:00", //产品结束时间
+    num: 0, //产品数量
+    price: 200, //产品金额
+    attend: true, //该用户是否参加
+    pass: false, //（参加后需要的参数）是否通过初筛
+  },
+  {
+    productName: "uec", //产品名称
+    productImgUrl: "/uestc/aswt.png", //产品图片地址
+    productDescription: "aaaa", //产品描述
+    startTime: "2021-02-02 12:00", //产品开始时间
+    endTime: "2021-04-01 12:00", //产品结束时间
+    num: 0, //产品数量
+    price: 200, //产品金额
+    attend: true, //该用户是否参加
+    pass: false, //（参加后需要的参数）是否通过初筛
+  },
+];
+
 export const goodsInfoDetail = {
   admitRuleId: null, //不用管
   admitProductId: null, //不用管

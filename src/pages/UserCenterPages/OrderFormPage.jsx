@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderForm from 'components/OrderForm';
+import OrderForm from 'components/UserCenter/Orders/OrderForm';
 
 const OrderFormPage = () => {
     return (
