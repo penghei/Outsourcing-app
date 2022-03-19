@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
 import { ContactsTwoTone, QuestionCircleTwoTone, SettingTwoTone, DollarTwoTone, EditTwoTone, AlertTwoTone, AccountBookTwoTone, CarryOutTwoTone } from '@ant-design/icons';
 import RegistrationForm from 'components/RegistrationForm';
+import ShowInfo from '../ShowInfo';
 import './index.scss'
 
 const { TabPane } = Tabs;
@@ -18,7 +19,8 @@ const InfoForm = () => {
                     }
                     key="1"
                 >
-                    <div className="edit"><RegistrationForm /></div>
+                    {/* <div className="edit"><RegistrationForm /></div> */}
+                    <div className="edit"><ShowInfo /></div>
                 </TabPane>
                 <TabPane
                     tab={

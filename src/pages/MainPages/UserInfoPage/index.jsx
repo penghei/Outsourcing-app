@@ -1,5 +1,5 @@
 import React from 'react';
-import UserInfoSider from 'components/UserInfoSider';
+import UserInfoSider from 'components/UserCenter/UserInfoSider';
 import { Route, withRouter,Redirect } from 'react-router-dom';
 import OrderFormPage from 'pages/UserCenterPages/OrderFormPage';
 import InfoFormPage from 'pages/UserCenterPages/InfoFormPage';

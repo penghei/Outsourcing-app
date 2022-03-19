@@ -15,6 +15,7 @@ const App = (props) => {
     <div className='app-root'>
       <Route path="/login" component={LoginPage}></Route>
       <Route path="/home" component={HomePage}></Route>
+      <Redirect to='/home/user'></Redirect>
     </div>
   )
 }

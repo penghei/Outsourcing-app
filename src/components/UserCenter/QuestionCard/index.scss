@@ -8,8 +8,17 @@
 .site-collapse-custom-collapse .site-collapse-custom-panel {
   margin-bottom: 24px;
   overflow: hidden;
-  background: #f6f6f6;
+  background: #ffffff;
   border: 0px;
   border-radius: 22px !important;
   
 }
+.ant-collapse-borderless {
+  background-color: #e6e6e6 !important;
+  // border: 0;
+  // transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+// .ant-collapse-header:hover{
+//   cursor: pointer;
+// }
