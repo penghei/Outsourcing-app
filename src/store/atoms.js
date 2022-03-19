@@ -1,5 +1,6 @@
 import { atom } from "recoil";
 import {
+  allGoodsListTestData,
   goodsInfo,
   tradeInfo,
   userInformation,
@@ -9,6 +10,12 @@ import {
 export const SeckillingGoodsInfo = atom({
   key: "SeckillingGoodsInfo",
   default: goodsInfo,
+});
+
+/**商品列表，即所有商品，这个可能不一定需要 */
+export const AllGoodsList = atom({
+  key: "AllGoodsList",
+  default: allGoodsListTestData,
 });
 
 /**正在被购买的商品 */
@@ -22,7 +29,6 @@ export const UserInformation = atom({
   key: "UserInformation",
   default: userInformation,
 });
-
 
 /**登录状态（是否登录） */
 export const UserLoginState = atom({
@@ -43,5 +49,5 @@ export const OrderInformation = atom({
 /**单次交易信息 */
 export const TradeInformation = atom({
   key: "TradeInformation",
-  default: tradeInfo
-})
+  default: tradeInfo,
+});

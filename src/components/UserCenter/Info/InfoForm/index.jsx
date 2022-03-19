@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Tabs } from 'antd';
 import { ContactsTwoTone, QuestionCircleTwoTone, SettingTwoTone, DollarTwoTone, EditTwoTone, AlertTwoTone, AccountBookTwoTone, CarryOutTwoTone } from '@ant-design/icons';
-import RegistrationForm from 'components/RegistrationForm';
 import ShowInfo from '../ShowInfo';
 import './index.scss'
 
