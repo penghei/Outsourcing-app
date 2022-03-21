@@ -8,26 +8,27 @@ import './index.scss'
 
 
 const ShoppingCard = ({ goodsProps,history }) => {
-    const {name,pic,...otherProps} = goodsProps;
+    const {productName:name,productImgUrl:pic,...otherProps} = goodsProps;
 
     const setSeckillingGoodsInfo = useSetRecoilState(SeckillingGoodsInfo)
 
     const routeToGoods = (item) => {
         console.log(item)
-        setSeckillingGoodsInfo(item)
-        history.push({
-            pathname: '/home/goods',
-        })
+        // setSeckillingGoodsInfo(item)
+        // history.push({
+        //     pathname: '/home/goods',
+        // })
     }
 
     return (
         <>
             <Card
                 hoverable
-                cover={<img alt={name} src={pic} />}
                 className="shopping-card"
                 onClick={() => { routeToGoods(goodsProps) }}
+                cover={<img alt={name} src="http://localhost:3000/src/assest/money.png" />}
             >
+                
                 <p>{name}</p>
             </Card>
         </>

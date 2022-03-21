@@ -5,11 +5,11 @@ import './index.scss'
 const GoodsRecommand = ({ recommandList }) => {
 
     return (
-        <div className='goods-recommand'>
+        <div className='goods-recommand-block'>
             {
                 recommandList.map(item => {
                     return (
-                        <ShoppingCard goodsProps={item} key={item.id} />
+                        <ShoppingCard goodsProps={item} key={item.productId} />
                     )
                 })
             }

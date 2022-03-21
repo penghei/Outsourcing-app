@@ -47,3 +47,9 @@ export const TradeInformation = atom({
   key: "TradeInformation",
   default: tradeInfo,
 });
+
+
+export const GoodsPageLoading = atom({
+  key:'GoodsPageLoading',
+  default:false
+})
