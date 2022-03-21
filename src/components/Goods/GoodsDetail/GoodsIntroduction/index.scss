@@ -1,8 +1,14 @@
 .goods-introduction{
     flex: 1;
     min-width: 800px;
+    max-width: 70vw;
     .introduction-card{
         min-height: 50vh;
         cursor:auto;
+        p{
+            font-size: larger;
+            columns: 2 20rem;
+            column-gap: 2em;
+        }
     }
 }
