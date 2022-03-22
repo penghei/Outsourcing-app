@@ -1,0 +1,40 @@
+.home-page-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.home-page-wrapper .home-page {
+  height: 100%;
+  max-width: 1200px;
+  position: relative;
+  margin: auto;
+  will-change: transform;
+}
+.home-page-wrapper .title-wrapper > h1,
+.home-page-wrapper > h1 {
+  font-size: 32px;
+  color: $standard-font;
+  margin-bottom: 16px;
+}
+.home-page-wrapper .title-wrapper {
+  margin: 0 auto 64px;
+  // text-align: center;
+}
+.home-page {
+  padding: 128px 24px;
+}
+@media screen and (max-width: 767px) {
+  .home-page-wrapper .home-page {
+    padding: 56px 24px;
+  }
+  .home-page-wrapper .home-page > h1 {
+    font-size: 24px;
+    margin: 0 auto 32px;
+  }
+  .home-page-wrapper .home-page > h1.title-h1 {
+    margin-bottom: 8px;
+  }
+  .home-page-wrapper .home-page > p {
+    margin-bottom: 32px;
+  }
+}

@@ -8,6 +8,7 @@ import Userinfopage from 'pages/MainPages/UserInfoPage';
 import GoodsPage from 'pages/MainPages/GoodsPage';
 import ConfirmPage from 'pages/MainPages/ConfirmPage';
 
+
 import './index.scss'
 import { Switch, Redirect } from 'react-router-dom';
 

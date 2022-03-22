@@ -1,0 +1,45 @@
+.content0-wrapper {
+  min-height: 446px;
+  overflow: hidden;
+}
+.content0-wrapper .content0 {
+  height: 100%;
+  padding: 64px 24px;
+}
+.content0-wrapper .content0 > .title-wrapper {
+  margin: 0 auto 48px;
+}
+.content0-wrapper .content0-block {
+  padding: 0 4%;
+  display: inline-block;
+  text-align: center;
+  min-height: 200px;
+  margin-bottom: 24px;
+}
+.content0-wrapper .content0-block img {
+  width: 100%;
+}
+.content0-wrapper .content0-block-wrapper {
+  position: relative;
+  height: 100%;
+  top: 25%;
+  padding: 20px 0;
+}
+.content0-wrapper .content0-block.queue-anim-leaving {
+  position: relative !important;
+}
+.content0-wrapper .content0-block-icon {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+.content0-wrapper .content0-block-title {
+  line-height: 32px;
+  margin: 10px auto;
+  font-size: 24px;
+}
+@media screen and (max-width: 767px) {
+  .content0-wrapper {
+    min-height: 880px;
+  }
+}
