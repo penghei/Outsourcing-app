@@ -1,0 +1,81 @@
+.banner0 {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  border-color: #666;
+  background-image: url("https://pic.imgdb.cn/item/6239a5a427f86abb2a68f3d9.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+.banner0 .banner0-text-wrapper {
+  display: inline-block;
+  position: absolute;
+  top: 20%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  color: red;
+  width: 550px;
+}
+.banner0 .banner0-text-wrapper > .queue-anim-leaving {
+  position: relative !important;
+}
+.banner0 .banner0-title {
+  width: 780px;
+  left: 15px;
+  min-height: 60px;
+  margin: auto;
+  display: inline-block;
+  font-size: 40px;
+  position: relative;
+}
+.banner0 .banner0-content {
+  margin-bottom: 20px;
+  word-wrap: break-word;
+  min-height: 24px;
+}
+.banner0 .banner0-button {
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  box-shadow: 0 0 0 transparent;
+  font-size: 16px;
+  height: 40px;
+  transition: background 0.45s ease-out, box-shadow 0.45s ease-out;
+}
+.banner0 .banner0-button:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(50, 250, 255, 0.75);
+}
+.banner0 .banner0-button:focus {
+  color: #fff;
+  border-color: #fff;
+}
+.banner0 .banner0-button.queue-anim-leaving {
+  width: auto;
+}
+.banner0 .banner0-icon {
+  bottom: 20px;
+  font-size: 24px;
+  position: absolute;
+  left: 50%;
+  margin-left: -12px;
+  color: rgb(255, 255, 255);
+}
+@media screen and (max-width: 767px) {
+  .banner0 {
+    background-attachment: inherit;
+  }
+  .banner0 .banner0-text-wrapper {
+    width: 90%;
+  }
+  .banner0 .banner0-title {
+    width: 90%;
+    left: 0;
+  }
+}

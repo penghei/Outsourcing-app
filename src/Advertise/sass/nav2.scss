@@ -1,0 +1,115 @@
+@import '@/sass/_color.scss';
+.header2 {
+  background: transparent;
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.28);
+  // border-bottom: 2px solid $primary-color;
+  position: absolute;
+  top: 0;
+}
+.header2 .home-page {
+  padding: 0 24px;
+}
+.header2-logo {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  line-height: 64px;
+}
+.header2-logo img {
+  vertical-align: middle;
+  display: inline-block;
+}
+.header2-logo a {
+  display: block;
+}
+.header2-menu {
+  float: right;
+}
+.header2-menu > .menu-item {
+  line-height: 62px;
+  display: inline-block;
+  padding: 0 20px;
+  cursor: pointer;
+  background: transparent;
+  color: $template-text-color-light;
+  height: 64px;
+  border-bottom-color: transparent;
+  position: relative;
+  transition: color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+.header2-menu > .menu-item.active,
+.header2-menu > .menu-item:hover {
+  color: $primary-color;
+  border-bottom: 2px solid $primary-color;
+}
+@media screen and (max-width: 767px) {
+  .header2-logo {
+    z-index: 101;
+  }
+  .header2.home-page-wrapper .home-page {
+    padding: 0 24px;
+  }
+  .header2-menu {
+    height: auto;
+    float: inherit;
+    position: relative;
+    left: -24px;
+    width: calc(100% + 48px);
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .header2-menu .menu-item {
+    display: block;
+    width: 100%;
+    padding: 0 24px;
+    border-bottom: none;
+    line-height: 40px;
+    height: 40px;
+    margin: 4px 0 8px;
+  }
+  .header2-menu .menu-item.active,
+  .header2-menu .menu-item:hover {
+    border: none;
+    background: $primary-color;
+    color: $template-text-color-light;
+  }
+  .header2-mobile-menu {
+    width: 16px;
+    height: 14px;
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+  }
+  .header2-mobile-menu em {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    margin-top: 4px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  .header2-mobile-menu :first-child {
+    margin-top: 0;
+  }
+  .header2 .open {
+    height: auto;
+  }
+  .header2 .open .header2-mobile-menu em:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .header2 .open .header2-mobile-menu em:nth-child(2) {
+    opacity: 0;
+  }
+  .header2 .open .header2-mobile-menu em:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+  .header2 .open .header2-menu {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
