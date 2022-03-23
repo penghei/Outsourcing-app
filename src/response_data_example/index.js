@@ -1,6 +1,7 @@
 export const goodsInfo = {
   productName: "glimmer", //产品名称
   productImgUrl: "/glimmer/nmsl.jpg", //产品图片地址
+  productId: "112233",
   productDescription: "fucking", //产品描述
   startTime: "2022-04-01 12:00", //产品开始时间
   endTime: "2022-04-03 12:00", //产品结束时间
@@ -22,6 +23,7 @@ export const allGoodsListTestData = [
     price: 100, //产品金额
     attend: true, //该用户是否参加
     pass: true, //（参加后需要的参数）是否通过初筛
+    productId: "001",
   },
   {
     productName: "uestc", //产品名称
@@ -33,6 +35,7 @@ export const allGoodsListTestData = [
     price: 2000, //产品金额
     attend: true, //该用户是否参加
     pass: false, //（参加后需要的参数）是否通过初筛
+    productId: "002",
   },
   {
     productName: "sssss", //产品名称
@@ -44,6 +47,7 @@ export const allGoodsListTestData = [
     price: 20, //产品金额
     attend: true, //该用户是否参加
     pass: false, //（参加后需要的参数）是否通过初筛
+    productId: "003",
   },
   {
     productName: "uec", //产品名称
@@ -55,6 +59,7 @@ export const allGoodsListTestData = [
     price: 200, //产品金额
     attend: true, //该用户是否参加
     pass: false, //（参加后需要的参数）是否通过初筛
+    productId: "004",
   },
   {
     productName: "uec", //产品名称
@@ -66,6 +71,7 @@ export const allGoodsListTestData = [
     price: 200, //产品金额
     attend: true, //该用户是否参加
     pass: false, //（参加后需要的参数）是否通过初筛
+    productId: "005",
   },
   {
     productName: "uec", //产品名称
@@ -77,6 +83,7 @@ export const allGoodsListTestData = [
     price: 200, //产品金额
     attend: true, //该用户是否参加
     pass: false, //（参加后需要的参数）是否通过初筛
+    productId: "006",
   },
 ];
 
@@ -91,15 +98,15 @@ export const goodsInfoDetail = {
 };
 
 export const userInformation = {
-  userId: 13245, //用户ID
-  userIdentification: null, //不用管
-  userName: "曾勇", //用户名字
-  userTelephone: "11111111111", //用户手机
-  userRegion: "四川成都", //用户所在区域
-  userIsWedding: 0, //是否结婚，0代表无
-  userIsChildBorn: 0, //是否有孩子，0代表无
-  userIsWork: 1, //是否在工作，1代表有
-  userSex: 1, //性别，1代表男性，0代表女性
+  userId: "13245", //用户ID
+  identification: "320198281932816640", //不用管
+  name: "曾勇", //用户名字
+  telephone: "11111111111", //用户手机
+  liveRegion: "四川成都", //用户所在区域
+  wedded: 0, //是否结婚，0代表无
+  childBorn: 0, //是否有孩子，0代表无
+  work: 1, //是否在工作，1代表有
+  sex: 1, //性别，1代表男性，0代表女性
 };
 
 export const tradeInfo = {

@@ -5,8 +5,8 @@ import {
   Form,
   Input,
   Select,
-
 } from 'antd';
+import service from '../../../../myaxios/interceptors'
 // const { Option } = Select;
 
 const formItemLayout = {
@@ -30,11 +30,12 @@ const formItemLayout = {
 
 export default function index(Props) {
 
-  const { userId, userName, userTelephone, userRegion, userIsWedding, userIsChildBorn, userIsWork, userSex } = Props.infoProps;
+  const { userId, name, telephone, liveRegion, wedded, childBorn, work, sex } = Props.infoProps;
   const form = Props.form;
-  // console.log(userName);
-  const onFinish = (values) => {
+
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+
   };
   // const formating = (value, prevValue, prevValues) => {
   //   console.log(value, prevValue, prevValues);
@@ -51,10 +52,10 @@ export default function index(Props) {
       form={form}
       onFinish={onFinish}
       initialValues={{
-        userId: userId,
-        realName: userName,
-        phone: userTelephone,
-        place: userRegion,
+        userId,
+        name,
+        telephone,
+        liveRegion,
       }}
       scrollToFirstError
     >
@@ -66,12 +67,12 @@ export default function index(Props) {
       </Form.Item> */}
 
       <Form.Item
-        name="phone"
+        name="telephone"
         label="手机号码"
         rules={[
           {
             required: true,
-            message: 'Please input your phone number!',
+            message: '请输入要修改的手机号',
           },
         ]}
       >
@@ -82,7 +83,23 @@ export default function index(Props) {
         />
       </Form.Item>
       <Form.Item
-        name="place"
+        name="identification"
+        label="身份证号"
+        rules={[
+          {
+            required: true,
+            message: '请输入要修改的身份证号码',
+          },
+        ]}
+      >
+        <Input
+          style={{
+            width: '100%',
+          }}
+        />
+      </Form.Item>
+      <Form.Item
+        name="liveRegion"
         label="所在区域"
         rules={[
           {
@@ -100,19 +117,19 @@ export default function index(Props) {
 
 
       <Form.Item
-        name="married"
+        name="wedded"
         label="婚姻状态" valuePropName="checked" >
-        <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={userIsWedding ? true : false} />
+        <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={wedded ? true : false} />
       </Form.Item>
       <Form.Item
-        name="child"
+        name="childBorn"
         label="子女情况" valuePropName="checked">
-        <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={userIsChildBorn ? true : false} />
+        <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={childBorn ? true : false} />
       </Form.Item>
       <Form.Item
         name="work"
         label="工作情况" valuePropName="checked">
-        <Switch checkedChildren="就业" unCheckedChildren="待业" defaultChecked={userIsWork ? true : false} />
+        <Switch checkedChildren="就业" unCheckedChildren="待业" defaultChecked={work ? true : false} />
       </Form.Item>
 
 

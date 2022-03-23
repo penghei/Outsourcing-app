@@ -63,6 +63,7 @@ const formItemLayout = {
     span: 18
   },
 };
+
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -76,28 +77,42 @@ const tailFormItemLayout = {
   },
 };
 
-const RegistrationForm = ({history}) => {
+const RegistrationForm = ({ history }) => {
   const [form] = Form.useForm();
 
-  const onFinish = async (values) => {
+  const useFormatForm = (values) => {
+    for (let key in values) {
+      if (values[key] === undefined) values[key] = 0;
+    }
     const finalValue = {
       ...values,
-      liveRegion: values.liveRegion.join(' '),
-      childBorn: values.childBorn || false,
-      wedded: values.wedded || false,
-      work: values.work || false
-    }
-    console.log('Received values of form: ', finalValue);
-    // const res = axios.post(`/api/glimmer-bank/user/register`, finalValue)
-    // const {success} = res.data;
+      liveRegion: values.liveRegion.join(" "),
+      childBorn: values.childBorn && 1,
+      wedded: values.wedded && 1,
+      work: values.work && 1,
+      telephone: `+${values.prefix}${values.telephone}`,
+    };
+    delete finalValue.comfirm;
+    delete finalValue.prefix;
+
+    return finalValue;
+  };
+
+  const onFinish = async (values) => {
+
+    console.log('Received values of form: ', useFormatForm(values));
+    // const res = axios.post(`/api2/register`, finalValue)
+    // const {success,data} = res.data;
     const success = true;
-    if(success){
-      message.success('注册成功!')
-      setTimeout(() => {
-        history.push({
-          pathname:'/home'
-        })
-      }, 500);
+    if (success) {
+      message.success('注册成功! 请返回登录')
+      // setTimeout(() => {
+      //   history.push({
+      //     pathname:'/home'
+      //   })
+      // }, 500);
+    } else {
+      // message.error(`注册失败, ${data}`)
     }
   };
 
@@ -127,7 +142,7 @@ const RegistrationForm = ({history}) => {
     >
 
       <Form.Item
-        name="真实姓名"
+        name="name"
         label="真实姓名"
         tooltip="请务必填写真实姓名"
         rules={[
@@ -156,7 +171,7 @@ const RegistrationForm = ({history}) => {
       </Form.Item>
 
       <Form.Item
-        name="id_number"
+        name="identification"
         label="身份证号码"
         rules={[
           {
@@ -172,7 +187,7 @@ const RegistrationForm = ({history}) => {
         />
       </Form.Item>
       <Form.Item
-        name="gender"
+        name="sex"
         label="性别"
         rules={[{ required: true, message: '请选择你的性别' }]}
       >
@@ -183,12 +198,12 @@ const RegistrationForm = ({history}) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="phone"
+        name="telephone"
         label="手机号码"
         rules={[
           {
             required: true,
-            message: 'Please input your phone number!',
+            message: '请输入你的身份证号',
           },
         ]}
       >
@@ -206,7 +221,7 @@ const RegistrationForm = ({history}) => {
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: '请输入您的密码',
           },
         ]}
         hasFeedback
@@ -222,7 +237,7 @@ const RegistrationForm = ({history}) => {
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            message: '请输入确认密码',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -240,17 +255,20 @@ const RegistrationForm = ({history}) => {
 
       <Form.Item
         name="wedded"
-        label="婚姻状态">
+        label="婚姻状态"
+      >
         <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />
       </Form.Item>
       <Form.Item
         name="childBorn"
-        label="子嗣状态">
+        label="子嗣状态"
+      >
         <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={false} />
       </Form.Item>
       <Form.Item
         name="work"
-        label="工作情况">
+        label="工作情况"
+      >
         <Switch checkedChildren="就业" unCheckedChildren="待业" />
       </Form.Item>
       {/* <Form.Item

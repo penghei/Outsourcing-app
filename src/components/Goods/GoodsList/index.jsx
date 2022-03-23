@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { SeckillingGoodsInfo } from 'store/atoms';
 import { allGoodsListTestData } from '../../../response_data_example';
-import { AllGoodsList } from '../../../store/atoms';
 import './index.scss'
 
 const GoodsListBlock = ({ productName }) => {
@@ -34,7 +33,6 @@ const GoodsList = () => {
     const [goodsList, setGoodsList] = useState(allGoodsListTestData)
 
     const setSelectedGoods = useSetRecoilState(SeckillingGoodsInfo)
-    const setTopGoodsList = useSetRecoilState(AllGoodsList)
 
     useEffect(() => {
         // getGoodsList()
@@ -54,7 +52,6 @@ const GoodsList = () => {
             if (Array.isArray(goods)) setGoodsList(goods)
             //这里请求到全部商品后把第一个作为当前选中的，并提交到atoms，因此GoodsPage就不需要再请求
             setSelectedGoods(goods[0])
-            setTopGoodsList(goods)
         } catch (err) {
             console.error(err)
         }

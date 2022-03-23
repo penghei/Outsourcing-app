@@ -1,17 +1,17 @@
 import { Button, Divider, Modal, message, Spin } from 'antd';
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import service from '@/myaxios/interceptors.js'
 import './index.scss'
-import { useSetRecoilState } from 'recoil';
-import { PurchaseGoods, TradeInformation } from '../../../store/atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { SeckillingGoodsInfo } from '../../../store/atoms';
 
 
-const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
+const ConfirmGoodsDetail = ({ history }) => {
 
-    const setTradeInfo = useSetRecoilState(TradeInformation)
-    const setPurchaseGoods = useSetRecoilState(PurchaseGoods)
+    const goodsInfo = useRecoilValue(SeckillingGoodsInfo)
     const [isLoading, setIsLoading] = useState(false)
+    const saleUrl = useRef('')
 
     const filterDetailObj = {
         name: goodsInfo.productName,
@@ -36,16 +36,23 @@ const ConfirmGoodsDetail = ({ goodsInfo, history }) => {
                 },
             })
         } else {
-            // const res = await service(`/glimmer-bank/platform/product/kill?productId=${2}&userId=${userInfo.userId}`)
+            
             setIsLoading(true)
+            // const res = await service(`/api2/product/sale/url`)
             const res = await service('/api/trade')
             setIsLoading(false)
-            const { success, data: tradeInfo } = res.data;
-            console.log(tradeInfo)
-            if (success) {
-                setTradeInfo(tradeInfo)
+            const { success, data:url } = res.data;
+            console.log(url)
+            if(success){
+                saleUrl.current = url
+            }else{
+                message.error(`当前活动不在秒杀时间`)
+            }
+
+            const {data} = await service(`/api2/customer/product/kill/${saleUrl}?productId=${goodsInfo.productId}`)
+
+            if (data.success) {
                 message.success('购买成功！')
-                setPurchaseGoods({})//清除被购买商品
                 setTimeout(() => {
                     history.push({
                         pathname: '/home'

@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import GoodsPurchase from 'components/Goods/GoodsPurchase';
 import GoodsIntroduction from 'components/Goods/GoodsDetail/GoodsIntroduction';
-// import GoodsList from '../../../components/Goods/GoodsList';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { SeckillingGoodsInfo, AllGoodsList } from '@/store/atoms.js'
+import { SeckillingGoodsInfo } from '@/store/atoms.js'
 import './index.scss'
 import axios from 'axios';
 import service from '@/myaxios/interceptors'
 import GoodsRecommand from '../../../components/Goods/GoodsDetail/GoodsRecommand';
 import { allGoodsListTestData } from '../../../response_data_example';
 import { Spin } from 'antd';
-import { GoodsPageLoading } from '../../../store/atoms';
+import { AllGoodsList, GoodsPageLoading } from '../../../store/atoms';
 
 
 const GoodsPage = () => {
 
-    const setTopGoodsList = useSetRecoilState(AllGoodsList)
     const [goodsInfo, setSelectedGoods] = useRecoilState(SeckillingGoodsInfo)
+    const [allGoodsList,setAllGoods] = useRecoilState(AllGoodsList)
     const goodsPageLoading = useRecoilValue(GoodsPageLoading)
 
 
@@ -24,22 +23,19 @@ const GoodsPage = () => {
         getSeckillingGoods()
     }, [])
 
-    /**请求商品数据,把其中的多个商品渲染成列表 */
+    /**请求商品数据 */
     const getSeckillingGoods = async () => {
         try {
-            // let responses = await service.get(`http://localhost:8000/glimmer-bank/platform/product/all`)
-            let responses = await service.get(`/api/goods`)
-
-            console.log(responses)
-            const goods = responses.data;
-            //这里请求到全部商品后把第一个作为当前选中的，并提交到atoms，因此GoodsPage就不需要再请求
-            setSelectedGoods(goods)
-            // setTopGoodsList(goods)
+            // let {data} = await service.get(`/api2/getProduct`)
+            let {data} = await service.get(`/api/goods`)
+            console.log(data)
+            const goods = data.data;//goods才是真实数据,应该是个数组
+            setSelectedGoods(data)//这里应该是goods[0]
+            // setAllGoods(goods)
         } catch (err) {
             console.error(err)
         }
     }
-
 
     return (
         <>
@@ -62,7 +58,7 @@ const GoodsPage = () => {
                     <header>
                         看看其它
                     </header>
-                    <GoodsRecommand recommandList={allGoodsListTestData} />
+                    <GoodsRecommand recommandList={allGoodsList} />
                 </footer>
             </div>
 

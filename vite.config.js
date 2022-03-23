@@ -13,6 +13,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      "/api2": {
+        target: "http://localhost:8000/glimmer-bank/platform",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api2/, ""),
+      },
     },
   },
   resolve: {

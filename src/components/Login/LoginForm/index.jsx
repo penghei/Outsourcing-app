@@ -1,10 +1,11 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message, Modal } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { UserLoginState } from 'store/atoms';
+import { setStorage } from '../../../hooks/useStorage';
 
 
 const LoginForm = ({ history }) => {
@@ -12,15 +13,30 @@ const LoginForm = ({ history }) => {
     const setUserLoginState = useSetRecoilState(UserLoginState)
     const onFinish = async (values) => {
         console.log('Received values of form: ', values);
-        const {username,password} = values;
-        
-        // const res = await axios.post('/api/glimmer-bank/user/login',{username,password})
-        
+        const { username, password } = values;
+
+        // const { data } = await axios.post('/api2/customer/login', { username, password }, { headers: { 'Content-Type': 'application/json' } })
+        // if (data.success) {
+        //     message.success('登录成功!')
+        //     setStorage(data.data)
+        //     history.push({
+        //         pathname: '/home/goods'
+        //     })
+        //     setUserLoginState(true)
+        // } else {
+        //     Modal.error({
+        //         content: '用户名或密码错误'
+        //     })
+        // }
+
         history.push({
             pathname: '/home/goods'
         })
         setUserLoginState(true)
+
     };
+
+
 
     return (
         <Form

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import UserAvatar from '../../User/UserAvatar';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserInformation, UserLoginState } from '@/store/atoms.js'
+import service from '../../../myaxios/interceptors'
 
 const NavList = (props) => {
     //获取和设置用户信息
@@ -19,8 +20,12 @@ const NavList = (props) => {
         })
     }
     //请求登录状态
-    useEffect(() => {
-        
+    useEffect(async() => {
+        // const {data} = await service.get('/api2/customer/detail')
+        // if(data.success){
+        //     console.log(data.data)
+        //     setUserInfo(data.data)
+        // }
     }, [])
     return (
         <div className='menu'>

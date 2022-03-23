@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Image, InputNumber, message, Modal } from 'antd';
+import { Button, Image, message, Modal } from 'antd';
 import './index.scss'
 import Countdown from './Countdown';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { PurchaseGoods, SeckillingGoodsInfo, GoodsPageLoading, OrderInformation } from 'store/atoms';
+import { SeckillingGoodsInfo, GoodsPageLoading } from 'store/atoms';
 import service from '@/myaxios/interceptors.js'
 import { withRouter } from 'react-router-dom';
 
 /**商品图片及购买组件 */
-const GoodsPurchase = ({
-    productName,
-    productImgUrl,
-    productId,
-    startTime,
-    endTime,
-    num,
-    price,
-    attend,
-    pass,
-    history
-}) => {
+const GoodsPurchase = () => {
+    const {
+        productName,
+        productImgUrl,
+        productId,
+        startTime,
+        endTime,
+        num,
+        price,
+        attend,
+        pass,
+        history
+    } = useRecoilValue(SeckillingGoodsInfo)
 
     const [ifOnTime, setIfOnTime] = useState('before')
     const [ifCanBuy, setIfCanBuy] = useState(attend && pass)
-
-    const selectedGoods = useRecoilValue(SeckillingGoodsInfo)
-    const setPurchaseGoods = useSetRecoilState(PurchaseGoods)
     // const userInfo = useRecoilValue(UserInformation)
-    const setOrderInfo = useSetRecoilState(OrderInformation)
     const setLoading = useSetRecoilState(GoodsPageLoading)
 
     const onTimeBtn = {
@@ -40,21 +37,21 @@ const GoodsPurchase = ({
 
     const handleApply = async () => {
         try {
-            // const response = await service.get(`/api/glimmer-bank/platform/product/admit?productId=${productId}`)
+            // const {data} = await service.get(`/api2/customer/product/admit?productId=${productId}`)
             setLoading(true)
-            const response = await service.get(`/api/admit`)
-            console.log(response)
+            const { data } = await service.get(`/api/admit`)
+            console.log(data)
             setLoading(false)
-            if (!response.data.success) throw new Error('请求失败');
-            if (response.data.data) {
+            if (!data.success) {
+                Modal.error({
+                    content: `抱歉，您不符合条件，原因是${data.data}`
+                })
+                return;
+            } else {
                 Modal.success({
                     content: '恭喜你，您已经审核通过，可以参与抢购！'
                 })
                 setIfCanBuy(true)
-            } else {
-                Modal.error({
-                    content: '抱歉，您不符合条件，暂时不能抢购。'
-                })
             }
         } catch (err) {
             setLoading(false)
@@ -63,18 +60,16 @@ const GoodsPurchase = ({
         }
     }
 
+    /*获取子组件时间,勿动 */
     const getIfOnTime = (ifontime) => {
         setIfOnTime(ifontime)
     }
     /**点击确认购买 */
     const handlePurchase = async () => {
-        setPurchaseGoods(selectedGoods)
-        setOrderInfo(selectedGoods)
-
         message.info({
-            content:'即将进入支付界面，正在准备您的相关信息……'
+            content: '即将进入支付界面，正在准备您的相关信息……'
         })
-        await new Promise(resolve=>{
+        await new Promise(resolve => {
             setTimeout(() => {
                 resolve()
             }, 1000);
