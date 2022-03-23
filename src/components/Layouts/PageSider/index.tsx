@@ -14,17 +14,12 @@ const { SubMenu } = Menu;
 interface IProps {}
 const PageSider: React.FC<IProps> = (props) => {
   const routeTo = (e: any) => {
-    e.key!=='userlist' && history.push(`/main/${e.key}`);
+    e.key !== 'userlist' && history.push(`/main/${e.key}`);
   };
 
   return (
     <Sider>
-      <header
-        className="welcome-block"
-        onClick={() => {
-          history.push('/main/admin');
-        }}
-      >
+      <header className="welcome-block">
         <p className="welcome-text">欢迎使用管理员系统</p>
       </header>
       <Divider />
@@ -34,13 +29,10 @@ const PageSider: React.FC<IProps> = (props) => {
         mode="inline"
         onClick={routeTo}
       >
-        <Menu.Item key="admin" icon={<UserOutlined />}>
-          管理员信息
-        </Menu.Item>
         <Menu.Item key="setting" icon={<DesktopOutlined />}>
           配置活动
         </Menu.Item>
-        <SubMenu key='userlist' icon={<UserOutlined />} title="用户信息">
+        <SubMenu key="userlist" icon={<UserOutlined />} title="用户信息">
           <Menu.Item key="userlist-records">用户秒杀记录</Menu.Item>
           <Menu.Item key="userlist-access">用户准入记录</Menu.Item>
         </SubMenu>

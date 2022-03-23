@@ -22,7 +22,6 @@ const PageHeader: React.FC<IProps> = ({ text, route = '/' }) => {
           {text}
         </Breadcrumb.Item>
       </Breadcrumb>
-      <AdminAvatar imgUrl='#'/>
     </Header>
   );
 };

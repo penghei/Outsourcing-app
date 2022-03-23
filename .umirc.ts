@@ -34,7 +34,7 @@ export default defineConfig({
   proxy: {
     '/api': {
       target:
-        'https://www.fastmock.site/mock/3ffed8b4724efef894113d023582584d/api/',
+        'http://localhost:8000/glimmer-bank/platform',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

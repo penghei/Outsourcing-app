@@ -24,7 +24,6 @@ export type AdminChangeType = {
 export type AdminLoginType = {
   username: string;
   password: string;
-  remember: boolean;
 };
 
 export type AdminLoginResponseType = {

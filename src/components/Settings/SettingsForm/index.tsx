@@ -29,13 +29,12 @@ const SettingsForm: React.FC<IProps> = (props) => {
 
     const values: ProductSettingType = {
       ...fieldsValue,
-      duration: [
-        rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
-        rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
-      ],
+      startTime: rangeTimeValue[0].format('YYYY-MM-DD HH:mm'),
+      endTime: rangeTimeValue[1].format('YYYY-MM-DD HH:mm'),
       isAdmit: fieldsValue.isAdmit ? 1 : 0,
       productDescription: fieldsValue.productDescription || '',
     };
+    delete (values as any).actDuration
     if (baseImgUrl.current) {
       getBase64(baseImgUrl.current, (imgBase) => {
         values['imgUrl'] = imgBase;
@@ -114,14 +113,14 @@ const SettingsForm: React.FC<IProps> = (props) => {
       >
         <Checkbox className="form-checkbox" />
       </Form.Item>
-      <Form.Item name='productDescription' label="产品描述">
+      <Form.Item name="productDescription" label="产品描述">
         <Input.TextArea
           placeholder="请输入活动描述"
           showCount
           maxLength={500}
         />
       </Form.Item>
-      <Form.Item name='imgUrl' label="上传产品图片" rules={[{ required: true, message: '必须上传产品图片' }]}>
+      <Form.Item name="imgUrl" label="上传产品图片">
         <AvatarUpload
           onCreateImg={(img) => {
             baseImgUrl.current = img;

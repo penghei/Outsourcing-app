@@ -7,39 +7,39 @@ interface IProps{
     title?:string;
 }
 
-const ColumnChart: React.FC<IProps> = ({ title = '柱状图' }) => {
+const ColumnChart: React.FC<IProps> = ({ title = '网站成交量' }) => {
   const data = [
     {
-      type: '家具家电',
-      sales: 38,
+      type: '23日',
+      sales: 380,
     },
     {
-      type: '粮油副食',
-      sales: 52,
+      type: '24日',
+      sales: 520,
     },
     {
-      type: '生鲜水果',
-      sales: 61,
+      type: '25日',
+      sales: 610,
     },
     {
-      type: '美容洗护',
-      sales: 145,
+      type: '26日',
+      sales: 1450,
     },
     {
-      type: '母婴用品',
-      sales: 48,
+      type: '27日',
+      sales: 480,
     },
     {
-      type: '进口食品',
-      sales: 38,
+      type: '28日',
+      sales: 380,
     },
     {
-      type: '食品饮料',
-      sales: 38,
+      type: '29日',
+      sales: 382,
     },
     {
-      type: '家庭清洁',
-      sales: 38,
+      type: '30日',
+      sales: 380,
     },
   ];
   const config = {
@@ -64,10 +64,10 @@ const ColumnChart: React.FC<IProps> = ({ title = '柱状图' }) => {
     },
     meta: {
       type: {
-        alias: '类别',
+        alias: '日期',
       },
       sales: {
-        alias: '销售额',
+        alias: '成交量',
       },
     },
   };

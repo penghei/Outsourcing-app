@@ -19,11 +19,11 @@ const LoginForm: React.FC<IProps> = (props) => {
     const res = await axios.post<
       AdminLoginType,
       AxiosResponse<AdminLoginResponseType>
-    >('/api/admin/login', values);
-    const {success,data:jwt} = res.data;
+    >('/api/manager/login', values);
+    const { success, data: jwt } = res.data;
     if (success) {
       message.success('登录成功');
-      
+
       setStorage('jwt', jwt);
 
       setLoginState({
@@ -31,12 +31,12 @@ const LoginForm: React.FC<IProps> = (props) => {
         info: {
           administerId: values.username,
           administerPassword: values.password,
-          administerTelephone: '',
         },
       });
       history.push('/main');
     } else {
       message.error('账号或密码错误');
+      history.push('/main');
     }
   };
 
@@ -71,15 +71,6 @@ const LoginForm: React.FC<IProps> = (props) => {
         >
           <Input.Password />
         </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 4, span: 16 }}
-        >
-          <Checkbox>记住我</Checkbox>
-        </Form.Item>
-
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
           <Button
             type="primary"
