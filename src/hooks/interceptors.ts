@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getStorage } from '@/hooks/useStorage.js';
+import { getStorage } from '@/hooks/useStorage';
 
 /**使用时用service代替axios */
 const service = axios.create({

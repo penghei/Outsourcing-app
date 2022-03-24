@@ -17,14 +17,18 @@ import { getBase64 } from '@/hooks/useGetBase64';
 import AvatarUpload from '../../Admin/AdminInfo/AvatarUpload';
 import './index.less';
 import { ProductSettingType } from '@/types';
+import service from '@/hooks/interceptors';
+import { AxiosResponse } from 'axios';
 
 interface IProps {}
+
+type FormResponseType = {};
 
 const SettingsForm: React.FC<IProps> = (props) => {
   const baseImgUrl = useRef<File>();
 
   /**点击提交回调 */
-  const onFinish = (fieldsValue: any) => {
+  const onFinish = async (fieldsValue: any) => {
     const rangeTimeValue = fieldsValue['actDuration'];
 
     const values: ProductSettingType = {
@@ -33,15 +37,34 @@ const SettingsForm: React.FC<IProps> = (props) => {
       endTime: rangeTimeValue[1].format('YYYY-MM-DD HH:mm'),
       isAdmit: fieldsValue.isAdmit ? 1 : 0,
       productDescription: fieldsValue.productDescription || '',
+      imgName: baseImgUrl.current?.name,
     };
-    delete (values as any).actDuration
+    delete (values as any).actDuration;
+
     if (baseImgUrl.current) {
-      getBase64(baseImgUrl.current, (imgBase) => {
-        values['imgUrl'] = imgBase;
+      getBase64(baseImgUrl.current, async (imgBase) => {
+        values['imgBase'] = (imgBase as string).slice(
+          (imgBase as string).indexOf(',') + 1,
+        );
+        delete (values as any).imgUrl;
+        console.log(values);
+
+        try {
+          const { data } = await service.post<any, AxiosResponse<any>>(
+            `/api/manager/product/add`,
+            values,
+          );
+          if (data.success) {
+            message.success('上传成功');
+          } else {
+            message.error(`上传失败`);
+          }
+          // if(res.data.)
+        } catch (err) {
+          console.log(err);
+        }
       });
     }
-
-    console.log(values);
   };
 
   /**提交数据有误回调 */

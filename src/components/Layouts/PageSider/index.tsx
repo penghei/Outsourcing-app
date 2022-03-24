@@ -1,12 +1,14 @@
 import React from 'react';
-import { Layout, Menu, Divider } from 'antd';
+import { Layout, Menu, Divider, message } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,
   UserOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 import { history } from 'umi';
 import './index.less';
+import { emptyStorage } from '@/hooks/useStorage';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -14,7 +16,17 @@ const { SubMenu } = Menu;
 interface IProps {}
 const PageSider: React.FC<IProps> = (props) => {
   const routeTo = (e: any) => {
-    e.key !== 'userlist' && history.push(`/main/${e.key}`);
+    if (e.key === 'userlist' || e.key === 'logout') return;
+    history.push(`/main/${e.key}`);
+  };
+
+  const handleLogout = (e: any) => {
+    if (emptyStorage('jwt')) {
+      message.success('退出成功');
+      history.push('/');
+    } else {
+      message.error('退出登录失败');
+    }
   };
 
   return (
@@ -38,6 +50,13 @@ const PageSider: React.FC<IProps> = (props) => {
         </SubMenu>
         <Menu.Item key="data" icon={<PieChartOutlined />}>
           数据展示
+        </Menu.Item>
+        <Menu.Item
+          key="logout"
+          icon={<LogoutOutlined />}
+          onClick={handleLogout}
+        >
+          退出登录
         </Menu.Item>
       </Menu>
     </Sider>

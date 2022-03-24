@@ -63,19 +63,17 @@ const UserRecordTable: React.FC<IProps> = (props) => {
   ];
 
   const getListData = async () => {
-    //   const requests = []
-    //   for(let i=1;i<=MAX_PAGE;i++){
-    //     requests.push(await service.get(`/glimmer-bank/platform/product/records?pageId=${i}`))
-    //   }
-    //   try{
-    //     let responses = await Promise.all(requests);
-    //     let resDatas = responses.map((res:any)=>res.data.data)
-
-    //   }catch(err){
-    //       console.error(err)
-    //   }
-    filterData(data);
-    setRecordData(data);
+    try {
+      const { data } = await service.get<any, any>(
+        `/api/manager/product/trade/records`,
+      );
+      console.log(data);
+      const valueList = data.data;
+      filterData(valueList);
+      setRecordData(valueList);
+    } catch (err) {
+      console.error(err);
+    }
   };
   const filterData = (datas: TradeRecordType[]) => {
     datas.forEach((data) => {

@@ -32,3 +32,26 @@ export const getStorage = (key: string, type: string = 'session') => {
 
   return res;
 };
+
+export const emptyStorage = (key: string, type = 'session') => {
+  if (typeof key !== 'string') {
+    console.warn('查找缓存键不是字符串');
+  }
+  if (type === 'session') {
+    if (sessionStorage.getItem(key)) {
+      sessionStorage.removeItem(key);
+      return true;
+    } else {
+      console.warn('session未找到');
+      return false;
+    }
+  } else {
+    if (localStorage.getItem(key)) {
+      localStorage.removeItem(key);
+      return true;
+    } else {
+      console.warn('local未找到');
+      return false;
+    }
+  }
+};
