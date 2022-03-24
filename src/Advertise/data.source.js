@@ -30,52 +30,52 @@ export const Banner01DataSource = {
 };
 
 //这个是response_data_example中的产品数据,搬过来模拟一下
-export const goodsInfo = {
-  productName: "glimmer", //产品名称
-  productImgUrl: "/glimmer/nmsl.jpg", //产品图片地址
-  productDescription: "fucking", //产品描述
-  startTime: "2022-04-01 12:00", //产品开始时间
-  endTime: "2022-04-03 12:00", //产品结束时间
-  num: 100, //产品数量
-  price: 100, //产品金额
-  attend: true, //该用户是否参加
-  pass: true, //（参加后需要的参数）是否通过初筛
-};
+// export const goodsInfo = {
+//   productName: "glimmer", //产品名称
+//   productImgUrl: "/glimmer/nmsl.jpg", //产品图片地址
+//   productDescription: "fucking", //产品描述
+//   startTime: "2022-04-01 12:00", //产品开始时间
+//   endTime: "2022-04-03 12:00", //产品结束时间
+//   num: 100, //产品数量
+//   price: 100, //产品金额
+//   attend: true, //该用户是否参加
+//   pass: true, //（参加后需要的参数）是否通过初筛
+// };
 
 //因为这个模板的数据,是依据name来渲染(utils.js),为了保持原模板的结构所以需要把上面的数据填入到下面.,图片还没有填入
 
-export const Feature40DataSource = {
-  wrapper: { className: 'home-page-wrapper content6-wrapper' },
-  OverPack: { className: 'home-page content6' },
-  textWrapper: { className: 'content6-text', xs: 24, md: 10 },
-  btn:{className:'ant-btn ant-btn-primary ant-btn-lg'},
-  titleWrapper: {
-    className: 'title-wrapper',
-    children: [
-      {
-        name: 'title',
-        children: goodsInfo.productName,
-        className: 'title-h1',
-      },
-      {
-        name: 'content',
-        className: 'title-content',
-        children: '一句话产品描述',
-      },
-      {
-        name: 'content',
-        className: 'some-info',
-        children: goodsInfo.productDescription,
-      },
-    ],
-  },
-  img: {
-    children: 'https://pic.imgdb.cn/item/6239b12827f86abb2aa1098b.png',
-    className: 'content6-img',
-    xs: 24,
-    md: 14,
-  },
-};
+// export const Feature40DataSource = {
+//   wrapper: { className: 'home-page-wrapper content6-wrapper' },
+//   OverPack: { className: 'home-page content6' },
+//   textWrapper: { className: 'content6-text', xs: 24, md: 10 },
+//   btn:{className:'ant-btn ant-btn-primary ant-btn-lg'},
+//   titleWrapper: {
+//     className: 'title-wrapper',
+//     children: [
+//       {
+//         name: 'title',
+//         children: goodsInfo.productName,
+//         className: 'title-h1',
+//       },
+//       {
+//         name: 'content',
+//         className: 'title-content',
+//         children: '一句话产品描述',
+//       },
+//       {
+//         name: 'content',
+//         className: 'some-info',
+//         children: goodsInfo.productDescription,
+//       },
+//     ],
+//   },
+//   img: {
+//     children: 'https://pic.imgdb.cn/item/6239b12827f86abb2aa1098b.png',
+//     className: 'content6-img',
+//     xs: 24,
+//     md: 14,
+//   },
+// };
 //下面是第三栏的,不知道用不用,就保留模板原来的数据了
 export const Content00DataSource = {
   wrapper: { className: 'home-page-wrapper content0-wrapper' },

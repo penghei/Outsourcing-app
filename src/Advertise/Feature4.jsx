@@ -23,10 +23,10 @@ class Content7 extends React.Component {
   //       </li>
   //     );
   //   });
-
   render() {
     const { ...props } = this.props;
     const { dataSource, isMobile } = props;
+    console.log(dataSource);
     delete props.dataSource;
     delete props.isMobile;
     // const ulChildren = this.getBlockChildren(dataSource.block.children);
@@ -45,6 +45,7 @@ class Content7 extends React.Component {
           type: 'from',
           ease: 'easeOutQuad',
         };
+        
     return (
       <div {...props} {...dataSource.wrapper}>
         <OverPack {...dataSource.OverPack} component={Row}>
