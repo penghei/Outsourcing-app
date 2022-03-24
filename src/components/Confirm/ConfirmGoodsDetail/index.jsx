@@ -1,5 +1,5 @@
 import { Button, Divider, Modal, message, Spin } from 'antd';
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import service from '@/myaxios/interceptors.js'
 import './index.scss'
@@ -36,31 +36,43 @@ const ConfirmGoodsDetail = ({ history }) => {
                 },
             })
         } else {
-            
-            setIsLoading(true)
-            // const res = await service(`/api2/product/sale/url`)
-            const res = await service('/api/trade')
-            setIsLoading(false)
-            const { success, data:url } = res.data;
-            console.log(url)
-            if(success){
-                saleUrl.current = url
-            }else{
-                message.error(`当前活动不在秒杀时间`)
+            try {
+                setIsLoading(true)
+                const res = await service(`/api2/product/sale/url`)
+                // const res = await service('/api/trade')
+                const { success, data: url } = res.data;
+                console.log(url)
+                if (!url) {
+                    message.error('链接设置错误')
+                    return;
+                }
+
+                if (success) {
+                    saleUrl.current = url
+                } else {
+                    message.error(`当前活动不在秒杀时间`)
+                }
+
+                const { data } = await service.post(`/api2/customer/product/kill/${saleUrl.current}?productId=${goodsInfo.productId}`)
+                setIsLoading(false)
+                console.log(data)
+                if (data.success) {
+                    message.success('购买成功！')
+                    setTimeout(() => {
+                        history.push({
+                            pathname: '/home'
+                        })
+                    }, 2000);
+                } else {
+                    message.error(`购买失败,${data.message}`)
+                }
+            } catch (err) {
+                console.log(err)
+            } finally {
+                message.error('未知错误')
+                setIsLoading(false)
             }
 
-            const {data} = await service(`/api2/customer/product/kill/${saleUrl}?productId=${goodsInfo.productId}`)
-
-            if (data.success) {
-                message.success('购买成功！')
-                setTimeout(() => {
-                    history.push({
-                        pathname: '/home'
-                    })
-                }, 2000);
-            } else {
-                message.error('购买失败')
-            }
         }
     }
 

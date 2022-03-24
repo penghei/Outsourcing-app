@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Button, Image, message, Modal } from 'antd';
 import './index.scss'
 import Countdown from './Countdown';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { SeckillingGoodsInfo, GoodsPageLoading } from 'store/atoms';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { SeckillingGoodsInfo, GoodsPageLoading, AllGoodsList } from 'store/atoms';
 import service from '@/myaxios/interceptors.js'
 import { withRouter } from 'react-router-dom';
 
 /**商品图片及购买组件 */
-const GoodsPurchase = () => {
+const GoodsPurchase = ({ history }) => {
+    const [goodsInfo, setSelectedGoods] = useRecoilState(SeckillingGoodsInfo)
+    const [allGoodsList, setAllGoods] = useRecoilState(AllGoodsList)
+
     const {
         productName,
         productImgUrl,
@@ -19,12 +22,12 @@ const GoodsPurchase = () => {
         price,
         attend,
         pass,
-        history
-    } = useRecoilValue(SeckillingGoodsInfo)
+    } = goodsInfo
+
 
     const [ifOnTime, setIfOnTime] = useState('before')
-    const [ifCanBuy, setIfCanBuy] = useState(attend && pass)
-    // const userInfo = useRecoilValue(UserInformation)
+    const [ifCanBuy, setIfCanBuy] = useState()
+
     const setLoading = useSetRecoilState(GoodsPageLoading)
 
     const onTimeBtn = {
@@ -37,9 +40,9 @@ const GoodsPurchase = () => {
 
     const handleApply = async () => {
         try {
-            // const {data} = await service.get(`/api2/customer/product/admit?productId=${productId}`)
+            const { data } = await service.post(`/api2/customer/product/admit?productId=${productId}`)
             setLoading(true)
-            const { data } = await service.get(`/api/admit`)
+            // const { data } = await service.get(`/api/admit`)
             console.log(data)
             setLoading(false)
             if (!data.success) {
@@ -80,11 +83,24 @@ const GoodsPurchase = () => {
 
     }
 
-    // useEffect(async () => {
-    //     const res = await service.get(`glimmer-bank/platform/product/admit?productId=${2}&userId=${userInfo.userId}`)
-    //     const { data,success } = res.data;
-    //     success && setIfCanBuy(data)
-    // }, [])
+    useEffect(() => {
+        getSeckillingGoods()
+    }, [])
+
+    /**请求商品数据 */
+    const getSeckillingGoods = async () => {
+        try {
+            let { data } = await service.get(`/api2/customer/getProduct`)
+            // let {data} = await service.get(`/api/goods`)
+            console.log("IN GOODPURCHASE COMPONENT:", data)
+            const goods = data.data;//goods才是真实数据,应该是个数组
+            setSelectedGoods(goods[0])//这里应该是goods[0]
+            setAllGoods(goods)
+            setIfCanBuy(goods[0].attend && goods[0].pass)
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     return (
         <div className='goods-purchase-info'>

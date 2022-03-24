@@ -2,9 +2,12 @@ import React from 'react';
 import { Table, Tag, Space } from 'antd';
 import uuid from 'uuidjs'
 import './index.scss'
+// import { useRecoilValue } from 'recoil';
+// import { SeckillingGoodsInfo, GoodsPageLoading, AllGoodsList } from 'store/atoms';
+
 
 const ConfirmGoodsTable = ({ goodsInfo }) => {
-    const { productName, price, amount, totalPrice } = goodsInfo;
+    const { productName, price } = goodsInfo
     console.log(goodsInfo)
     const columns = [
         {
@@ -34,7 +37,7 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
         goodsPic: '',
         productName,
         price,
-        key:uuid.generate()
+        key: uuid.generate()
     }]
 
     return (
@@ -42,7 +45,7 @@ const ConfirmGoodsTable = ({ goodsInfo }) => {
             <header className='table-header'>
                 <p>秒杀确认</p>
             </header>
-            <Table className='main-table' columns={columns} dataSource={data} pagination={false} key={data.key}/>
+            <Table className='main-table' columns={columns} dataSource={data} pagination={false} key={data.key} />
         </div>
     );
 }

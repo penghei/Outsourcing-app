@@ -1,6 +1,7 @@
-import { Avatar, Button, Divider, Popover } from 'antd';
+import { Avatar, Button, Divider, message, Popover } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import { emptyStorage } from '../../../hooks/useStorage';
 import './index.scss'
 
 const UserAvatar = ({ userInfo, isLogin, history }) => {
@@ -13,7 +14,17 @@ const UserAvatar = ({ userInfo, isLogin, history }) => {
             pathname: `/home/user/${e.target.id}`
         })
     }
-    const handleExitLogin = () => {
+    const handleExitLogin = (e) => {
+        e.stopPropagation()
+        if (emptyStorage('jwt')) {
+            message.success('退出登录成功!')
+            history.push({
+                pathname: '/login'
+            })
+        } else {
+            message.error('退出登录失败,请稍后再试!')
+        }
+
 
     }
 

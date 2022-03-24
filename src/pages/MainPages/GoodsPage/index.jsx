@@ -26,12 +26,11 @@ const GoodsPage = () => {
     /**请求商品数据 */
     const getSeckillingGoods = async () => {
         try {
-            // let {data} = await service.get(`/api2/getProduct`)
-            let {data} = await service.get(`/api/goods`)
-            console.log(data)
+            let {data} = await service.get(`/api2/customer/getProduct`)
+            // let {data} = await service.get(`/api/goods`)
             const goods = data.data;//goods才是真实数据,应该是个数组
-            setSelectedGoods(data)//这里应该是goods[0]
-            // setAllGoods(goods)
+            setSelectedGoods(goods[0])//这里应该是goods[0]
+            setAllGoods(goods)
         } catch (err) {
             console.error(err)
         }
@@ -48,11 +47,11 @@ const GoodsPage = () => {
             <div className='goods-page'>
                 <header className='goods-purchase'>
                     <Spin spinning={goodsPageLoading}>
-                        <GoodsPurchase {...goodsInfo} />
+                        <GoodsPurchase />
                     </Spin>
                 </header>
                 <main className='goods-details'>
-                    <GoodsIntroduction {...goodsInfo} />
+                    <GoodsIntroduction/>
                 </main>
                 <footer className='goods-recommand'>
                     <header>

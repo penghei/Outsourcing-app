@@ -86,11 +86,12 @@ const RegistrationForm = ({ history }) => {
     }
     const finalValue = {
       ...values,
-      liveRegion: values.liveRegion.join(" "),
+      liveRegion: values.liveRegion.shift(),
       childBorn: values.childBorn && 1,
       wedded: values.wedded && 1,
       work: values.work && 1,
-      telephone: `+${values.prefix}${values.telephone}`,
+      sex: values.sex === 'male' ? 1 : 0,
+      telephone: `${values.telephone}`,
     };
     delete finalValue.comfirm;
     delete finalValue.prefix;
@@ -100,19 +101,16 @@ const RegistrationForm = ({ history }) => {
 
   const onFinish = async (values) => {
 
-    console.log('Received values of form: ', useFormatForm(values));
-    // const res = axios.post(`/api2/register`, finalValue)
-    // const {success,data} = res.data;
-    const success = true;
+
+    const finalValue = useFormatForm(values)
+    console.log(finalValue)
+    const res = await axios.post(`/api3/register`, finalValue)
+    const { success, data } = res.data;
+    console.log('RES', data)
     if (success) {
       message.success('注册成功! 请返回登录')
-      // setTimeout(() => {
-      //   history.push({
-      //     pathname:'/home'
-      //   })
-      // }, 500);
     } else {
-      // message.error(`注册失败, ${data}`)
+      message.error(`注册失败, ${data}`)
     }
   };
 
