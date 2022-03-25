@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
+import './index.scss';
 import {
   Switch,
   Form,
@@ -256,18 +257,21 @@ const RegistrationForm = ({ history }) => {
       <Form.Item
         name="wedded"
         label="婚姻状态"
+        className="sameLine"
       >
         <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />
       </Form.Item>
       <Form.Item
         name="childBorn"
         label="子嗣状态"
+        className="sameLine"
       >
         <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={false} />
       </Form.Item>
       <Form.Item
         name="work"
         label="工作情况"
+        className="sameLine"
       >
         <Switch checkedChildren="就业" unCheckedChildren="待业" />
       </Form.Item>

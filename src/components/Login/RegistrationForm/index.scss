@@ -1,0 +1,24 @@
+.box-container #register .sameLine{
+    display:inline-block;
+    width: 32%;
+    // display: flex;
+    .ant-col-6{
+        max-width: 47%;
+    }
+    
+}
+.box-container #register {
+    .ant-form-item-label{
+        // display: inline-block;
+        overflow: visible;
+        width: 100%;
+    }
+    .ant-form-item-control{
+        display: inline-block;
+        
+    }
+}
+#register{
+    text-align: right;
+}
+

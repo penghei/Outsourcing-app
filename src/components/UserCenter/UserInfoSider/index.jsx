@@ -4,7 +4,7 @@ import { Menu } from 'antd';
 import { Avatar, Image } from 'antd';
 import { AntDesignOutlined } from '@ant-design/icons';
 import {ContactsTwoTone,QuestionCircleTwoTone,SettingTwoTone,DollarTwoTone,EditTwoTone,AlertTwoTone,AccountBookTwoTone,CarryOutTwoTone } from '@ant-design/icons';
-import './index.scss'
+import './index.scss';
 
 const { SubMenu } = Menu;
 

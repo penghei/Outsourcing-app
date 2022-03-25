@@ -5,4 +5,11 @@ p{
 h1,h2,h3,h4,h5,h6{
     font-size: 1rem;
 }
-
+//这个ant-design真的是被魔怔了，给body加上id还有！important都不能阻挡他将字体修改为14px的脚步，只能这样了，现在每个
+//每个页面的字体大小应该都维持在16px了
+#body{
+    font-size: 16px !important;
+    .ant-menu,.ant-collapse,.ant-tabs-tab{
+        font-size:16px !important;
+    }
+}
