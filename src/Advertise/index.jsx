@@ -55,47 +55,47 @@ export default class Advertise extends React.Component {
     }
     let goodsInfo={};
       axios.get('/api/get/product/main/info')
-      .then(function (response) {
+      .then((response)=>{
         console.log(response);
-        goodsInfo=response.data[0];
+        goodsInfo=response.data.data;
+        const featuresData = {
+          wrapper: { className: 'home-page-wrapper content6-wrapper' },
+          OverPack: { className: 'home-page content6' },
+          textWrapper: { className: 'content6-text', xs: 24, md: 10 },
+          btn:{className:'ant-btn ant-btn-primary ant-btn-lg'},
+          titleWrapper: {
+            className: 'title-wrapper',
+            children: [
+              {
+                name: 'title',
+                children: goodsInfo.productName,
+                className: 'title-h1',
+              },
+              {
+                name: 'content',
+                className: 'title-content',
+                children: '一句话产品描述',
+              },
+              {
+                name: 'content',
+                className: 'some-info',
+                children: goodsInfo.productDescription,
+              },
+            ],
+          },
+          img: {
+            children: goodsInfo.productImgUrl,
+            className: 'content6-img',
+            xs: 24,
+            md: 14,
+          },
+        };
+        this.setState({features:featuresData});
       })
       .catch(function (error) {
         console.log('error',error);
       });
       
-      const featuresData = {
-      wrapper: { className: 'home-page-wrapper content6-wrapper' },
-      OverPack: { className: 'home-page content6' },
-      textWrapper: { className: 'content6-text', xs: 24, md: 10 },
-      btn:{className:'ant-btn ant-btn-primary ant-btn-lg'},
-      titleWrapper: {
-        className: 'title-wrapper',
-        children: [
-          {
-            name: 'title',
-            children: goodsInfo.productName,
-            className: 'title-h1',
-          },
-          {
-            name: 'content',
-            className: 'title-content',
-            children: '一句话产品描述',
-          },
-          {
-            name: 'content',
-            className: 'some-info',
-            children: goodsInfo.productDescription,
-          },
-        ],
-      },
-      img: {
-        children: 'https://pic.imgdb.cn/item/6239b12827f86abb2aa1098b.png',
-        className: 'content6-img',
-        xs: 24,
-        md: 14,
-      },
-    };
-    this.setState({features:featuresData});
   }
 
   render() {

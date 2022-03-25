@@ -5,11 +5,13 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  proxy:{
-    "/api": {
-      target: "http://192.168.162.3:8000/glimmer-bank/platform/",
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/api/, ""),
+  server:{
+    proxy:{
+      "/api": {
+        target: "http://192.168.162.3:8000/glimmer-bank/platform/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
     },
   },
   resolve: {
