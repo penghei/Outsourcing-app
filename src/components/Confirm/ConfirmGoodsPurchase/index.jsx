@@ -1,4 +1,4 @@
-import { Button, Divider, Modal, message, Spin } from 'antd';
+import { Button, Divider, Modal, message, Spin, Result } from 'antd';
 import React, { useState, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import service from '@/myaxios/interceptors.js'
@@ -7,20 +7,24 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { SeckillingGoodsInfo } from '../../../store/atoms';
 
 
-const ConfirmGoodsDetail = ({ history }) => {
+const ConfirmGoodsPurchase = ({ history }) => {
 
     const goodsInfo = useRecoilValue(SeckillingGoodsInfo)
     const [isLoading, setIsLoading] = useState(false)
+    const [modalVisible, setModal] = useState(false)
     const saleUrl = useRef('')
 
     const filterDetailObj = {
         name: goodsInfo.productName,
         price: goodsInfo.price,
+        bankCardNum: '6217004160025684871'
     }
 
     const propsDictonary = {
         name: '商品名称',
         price: '单价',
+        bankCardNum: '支付银行卡号',
+
     }
 
     const handleClickBtn = async (e) => {
@@ -59,9 +63,7 @@ const ConfirmGoodsDetail = ({ history }) => {
                 if (data.success) {
                     message.success('购买成功！')
                     setTimeout(() => {
-                        history.push({
-                            pathname: '/home'
-                        })
+                        setModal(true)
                     }, 2000);
                 } else {
                     message.error(`购买失败,${data.message}`)
@@ -69,7 +71,8 @@ const ConfirmGoodsDetail = ({ history }) => {
             } catch (err) {
                 console.log(err)
             } finally {
-                message.error('未知错误')
+                setModal(true)
+                message.error('购买失败,请稍后再试')
                 setIsLoading(false)
             }
 
@@ -77,7 +80,7 @@ const ConfirmGoodsDetail = ({ history }) => {
     }
 
     return (
-        <div className='comfirm-goods-detail'>
+        <div className='comfirm-goods-purchase'>
             <header className='title'>
                 <p>结算</p>
             </header>
@@ -102,13 +105,35 @@ const ConfirmGoodsDetail = ({ history }) => {
             <Spin spinning={isLoading}>
                 <footer className='confirm-btn' onClick={handleClickBtn}>
 
-                    <Button id='confirm' type='primary' shape='round'>确认购买</Button>
+                    <Button id='confirm' type='primary' shape='round' size='large'>确认购买</Button>
 
-                    <Button id='back' shape='round'>我再看看</Button>
+                    <Button id='back' shape='round' size='large'>我再看看</Button>
                 </footer>
             </Spin>
+            <Modal
+                title="支付成功"
+                visible={modalVisible}
+                footer={null}
+            >
+                <Result
+                    status="success"
+                    title="您的购买已经成功!"
+                    subTitle="如果当前人数过多，可能需要几秒的时间才会同步到您的账户，请您耐心等待"
+                    extra={[
+                        <Button type="primary" key="console" onClick={() => {
+                            setModal(false)
+                            history.push({
+                                pathname: '/home'
+                            })
+                           
+                        }}>
+                            返回主页
+                        </Button>
+                    ]}
+                />
+            </Modal>
         </div>
     );
 }
 
-export default withRouter(ConfirmGoodsDetail);
+export default withRouter(ConfirmGoodsPurchase);

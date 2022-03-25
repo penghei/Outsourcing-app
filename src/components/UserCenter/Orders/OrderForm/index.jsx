@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Tabs } from 'antd';
+import { Empty, Tabs } from 'antd';
 import { ContactsTwoTone, QuestionCircleTwoTone, SettingTwoTone, DollarTwoTone, EditTwoTone, AlertTwoTone, AccountBookTwoTone, CarryOutTwoTone } from '@ant-design/icons';
 import MyOrder from '../MyOrder'
 import axios from 'axios';
@@ -58,7 +58,7 @@ const OrderForm = () => {
                             orderList.map((value, index) => {
                                 return <MyOrder key={index} {...value} />;
                             })
-                            : (<div>empty</div>)
+                            : (<Empty/>)
                     }
                 </TabPane>
                 <TabPane

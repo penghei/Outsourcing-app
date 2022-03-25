@@ -1,0 +1,44 @@
+.confirm-goods-card {
+    background-color: white;
+min-width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  margin-top: 100px;
+  .goods-img {
+    min-width: 40%;
+    max-width: 60%;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .goods-detail {
+    min-width: 30%;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    .title {
+      color: red;
+      font: {
+        size: 4rem;
+        weight: 800;
+        family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      }
+    }
+    .goods-info {
+        div{
+            margin-top: 10px;
+            span {
+                &:last-child {
+                  font-size: 2rem;
+                  color: red;
+                }
+              }
+        }
+      
+    }
+  }
+}

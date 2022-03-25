@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { UserLoginState } from 'store/atoms';
 import { setStorage } from '../../../hooks/useStorage';
+import './index.scss'
 
 
 const LoginForm = ({ history }) => {

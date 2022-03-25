@@ -5,16 +5,11 @@ import InfoFormPage from 'pages/UserCenterPages/InfoFormPage';
 import QuestionPage from 'pages/UserCenterPages/QuestionPage';
 import AboutUsPage from 'pages/UserCenterPages/AboutUsPage';
 import { Switch } from 'react-router-dom';
-import UserInfoSider from '../../../components/User/UserInfoSider';
-
+import UserInfoSider from '../../../components/UserCenter/UserInfoSider';
+// import './index.scss'
 
 const Userinfopage = () => {
     return (
-        // <div className='clearfix userinfo_box'>
-        //     <Portrait/>
-        //     <UserInfoSider/>
-        //     <Route path="/home/user/myorder" component={OrderFormPage}></Route>
-        // </div>
         <div className='clearfix userinfo_box'>
             <UserInfoSider />
             <Switch>

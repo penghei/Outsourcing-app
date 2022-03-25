@@ -27,6 +27,7 @@ const GoodsPurchase = ({ history }) => {
 
     const [ifOnTime, setIfOnTime] = useState('before')
     const [ifCanBuy, setIfCanBuy] = useState()
+    const [ifCanApply, setIfCanApply] = useState(true)
 
     const setLoading = useSetRecoilState(GoodsPageLoading)
 
@@ -40,8 +41,8 @@ const GoodsPurchase = ({ history }) => {
 
     const handleApply = async () => {
         try {
-            const { data } = await service.post(`/api2/customer/product/admit?productId=${productId}`)
             setLoading(true)
+            const { data } = await service.post(`/api2/customer/product/admit?productId=${productId}`)
             // const { data } = await service.get(`/api/admit`)
             console.log(data)
             setLoading(false)
@@ -49,6 +50,7 @@ const GoodsPurchase = ({ history }) => {
                 Modal.error({
                     content: `抱歉，您不符合条件，原因是${data.data}`
                 })
+                setIfCanApply(false)
                 return;
             } else {
                 Modal.success({
@@ -96,7 +98,7 @@ const GoodsPurchase = ({ history }) => {
             const goods = data.data;//goods才是真实数据,应该是个数组
             setSelectedGoods(goods[0])//这里应该是goods[0]
             setAllGoods(goods)
-            setIfCanBuy(goods[0].attend && goods[0].pass)
+            setIfCanBuy(/*goods[0].attend &&*/ goods[0].pass)
         } catch (err) {
             console.error(err)
         }
@@ -129,7 +131,7 @@ const GoodsPurchase = ({ history }) => {
                         : (
                             <div className='noapply-block'>
                                 <Button type='round' size='large' disabled>没有权限不能购买</Button>
-                                <Button type='round' size='large' onClick={handleApply}>申请权限</Button>
+                                {ifCanApply ? <Button type='round' size='large' onClick={handleApply}>申请权限</Button> : ''}
                             </div>
                         )
                     }

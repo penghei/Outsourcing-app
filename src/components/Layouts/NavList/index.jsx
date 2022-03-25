@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Menu, message } from 'antd';
 import './index.scss'
 import { withRouter } from 'react-router-dom';
-import UserAvatar from '../../User/UserAvatar';
+import UserAvatar from '../../UserCenter/UserAvatar';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserInformation, UserLoginState } from '@/store/atoms.js'
 import service from '../../../myaxios/interceptors'
