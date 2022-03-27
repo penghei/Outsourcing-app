@@ -8,7 +8,7 @@ import {
 /**被选的商品 */
 export const SeckillingGoodsInfo = atom({
   key: "SeckillingGoodsInfo",
-  default: goodsInfo,
+  default: {},
 });
 
 /**商品列表，即所有商品，这个可能不一定需要 */

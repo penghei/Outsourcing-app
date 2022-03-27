@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Menu, } from 'antd';
+import { Menu, message } from 'antd';
 import './index.scss'
 import { withRouter } from 'react-router-dom';
-import UserAvatar from '../../User/UserAvatar';
+import UserAvatar from '../../UserCenter/UserAvatar';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserInformation, UserLoginState } from '@/store/atoms.js'
 import service from '../../../myaxios/interceptors'
@@ -10,7 +10,7 @@ import service from '../../../myaxios/interceptors'
 const NavList = (props) => {
     //获取和设置用户信息
     const [userInfo, setUserInfo] = useRecoilState(UserInformation)
-    const isLogin = useRecoilValue(UserLoginState)
+    const [isLogin,setIsLogin] = useRecoilState(UserLoginState)
 
     const handleClick = (e) => {
         props.history.push(e.key === 'login' ? {
@@ -20,12 +20,20 @@ const NavList = (props) => {
         })
     }
     //请求登录状态
-    useEffect(async() => {
-        // const {data} = await service.get('/api2/customer/detail')
-        // if(data.success){
-        //     console.log(data.data)
-        //     setUserInfo(data.data)
-        // }
+    useEffect(async () => {
+        try {
+            const { data } = await service.get(`/api2/customer/detail`)
+            if (data.success) {
+                const userInfo = data.data;
+                console.log(userInfo)
+                setUserInfo(userInfo)
+            } else {
+                message.error('获取用户信息失败')
+                setIsLogin(false)
+            }
+        } catch (err) {
+            console.error(err)
+        }
     }, [])
     return (
         <div className='menu'>

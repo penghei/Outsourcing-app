@@ -1,8 +1,10 @@
 .confirm-block{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 800px;
+    background-color: #aa1724;
     .table-remarks{
         display: flex;
         flex-direction: column;

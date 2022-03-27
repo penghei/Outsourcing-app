@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { UserLoginState } from 'store/atoms';
 import { setStorage } from '../../../hooks/useStorage';
+import './index.scss'
 
 
 const LoginForm = ({ history }) => {
@@ -14,26 +15,24 @@ const LoginForm = ({ history }) => {
     const onFinish = async (values) => {
         console.log('Received values of form: ', values);
         const { username, password } = values;
-
-        // const { data } = await axios.post('/api2/customer/login', { username, password }, { headers: { 'Content-Type': 'application/json' } })
-        // if (data.success) {
-        //     message.success('登录成功!')
-        //     setStorage(data.data)
-        //     history.push({
-        //         pathname: '/home/goods'
-        //     })
-        //     setUserLoginState(true)
-        // } else {
-        //     Modal.error({
-        //         content: '用户名或密码错误'
-        //     })
-        // }
-
-        history.push({
-            pathname: '/home/goods'
-        })
-        setUserLoginState(true)
-
+        try {
+            const { data } = await axios.post('/api2/customer/login', { username, password })
+            console.log(data)
+            if (data.success) {
+                message.success('登录成功!')
+                setStorage('jwt',data.data)
+                history.push({
+                    pathname: '/home/goods'
+                })
+                setUserLoginState(true)
+            } else {
+                Modal.error({
+                    content: '用户名或密码错误'
+                })
+            }
+        } catch (err) {
+            console.error(err)
+        }
     };
 
 

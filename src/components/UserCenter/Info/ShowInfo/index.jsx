@@ -15,10 +15,11 @@ export default function ShowInfo() {
   const [infoForShow, setUserInfo] = useRecoilState(UserInformation)
   const [modalText, setModalText] = useState(<EditInfo form={form} infoProps={infoForShow} />);
 
-  const { userId, name, telephone, liveRegion, wedded, childBorn, work, sex } = infoForShow;
+  const { userId, userName: name, userTelephone: telephone, userRegion: liveRegion, userIsWedding: wedded, userIsChildBorn: childBorn, userIsWork: work, userSex: sex } = infoForShow;
   const showModal = () => {
     setVisible(true);
   };
+
   const handleOk = async (values) => {
     console.log('Received values of form: ', values);
     for (let key in values) {
@@ -30,27 +31,27 @@ export default function ShowInfo() {
       childBorn: values.childBorn && 1,
       wedded: values.wedded && 1,
       work: values.work && 1,
-      telephone: `+86${values.telephone}`,
+      telephone: values.telephone,
       userId,
     }
     console.log(formatValues)
     setVisible(false);
-    // try {
-    //   const { data } = await service.post(`/api2/customer/update`, formatValues, {
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     }
-    //   })
-    //   console.log(data)
-    //   if (data.success) {
-    //     setUserInfo(data.data)
-    //      message.success('修改成功!')
-    //   } else {
-    //     message.error('修改失败')
-    //   }
-    // } catch (err) {
-    //   console.error(err)
-    // }
+    try {
+      const { data } = await service.post(`/api2/customer/update`, formatValues, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log(data)
+      if (data.success) {
+        setUserInfo(data.data)
+        message.success('修改成功!')
+      } else {
+        message.error('修改失败')
+      }
+    } catch (err) {
+      console.error(err)
+    }
 
 
   };
@@ -71,7 +72,7 @@ export default function ShowInfo() {
       </dl>
       <dl>
         <dt>性别:</dt>
-        <dd>{sex}</dd>
+        <dd>{sex ? '男' : '女'}</dd>
       </dl>
       <dl>
         <dt>手机号:</dt>

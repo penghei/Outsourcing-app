@@ -10,11 +10,6 @@ import './index.scss';
 
 const Userinfopage = () => {
     return (
-        // <div className='clearfix userinfo_box'>
-        //     <Portrait/>
-        //     <UserInfoSider/>
-        //     <Route path="/home/user/myorder" component={OrderFormPage}></Route>
-        // </div>
         <div className='clearfix userinfo_box'>
             <UserInfoSider />
             <Switch>
