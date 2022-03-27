@@ -4,6 +4,7 @@ import './App.scss'
 import { Switch } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import UserCenterPage from './pages/UserCenterPage'
 import { emptyStorage, getStorage } from './hooks/useStorage';
 // import service from './myaxios/interceptors'
 
@@ -30,6 +31,7 @@ const App = ({ history }) => {
       <Switch>
         <Route path="/login" component={LoginPage}></Route>
         <Route path="/home" component={HomePage}></Route>
+        <Route path="/user" component={UserCenterPage}></Route>
         <Redirect to="/login"></Redirect>
       </Switch>
     </div>

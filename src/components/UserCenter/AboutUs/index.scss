@@ -1,19 +1,15 @@
-.aboutUs{
-    display: block;
-    width:45vw;
-    margin-top: 20px;
-    margin-left:40px;
-    padding:5px 40px 70px 40px;
+.about-us{
+    width:50vw;
+    padding: 0 50px;
     border-radius: 30px;
-    background-color: #ffffff;
+    // background-color: #ffffff;
         img{
             // width: 60%;
             width: 290px;
             height: 290px;
         }
     .text{
-        font-family: 宋体;
-        font-size: 16px;
+        font-size: 2rem;
         margin-top: 20px;
         margin-bottom: 40px;
     }

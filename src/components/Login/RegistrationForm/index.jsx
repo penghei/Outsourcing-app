@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import './index.scss';
+import React, { useState } from "react";
+import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
+import "./index.scss";
 import {
   Switch,
   Form,
@@ -14,40 +14,40 @@ import {
   Button,
   AutoComplete,
   message,
-} from 'antd';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+} from "antd";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 const { Option } = Select;
 
 //地址选择框数据
 const residences = [
   {
-    value: 'sichuan',
-    label: '四川',
+    value: "sichuan",
+    label: "四川",
     children: [
       {
-        value: 'chengdu',
-        label: '成都',
+        value: "chengdu",
+        label: "成都",
         children: [
           {
-            value: 'chenghua',
-            label: '成华区',
+            value: "chenghua",
+            label: "成华区",
           },
         ],
       },
     ],
   },
   {
-    value: 'jiangsu',
-    label: '江苏',
+    value: "jiangsu",
+    label: "江苏",
     children: [
       {
-        value: 'nanjing',
-        label: '南京',
+        value: "nanjing",
+        label: "南京",
         children: [
           {
-            value: 'zhonghuamen',
-            label: '中华门',
+            value: "zhonghuamen",
+            label: "中华门",
           },
         ],
       },
@@ -58,10 +58,10 @@ const residences = [
 //布局
 const formItemLayout = {
   labelCol: {
-    span: 6
+    span: 6,
   },
   wrapperCol: {
-    span: 18
+    span: 18,
   },
 };
 
@@ -91,7 +91,7 @@ const RegistrationForm = ({ history }) => {
       childBorn: values.childBorn && 1,
       wedded: values.wedded && 1,
       work: values.work && 1,
-      sex: values.sex === 'male' ? 1 : 0,
+      sex: values.sex === "male" ? 1 : 0,
       telephone: `${values.telephone}`,
     };
     delete finalValue.comfirm;
@@ -101,17 +101,15 @@ const RegistrationForm = ({ history }) => {
   };
 
   const onFinish = async (values) => {
-
-
-    const finalValue = useFormatForm(values)
-    console.log(finalValue)
-    const res = await axios.post(`/api3/register`, finalValue)
+    const finalValue = useFormatForm(values);
+    console.log(finalValue);
+    const res = await axios.post(`/api3/register`, finalValue);
     const { success, data } = res.data;
-    console.log('RES', data)
+    console.log("RES", data);
     if (success) {
-      message.success('注册成功! 请返回登录')
+      message.success("注册成功! 请返回登录");
     } else {
-      message.error(`注册失败, ${data}`)
+      message.error(`注册失败, ${data}`);
     }
   };
 
@@ -134,12 +132,11 @@ const RegistrationForm = ({ history }) => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ['zhejiang', 'hangzhou', 'xihu'],
-        prefix: '86',
+        residence: ["zhejiang", "hangzhou", "xihu"],
+        prefix: "86",
       }}
       scrollToFirstError
     >
-
       <Form.Item
         name="name"
         label="真实姓名"
@@ -147,7 +144,7 @@ const RegistrationForm = ({ history }) => {
         rules={[
           {
             required: true,
-            message: 'Please input your nickname!',
+            message: "请务必填写真实姓名",
             whitespace: true,
           },
         ]}
@@ -160,9 +157,9 @@ const RegistrationForm = ({ history }) => {
         label="现居住地"
         rules={[
           {
-            type: 'array',
+            type: "array",
             required: true,
-            message: '选择你的现居地',
+            message: "选择你的现居地",
           },
         ]}
       >
@@ -175,20 +172,36 @@ const RegistrationForm = ({ history }) => {
         rules={[
           {
             required: true,
-            message: 'Please input your phone number!',
+            message: "请填写您的身份证号",
           },
         ]}
       >
         <Input
           style={{
-            width: '100%',
+            width: "100%",
+          }}
+        />
+      </Form.Item>
+      <Form.Item
+        name="bank"
+        label="银行卡号"
+        rules={[
+          {
+            required: true,
+            message: "请填写您的银行卡号",
+          },
+        ]}
+      >
+        <Input
+          style={{
+            width: "100%",
           }}
         />
       </Form.Item>
       <Form.Item
         name="sex"
         label="性别"
-        rules={[{ required: true, message: '请选择你的性别' }]}
+        rules={[{ required: true, message: "请选择你的性别" }]}
       >
         <Select placeholder="选择你的性别">
           <Option value="male">男</Option>
@@ -202,15 +215,16 @@ const RegistrationForm = ({ history }) => {
         rules={[
           {
             required: true,
-            message: '请输入你的身份证号',
+            message: "请输入你的手机号",
           },
         ]}
       >
         <Input
           addonBefore={prefixSelector}
           style={{
-            width: '100%',
+            width: "100%",
           }}
+          maxLength="13"
         />
       </Form.Item>
 
@@ -220,7 +234,7 @@ const RegistrationForm = ({ history }) => {
         rules={[
           {
             required: true,
-            message: '请输入您的密码',
+            message: "请输入您的密码",
           },
         ]}
         hasFeedback
@@ -231,20 +245,20 @@ const RegistrationForm = ({ history }) => {
       <Form.Item
         name="confirm"
         label="确认密码"
-        dependencies={['password']}
+        dependencies={["password"]}
         hasFeedback
         rules={[
           {
             required: true,
-            message: '请输入确认密码',
+            message: "请输入确认密码",
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
+              if (!value || getFieldValue("password") === value) {
                 return Promise.resolve();
               }
 
-              return Promise.reject(new Error('两次密码输入不一致！'));
+              return Promise.reject(new Error("两次密码输入不一致！"));
             },
           }),
         ]}
@@ -252,25 +266,21 @@ const RegistrationForm = ({ history }) => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item
-        name="wedded"
-        label="婚姻状态"
-        className="sameLine"
-      >
-        <Switch checkedChildren="已婚" unCheckedChildren="未婚" defaultChecked={false} />
+      <Form.Item name="wedded" label="婚姻状态" className="sameLine">
+        <Switch
+          checkedChildren="已婚"
+          unCheckedChildren="未婚"
+          defaultChecked={false}
+        />
       </Form.Item>
-      <Form.Item
-        name="childBorn"
-        label="子嗣状态"
-        className="sameLine"
-      >
-        <Switch checkedChildren="已育" unCheckedChildren="未育" defaultChecked={false} />
+      <Form.Item name="childBorn" label="子嗣状态" className="sameLine">
+        <Switch
+          checkedChildren="已育"
+          unCheckedChildren="未育"
+          defaultChecked={false}
+        />
       </Form.Item>
-      <Form.Item
-        name="work"
-        label="工作情况"
-        className="sameLine"
-      >
+      <Form.Item name="work" label="工作情况" className="sameLine">
         <Switch checkedChildren="就业" unCheckedChildren="待业" />
       </Form.Item>
       {/* <Form.Item
@@ -289,7 +299,7 @@ const RegistrationForm = ({ history }) => {
         </Checkbox>
       </Form.Item> */}
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit" className='register'>
+        <Button type="primary" htmlType="submit" className="register">
           注册
         </Button>
       </Form.Item>
@@ -298,4 +308,3 @@ const RegistrationForm = ({ history }) => {
 };
 
 export default withRouter(RegistrationForm);
-

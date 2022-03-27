@@ -5,7 +5,7 @@ import imgUrl from '@/assest/sanxiangBank.png' //将资源引入为url
 
 const AboutUs = () => {
     return (
-        <div className='aboutUs'>
+        <div className='about-us'>
                 <dt ><img src={imgUrl} alt="" title="" className='center-block' id="bank-img"/></dt>
                 <dd >
                     <p className="text">

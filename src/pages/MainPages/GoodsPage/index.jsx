@@ -53,12 +53,12 @@ const GoodsPage = () => {
                 <main className='goods-details'>
                     <GoodsIntroduction/>
                 </main>
-                <footer className='goods-recommand'>
+                {/* <footer className='goods-recommand'>
                     <header>
                         看看其它
                     </header>
                     <GoodsRecommand recommandList={allGoodsList} />
-                </footer>
+                </footer> */}
             </div>
 
         </>

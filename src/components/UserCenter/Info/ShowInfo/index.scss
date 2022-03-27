@@ -1,35 +1,30 @@
-@import url('bootstrap/dist/css/bootstrap.min.css');
+@import url("bootstrap/dist/css/bootstrap.min.css");
 
-.info_container{
-    max-width:400px ;
-    min-width: 250px;
-    padding:30px 0 50px 0;
-    border-radius: 20px;
-    font-size: 16px;
-    // background-color: #fff;
-   
-    #editButton{
-        margin-top:20px;
-        margin-left: 30%;
-    }
-    dl{
-        // border-bottom: 1px solid rgb(97, 218, 251);
-       margin-bottom: 25px;
-    }
-    dt{
-        color:#4f7da7;
-        font-weight: bolder;
-        padding-bottom:10px;
-    }
-    dd{
-        padding-left: 20px;
-        height: 36px;
-        line-height: 36px;
-        border-radius: 10px;
-        background: #d9a7c7;
-        background: -webkit-linear-gradient(to bottom, #ffffff 75%, #a7c1d9);
-        background: linear-gradient(to bottom, #ffffff 4%, #ffffff29);
-        border-bottom: 2px solid #0a28301f;
-        box-shadow: 2px 2px 6px #e0dbdb;
-    }
+.info_container {
+ 
+  padding: 10px 0 50px 0;
+  border-radius: 20px;
+  font-size: 1.8rem;
+  // background-color: #fff;
+
+  #editButton {
+    margin-top: 20px;
+    margin-left: 30%;
+  }
+  dt {
+    color: #4f7da7;
+    font-weight: bolder;
+    padding-bottom: 10px;
+  }
+  dd {
+    padding-left: 20px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 10px;
+    background: #d9a7c7;
+    background: -webkit-linear-gradient(to bottom, #ffffff 75%, #a7c1d9);
+    background: linear-gradient(to bottom, #ffffff 4%, #ffffff29);
+    border-bottom: 2px solid #0a28301f;
+    box-shadow: 2px 2px 6px #e0dbdb;
+  }
 }

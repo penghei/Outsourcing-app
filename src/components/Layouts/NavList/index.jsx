@@ -7,17 +7,15 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserInformation, UserLoginState } from '@/store/atoms.js'
 import service from '../../../myaxios/interceptors'
 
-const NavList = (props) => {
+const NavList = ({history}) => {
     //获取和设置用户信息
     const [userInfo, setUserInfo] = useRecoilState(UserInformation)
     const [isLogin,setIsLogin] = useRecoilState(UserLoginState)
 
     const handleClick = (e) => {
-        props.history.push(e.key === 'login' ? {
-            pathname: '/login'
-        } : {
-            pathname: `/home/${e.key}`
-        })
+        const key = e.key;
+        if(key === 'goods') history.push({pathname:'/home'})
+        else history.push({pathname:'/user'})
     }
     //请求登录状态
     useEffect(async () => {

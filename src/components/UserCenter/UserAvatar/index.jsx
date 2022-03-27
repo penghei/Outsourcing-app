@@ -11,7 +11,7 @@ const UserAvatar = ({ userInfo, isLogin, history }) => {
         e.stopPropagation()
         console.log(e.target.id)
         history.push({
-            pathname: `/home/user/${e.target.id}`
+            pathname: `/user/${e.target.id}`
         })
     }
     const handleExitLogin = (e) => {

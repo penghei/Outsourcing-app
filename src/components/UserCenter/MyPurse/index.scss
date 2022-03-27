@@ -3,9 +3,7 @@
 // }
 .wrapper-purse{
     display: flex;
-    width: 45vw;
-    // flex-direction: column;
-    // padding-bottom: 173px;
+   
     height: 450px;
     align-items: center;
     justify-content: center;
@@ -26,7 +24,6 @@
         flex-direction: column;
         // text-align: center;
         overflow: hidden;
-        margin-left: 50px;
         .balance{
             font-weight:bolder;
             font-size:large;
