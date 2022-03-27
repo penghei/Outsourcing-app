@@ -12,5 +12,7 @@ ReactDOM.render(
       <App />
     </RecoilRoot>
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById('root'),
+  document.getElementsByTagName('body')[0].setAttribute('id','body')
 )
+

@@ -6,19 +6,26 @@
 // }
 [data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
 .site-collapse-custom-collapse .site-collapse-custom-panel {
-  margin-bottom: 24px;
+  margin-bottom: 33px;
   overflow: hidden;
-  background: #ffffff;
-  border: 0px;
+  // background: transparent ;
+  // border: 0px;
   border-radius: 22px !important;
-  
+  background: #d9a7c7;
+  background: -webkit-linear-gradient(to bottom, #ffffff 85%, #c6a5d138);
+  background:linear-gradient(to bottom, #ffffff 85%, #c6a5d138);
+  border-bottom: 2px solid #0a28301f;
+  box-shadow: 2px 2px 6px #e0dbdb;
 }
 .ant-collapse-borderless {
-  background-color: #e6e6e6 !important;
+  background-color:transparent !important;
   // border: 0;
   // transition: box-shadow 0.3s, border-color 0.3s;
+  
 }
-
+.question_card{
+  width: 30vw;
+}
 // .ant-collapse-header:hover{
 //   cursor: pointer;
 // }

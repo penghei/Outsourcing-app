@@ -5,8 +5,8 @@ import InfoFormPage from 'pages/UserCenterPages/InfoFormPage';
 import QuestionPage from 'pages/UserCenterPages/QuestionPage';
 import AboutUsPage from 'pages/UserCenterPages/AboutUsPage';
 import { Switch } from 'react-router-dom';
-import UserInfoSider from '../../../components/UserCenter/UserInfoSider';
-// import './index.scss'
+import UserInfoSider from '@/components/UserCenter/UserInfoSider';
+import './index.scss';
 
 const Userinfopage = () => {
     return (

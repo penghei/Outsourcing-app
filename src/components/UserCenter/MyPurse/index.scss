@@ -1,0 +1,64 @@
+// .container{
+//     width: 70vw
+// }
+.wrapper-purse{
+    display: flex;
+    width: 45vw;
+    // flex-direction: column;
+    // padding-bottom: 173px;
+    height: 450px;
+    align-items: center;
+    justify-content: center;
+    background-image:url('@/assest/purse4.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    // opacity:0.5;
+    img{
+        max-width: 247px;
+    }
+    .right-side{
+        display: flex;
+        width: 375px;
+        height: 250px;
+        border-radius: 25px;
+        
+        background-color:rgb(255, 255, 255);
+        flex-direction: column;
+        // text-align: center;
+        overflow: hidden;
+        margin-left: 50px;
+        .balance{
+            font-weight:bolder;
+            font-size:large;
+            flex:2;
+            background-color: #87afe21f;
+            line-height: 60px;
+            padding-left: 20px;
+            border-bottom:3px solid #4d8bd3;
+            
+            // color:#fff;
+            // border:0;
+        }
+        .money-data{
+            text-align: center;
+            font-size:xx-large;
+            color: rgb(206, 59, 71);
+            font-weight: bold;
+            flex:2;
+            padding:40px 20px;
+        }
+        .recharge{
+            flex: 1;
+           background-color:rgb(0, 0, 0);
+           color:#fff;
+           font-weight: bold;
+           font-size: medium;
+           transition:all 0.5s ease;
+        }
+        .recharge:hover{
+            color: rgb(97, 218, 251);
+            text-shadow: 0 0 0.25px currentcolor;
+}
+        }
+    }
+

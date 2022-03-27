@@ -62,33 +62,33 @@ export default function ShowInfo() {
 
   return (
     <div className='info_container'>
-      <dl className="dl-horizontal">
-        <dt><strong>ID:</strong></dt>
+      <dl>
+        <dt>ID:</dt>
         <dd>{userId}</dd>
       </dl>
-      <dl className="dl-horizontal">
+      <dl>
         <dt>用户名:</dt>
         <dd>{name}</dd>
       </dl>
-      <dl className="dl-horizontal">
+      <dl>
         <dt>性别:</dt>
         <dd>{sex ? '男' : '女'}</dd>
       </dl>
-      <dl className="dl-horizontal">
+      <dl>
         <dt>手机号:</dt>
         <dd>{telephone}</dd>
       </dl>
-      <dl className="dl-horizontal">
+      <dl >
         <dt>所在区域:</dt>
         <dd>{liveRegion}</dd>
       </dl>
-      <dl className="dl-horizontal">
+      <dl >
         <dt>婚姻状况:</dt>
         <dd>{wedded ? '已婚' : '未婚'}{childBorn ? '已育' : '未育'}</dd>
         {/* <dd>{userIsChildBorn?'已育':'未育'}</dd> */}
       </dl>
 
-      <dl className="dl-horizontal">
+      <dl>
         <dt>工作状况:</dt>
         <dd>{work ? '就业' : '待业'}</dd>
       </dl>

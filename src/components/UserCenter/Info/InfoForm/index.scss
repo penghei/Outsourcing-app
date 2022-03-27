@@ -1,6 +1,7 @@
 .show_box{
   width: 45vw;
   min-width: 315px;
+  padding-left: 7vw;
 }     
 
 .show_box .edit{
@@ -9,6 +10,9 @@
     max-width: 45vw;
     // text-align: center;
     // min-width:371px;
+    background-image:url('@/assest/bg_info.png');
+    background-repeat: no-repeat;
+    background-size: 100% 80%;
 }
 @media screen and (max-width: 768px){
     .show_box .edit .ant-form-item{
@@ -20,7 +24,7 @@
 }
 @media screen and (min-width: 768px){
     .show_box{
-        margin-left: 66px;
+        // margin-left: 66px;
         .edit .ant-form-item{
             margin-bottom: 24px;
             // width: 540px;

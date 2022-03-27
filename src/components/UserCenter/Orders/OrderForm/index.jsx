@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Empty, Tabs } from 'antd';
 import { ContactsTwoTone, QuestionCircleTwoTone, SettingTwoTone, DollarTwoTone, EditTwoTone, AlertTwoTone, AccountBookTwoTone, CarryOutTwoTone } from '@ant-design/icons';
 import MyOrder from '../MyOrder'
+import MyPurse from '../../MyPurse';
 import axios from 'axios';
 import service from '../../../../myaxios/interceptors';
 import './index.scss'
@@ -62,9 +63,10 @@ const OrderForm = () => {
                     }
                 </TabPane>
                 <TabPane
-                    tab={<span><CarryOutTwoTone />我的预约</span>}
+                    tab={<span><CarryOutTwoTone />我的钱包</span>}
                     key="2"
-                >Tab 2
+                >
+                    <MyPurse/>
                 </TabPane>
             </Tabs>
         </div>

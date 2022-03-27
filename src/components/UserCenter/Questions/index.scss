@@ -1,6 +1,24 @@
 .question_box{
-    width: 50vw;
-
-    margin-top: 40px;
-    margin-left: 40px;
+    width: 45vw;
+    padding:0 7vw;
+    // padding-bottom: 40px;
+    // 为了避免图片随着盒子高度变化而出现上下滑动，且问题数据都是固定的，故定为固定高度
+    // height: 800px;
+    // margin-top: 40px;
+    // padding-left:5vw;
+    // margin-left: 70px;
+   
+    background-image:url('@/assest/bg_questions.png');
+    background-repeat: no-repeat;
+    background-position:0 -90px;
+    background-size: 92% 800px;
+    .question_title{
+        font-weight: bold;
+        font-size: xx-large;
+        border-bottom: 3px solid #d0c6ef;
+        width: 75%;
+        // background-color: rgb(153, 40, 40);
+        margin-bottom:33px;
+        color:#4f7da7;
+    }
 }
