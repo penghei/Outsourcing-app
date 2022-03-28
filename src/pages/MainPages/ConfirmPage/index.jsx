@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import ConfirmGoodsTable from 'components/Confirm/ConfirmGoodsTabel';
 import './index.scss'
 import ConfirmGoodsPurchase from 'components/Confirm/ConfirmGoodsPurchase';
@@ -14,6 +14,9 @@ import ComfirmGoods from '../../../components/Confirm/ComfirmGoods';
 const ConfirmPage = () => {
     const goodsInfo = useRecoilValue(SeckillingGoodsInfo);
 
+    useEffect(()=>{
+        console.log('confirm page has mounted')
+    },[])
     return (
         <div className='confirm-block'>
             <ComfirmGoods gooodsInfo={goodsInfo} />

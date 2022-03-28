@@ -19,7 +19,7 @@ const Userinfopage = () => {
           <Route path="/user/userinfo" component={InfoForm}></Route>
           <Route path="/user/questions" component={Questions}></Route>
           <Route path="/user/aboutus" component={AboutUs}></Route>
-          <Redirect to="/user/myorder" />
+          <Redirect to='/user/myorder' />
         </Switch>
       </main>
     </div>

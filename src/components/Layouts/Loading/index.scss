@@ -1,0 +1,23 @@
+.loading-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .spin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-width: 100%;
+      height: 200px;
+    }
+    p{
+        text-align: center;
+        font-size: larger;
+        color: red;
+    }
+  }
+}

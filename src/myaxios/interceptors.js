@@ -11,7 +11,7 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     config.headers["Authorization"] =
-      `Bearer ${getStorage('jwt')}` || `Bearer `;
+      `${getStorage('jwt')}` || `Bearer `;
     return config;
   },
   (error) => {

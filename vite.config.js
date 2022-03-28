@@ -14,12 +14,12 @@ export default defineConfig({
       //   rewrite: (path) => path.replace(/^\/api/, ""),
       // },
       "/api2": {
-        target: "http://192.168.162.3:8000/glimmer-bank/platform/",
+        target: "http://8.130.17.61:8000/glimmer-bank/platform/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api2/, ""),
       },
       "/api3": {
-        target: "http://192.168.162.3:8000/glimmer-bank/",
+        target: "http://8.130.17.61:8000/glimmer-bank/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api3/, ""),
       },

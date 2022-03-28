@@ -58,23 +58,23 @@ const residences = [
 //布局
 const formItemLayout = {
   labelCol: {
-    span: 6,
+    span: 4,
   },
   wrapperCol: {
-    span: 18,
+    span: 16,
   },
 };
 
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
-      span: 24,
+      span: 20,
       offset: 0,
     },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
+    // sm: {
+    //   span: 16,
+    //   offset: 8,
+    // },
   },
 };
 
@@ -266,23 +266,26 @@ const RegistrationForm = ({ history }) => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item name="wedded" label="婚姻状态" className="sameLine">
-        <Switch
-          checkedChildren="已婚"
-          unCheckedChildren="未婚"
-          defaultChecked={false}
-        />
-      </Form.Item>
-      <Form.Item name="childBorn" label="子嗣状态" className="sameLine">
-        <Switch
-          checkedChildren="已育"
-          unCheckedChildren="未育"
-          defaultChecked={false}
-        />
-      </Form.Item>
-      <Form.Item name="work" label="工作情况" className="sameLine">
-        <Switch checkedChildren="就业" unCheckedChildren="待业" />
-      </Form.Item>
+      <footer className="inline-checkbox">
+        <Form.Item name="wedded" label="婚姻" className="sameLine">
+          <Switch
+            checkedChildren="已婚"
+            unCheckedChildren="未婚"
+            defaultChecked={false}
+          />
+        </Form.Item>
+        <Form.Item name="childBorn" label="子嗣" className="sameLine">
+          <Switch
+            checkedChildren="已育"
+            unCheckedChildren="未育"
+            defaultChecked={false}
+          />
+        </Form.Item>
+        <Form.Item name="work" label="工作" className="sameLine">
+          <Switch checkedChildren="就业" unCheckedChildren="待业" />
+        </Form.Item>
+      </footer>
+
       {/* <Form.Item
         name="agreement"
         valuePropName="checked"
