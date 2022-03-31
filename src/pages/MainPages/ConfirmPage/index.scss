@@ -4,7 +4,9 @@
     align-items: center;
     width: 100%;
     min-width: 800px;
-    background-color: #aa1724;
+    background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     .table-remarks{
         display: flex;
         flex-direction: column;

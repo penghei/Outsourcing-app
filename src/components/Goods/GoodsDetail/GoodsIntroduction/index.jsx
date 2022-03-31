@@ -7,6 +7,7 @@ import './index.scss'
 /**商品详情 */
 const GoodsIntroduction = () => {
     const { productDescription } = useRecoilValue(SeckillingGoodsInfo)
+    console.dir("产品介绍"+productDescription); 
     return (
         <div className='goods-introduction'>
             <Card hoverable className='introduction-card'>

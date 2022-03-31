@@ -5,9 +5,12 @@
 }
 
 .router-inner {
-  padding-top: 50px;
+  padding-top: 49px;
   flex: 1;
-  background-image: linear-gradient(to top,rgba(253,253,253,0.3) 0%,rgba(193,218,255,0.3) 100%);
+  // background-image: linear-gradient(to top,rgba(253,253,253,0.3) 0%,rgba(193,218,255,0.3) 100%);
+  background: #870000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .fixed-bar {
