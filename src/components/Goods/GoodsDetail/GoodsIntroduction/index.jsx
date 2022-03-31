@@ -1,20 +1,30 @@
-import { Card } from 'antd';
-import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { SeckillingGoodsInfo } from '@/store/atoms.js'
-import './index.scss'
+import { Card } from "antd";
+import React from "react";
+import { useRecoilValue } from "recoil";
+import { SeckillingGoodsInfo } from "@/store/atoms.js";
+import "./index.scss";
 
 /**商品详情 */
 const GoodsIntroduction = () => {
-    const { productDescription } = useRecoilValue(SeckillingGoodsInfo)
-    console.dir("产品介绍"+productDescription); 
-    return (
-        <div className='goods-introduction'>
-            <Card hoverable className='introduction-card'>
-                <p>{productDescription}</p>
-            </Card>
-        </div>
-    );
-}
+  const { productDescription } = useRecoilValue(SeckillingGoodsInfo);
+  return (
+    <div className="goods-introduction">
+      <Card hoverable className="introduction-card">
+        <p>
+          1.本理财计划投资的标的基金目前尚处存续期，按照标的基金合伙协议的约定，存续期届满后可经过相关程序延期（具体为，执行事务合伙人单方决定，存续期限（7年）可延长1年；此后经执行事务合伙人提议，并经合伙人大会通过，可再延续1年）。如涉及由本理财计划作为标的基金的有限合伙人参与延期表决的，理财计划管理人有权自行独立决定或召集投资者会议，如理财计划管理人召集投资者会议，则由理财计划管理人根据投资者会议表决结果（具体为投资者所持表决权的二分之一以上）进行表决。但标的基金是否延期取决于标的基金有效表决结果，不一定与投资者会议表决结果一致。
+        </p>
+        <p>
+          2.本理财计划投资的标的基金解散清算时，经过标的基金咨询委员会批准，普通合伙人有权决定，在符合适用法律及有限合伙协议约定的情况下对标的基金进行非现金分配。如涉及由本理财计划作为有限合伙人参与非现金分配表决的，理财计划管理人有权自行独立决定或召集投资者会议，如理财计划管理人召集投资者会议，则由理财计划管理人根据投资者会议表决结果（具体为投资者所持表决权的二分之一以上）进行表决。但标的基金是否进行非现金分配取决于标的基金有效表决结果或普通合伙人决定，不一定与投资者会议表决结果一致。此外，管理人有权独立决定是否对投资者进行非现金分配。
+        </p>
+        <p>
+          3.本理财计划投资的其他基金出现延期情形，如涉及由本理财计划作为其他基金的有限合伙人参与延期表决的，理财计划管理人有权自行独立决定或召集投资者会议，如理财计划管理人召集投资者会议，则由理财计划管理人根据投资者会议表决结果（具体为投资者所持表决权的二分之一以上）进行表决，但基金是否延期取决于基金有效表决结果，不一定与投资者会议表决结果一致。
+        </p>
+        <p>
+          4.本理财计划投资的其他基金出现非现金分配情形，如涉及由本理财计划作为有限合伙人参与非现金分配表决的，理财计划管理人有权自行独立决定或召集投资者会议，如理财计划管理人召集投资者会议，则由理财计划管理人根据投资者会议表决结果（具体为投资者所持表决权的二分之一以上）进行表决，但基金层面表决结果不一定与投资者会议表决结果一致。此外，管理人有权独立决定是否对投资者进行非现金分配。
+        </p>
+      </Card>
+    </div>
+  );
+};
 
 export default GoodsIntroduction;

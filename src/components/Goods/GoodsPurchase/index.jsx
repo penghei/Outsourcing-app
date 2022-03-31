@@ -10,6 +10,7 @@ import {
 } from "store/atoms";
 import service from "@/myaxios/interceptors.js";
 import { withRouter } from "react-router-dom";
+import { getStorage, setStorage } from "../../../hooks/useStorage";
 
 /**商品图片及购买组件 */
 const GoodsPurchase = ({ history }) => {
@@ -24,13 +25,11 @@ const GoodsPurchase = ({ history }) => {
     endTime,
     num,
     price,
-    attend,
     pass,
   } = goodsInfo;
 
   const [ifOnTime, setIfOnTime] = useState("before");
   const [ifCanBuy, setIfCanBuy] = useState();
-  const [ifCanApply, setIfCanApply] = useState(true);
 
   const setLoading = useSetRecoilState(GoodsPageLoading);
 
@@ -51,34 +50,6 @@ const GoodsPurchase = ({ history }) => {
         暂不能购买
       </Button>
     ),
-  };
-
-  const handleApply = async () => {
-    try {
-      setLoading(true);
-      const { data } = await service.post(
-        `/api2/customer/product/admit?productId=${productId}`
-      );
-      // const { data } = await service.get(`/api/admit`)
-      console.log(data);
-      setLoading(false);
-      if (!data.success) {
-        Modal.error({
-          content: `抱歉，您不符合条件，原因是${data.data}`,
-        });
-        setIfCanApply(false);
-        return;
-      } else {
-        Modal.success({
-          content: "恭喜你，您已经审核通过，可以参与抢购！",
-        });
-        setIfCanBuy(true);
-      }
-    } catch (err) {
-      setLoading(false);
-      message.error("申请失败，请稍后再试");
-      console.error(err);
-    }
   };
 
   /*获取子组件时间,勿动 */
@@ -104,16 +75,24 @@ const GoodsPurchase = ({ history }) => {
     getSeckillingGoods();
   }, []);
 
+
   /**请求商品数据 */
   const getSeckillingGoods = async () => {
     try {
       let { data } = await service.get(`/api2/customer/getProduct`);
-      // let {data} = await service.get(`/api/goods`)
+      // if (!data.success) {
+      //   getStorage("goodsInfo") && setSelectedGoods(getStorage("goodsInfo"));
+      //   setIfCanBuy(false)
+      //   return;
+      // }
       console.log("IN GOODPURCHASE COMPONENT:", data);
       const goods = data.data; //goods才是真实数据,应该是个数组
+
       setSelectedGoods(goods[0]); //这里应该是goods[0]
+      setStorage("goodsInfo", goods[0]);
       setAllGoods(goods);
-      setIfCanBuy(/*goods[0].attend &&*/ goods[0].pass);
+      if(!goods[0].pass) message.info('您没有权限参与此次活动，或者您已经购买过了')
+      setIfCanBuy(goods[0].pass);
     } catch (err) {
       console.log(err);
     }
@@ -134,7 +113,7 @@ const GoodsPurchase = ({ history }) => {
         <p className="goods-price-number">￥{price}</p>
         <p className="goods-name">{productName}</p>
         <main className="goods-amount">
-          <p>剩余数量：{num}</p>
+          <p>产品数量：{num}</p>
           {/* <div><InputNumber min={1} defaultValue={1} onChange={handleAmountChange} size='large' /></div> */}
         </main>
         <Countdown
@@ -154,15 +133,8 @@ const GoodsPurchase = ({ history }) => {
           ) : (
             <div className="noapply-block">
               <Button type="round" size="large" disabled>
-                没有权限不能购买
+                不能购买
               </Button>
-              {ifCanApply ? (
-                <Button type="round" size="large" onClick={handleApply}>
-                  申请权限
-                </Button>
-              ) : (
-                ""
-              )}
             </div>
           )}
         </footer>

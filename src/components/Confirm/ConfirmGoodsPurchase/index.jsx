@@ -9,14 +9,14 @@ import { SeckillingGoodsInfo } from '../../../store/atoms';
 
 const ConfirmGoodsPurchase = ({ history }) => {
 
-    const goodsInfo = useRecoilValue(SeckillingGoodsInfo)
+    const {productName,productId,price} = useRecoilValue(SeckillingGoodsInfo)
     const [isLoading, setIsLoading] = useState(false)
     const [modalVisible, setModal] = useState(false)
     const saleUrl = useRef('')
 
     const filterDetailObj = {
-        name: goodsInfo.productName,
-        price: goodsInfo.price,
+        name: productName,
+        price: price,
         bankCardNum: '6217004160025684871'
     }
 
@@ -42,7 +42,7 @@ const ConfirmGoodsPurchase = ({ history }) => {
         } else {
             try {
                 setIsLoading(true)
-                const res = await service(`/api2/product/sale/url`)
+                const res = await service.get(`/api2/customer/product/sale/url?productId=${productId}`)
                 // const res = await service('/api/trade')
                 const { success, data: url } = res.data;
                 console.log(url)
@@ -57,7 +57,7 @@ const ConfirmGoodsPurchase = ({ history }) => {
                     message.error(`当前活动不在秒杀时间`)
                 }
 
-                const { data } = await service.post(`/api2/customer/product/kill/${saleUrl.current}?productId=${goodsInfo.productId}`)
+                const { data } = await service.post(`/api2/customer/product/kill/${saleUrl.current}?productId=${productId}`)
                 setIsLoading(false)
                 console.log(data)
                 if (data.success) {
@@ -66,13 +66,12 @@ const ConfirmGoodsPurchase = ({ history }) => {
                         setModal(true)
                     }, 2000);
                 } else {
-                    message.error(`购买失败,${data.message}`)
+                    message.error(`购买失败，可能是当前购买人数过多，请稍后再试一下`)
                 }
             } catch (err) {
                 console.log(err)
+                message.error('购买请求失败，请稍后再试')
             } finally {
-                setModal(true)
-                message.error('购买失败,请稍后再试')
                 setIsLoading(false)
             }
 
@@ -99,7 +98,7 @@ const ConfirmGoodsPurchase = ({ history }) => {
                 <Divider></Divider>
                 <footer>
                     <p>合计</p>
-                    <p>{goodsInfo.price}</p>
+                    <p>{price}</p>
                 </footer>
             </main>
             <Spin spinning={isLoading}>

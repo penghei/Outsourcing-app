@@ -1,6 +1,7 @@
 .confirm-goods-card {
-    background-color: white;
-min-width: 1000px;
+  background-color: white;
+  min-width: 70vw;
+  max-width: 90vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -29,16 +30,15 @@ min-width: 1000px;
       }
     }
     .goods-info {
-        div{
-            margin-top: 10px;
-            span {
-                &:last-child {
-                  font-size: 2rem;
-                  color: red;
-                }
-              }
+      div {
+        margin-top: 10px;
+        span {
+          &:last-child {
+            font-size: 2rem;
+            color: red;
+          }
         }
-      
+      }
     }
   }
 }
