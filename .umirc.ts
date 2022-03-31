@@ -34,7 +34,7 @@ export default defineConfig({
   proxy: {
     '/api': {
       target:
-        'http://192.168.162.3:8000/glimmer-bank/platform',
+        'http://192.168.177.137:8000/glimmer-bank/platform',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

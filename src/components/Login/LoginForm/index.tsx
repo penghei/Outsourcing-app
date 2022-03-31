@@ -55,12 +55,13 @@ const LoginForm: React.FC<IProps> = (props) => {
         <Form
           name="loginForm"
           className="login-form"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 16 }}
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 15 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
+
         >
           <Form.Item
             label="用户名"

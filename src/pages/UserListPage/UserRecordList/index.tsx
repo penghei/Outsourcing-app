@@ -11,7 +11,7 @@ const UserRecordList: React.FC<IProps> = (props) => {
       <PageContent
         headerText="用户秒杀记录"
         headerRoute="/userlist-record"
-        className="userlist-content"
+        className="user-record-content"
       >
         <UserRecordTable />
       </PageContent>

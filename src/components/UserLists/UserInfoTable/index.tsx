@@ -23,11 +23,11 @@ const index: React.FC<IProps> = (props) => {
       filters: [
         {
           text: '已通过',
-          value: '1',
+          value: '已通过',
         },
         {
           text: '未通过',
-          value: '0',
+          value: '未通过',
         },
       ],
       onFilter: (value, record) => record.isFilter === +value,
@@ -38,10 +38,16 @@ const index: React.FC<IProps> = (props) => {
 
   useEffect(() => {
     (async () => {
-      const res = await service.get<any, any>(`/api/manager/product/admit/records`);
-      console.log(res)
+      const res = await service.get<any, any>(
+        `/api/manager/product/admit/records`,
+      );
+      console.log(res);
+      const dataList = res.data.data
       if (res.data.success) {
-        setData(res.data.data);
+        dataList.forEach((obj) => {
+          obj.isAdmitted = obj.isAdmitted ? '已通过' : '未通过';
+        });
+        setData(dataList);
       } else {
         message.error('数据获取失败');
       }
