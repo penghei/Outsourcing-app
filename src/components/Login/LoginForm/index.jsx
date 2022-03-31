@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Input, Button, Checkbox, message, Modal } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Checkbox, message, Modal, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
@@ -9,11 +9,13 @@ import { setStorage } from "../../../hooks/useStorage";
 import "./index.scss";
 
 const LoginForm = ({ history }) => {
+  const [spinning, setSpinning] = useState(false);
   const setUserLoginState = useSetRecoilState(UserLoginState);
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     const { username, password } = values;
     try {
+      setSpinning(true);
       const { data } = await axios.post("/api2/customer/login", {
         username,
         password,
@@ -22,9 +24,12 @@ const LoginForm = ({ history }) => {
       if (data.success) {
         message.success("登录成功!");
         setStorage("jwt", data.data);
-        history.push({
-          pathname: "/home/goods",
-        });
+        setTimeout(() => {
+          history.push({
+            pathname: "/home/goods",
+          });
+        }, 2000);
+
         setUserLoginState(true);
       } else {
         Modal.error({
@@ -33,6 +38,8 @@ const LoginForm = ({ history }) => {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setSpinning(false);
     }
   };
 
@@ -84,9 +91,11 @@ const LoginForm = ({ history }) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login">
-          登录
-        </Button>
+        <Spin spinning={spinning}>
+          <Button type="primary" htmlType="submit" className="login">
+            登录
+          </Button>
+        </Spin>
       </Form.Item>
     </Form>
   );

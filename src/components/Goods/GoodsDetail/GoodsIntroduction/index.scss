@@ -2,11 +2,13 @@
     flex: 1;
     min-width: 800px;
     max-width: 70vw;
+    box-shadow: 20px 15px 50px rgb(48, 48, 48);
     .introduction-card{
         min-height: 50vh;
         cursor:auto;
         p{
             font-size: larger;
+            white-space: pre-line;
         }
     }
 }
