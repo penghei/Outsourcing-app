@@ -38,8 +38,8 @@ export type ProductSettingType = {
   productDescription: string;
   imgUrl: ImgBaseUrlType; //产品图片链接
   isAdmit: 0 | 1; //是否具有准入初筛:0表示没有,1表示有
-  startTime: 'string'; //活动开始时间，格式:yyyy/MM/dd/hh/mm
-  endTime: 'string'; //活动结束时间，格式如上,不强制要求有
+  startTime: string; //活动开始时间，格式:yyyy/MM/dd/hh/mm
+  endTime: string; //活动结束时间，格式如上,不强制要求有
   num: number; //活动产品数量
   price: number; //活动产品单价
 };

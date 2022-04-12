@@ -9,6 +9,8 @@ import {
   ConfigProvider,
   Upload,
   Checkbox,
+  Switch,
+  Modal,
   Button,
   message,
 } from 'antd';
@@ -26,6 +28,7 @@ type FormResponseType = {};
 
 const SettingsForm: React.FC<IProps> = (props) => {
   const baseImgUrl = useRef<File>();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   /**点击提交回调 */
   const onFinish = async (fieldsValue: any) => {
@@ -49,20 +52,21 @@ const SettingsForm: React.FC<IProps> = (props) => {
         delete (values as any).imgUrl;
         console.log(values);
 
-        try {
-          const { data } = await service.post<any, AxiosResponse<any>>(
-            `/api/manager/product/add`,
-            values,
-          );
-          if (data.success) {
-            message.success('上传成功');
-          } else {
-            message.error(`上传失败`);
-          }
-          // if(res.data.)
-        } catch (err) {
-          console.log(err);
-        }
+        message.success('上传成功');
+        // try {
+        //   const { data } = await service.post<any, AxiosResponse<any>>(
+        //     `/api/manager/product/add`,
+        //     values,
+        //   );
+        //   if (data.success) {
+        //     message.success('上传成功');
+        //   } else {
+        //     message.error(`上传失败`);
+        //   }
+        //   // if(res.data.)
+        // } catch (err) {
+        //   console.log(err);
+        // }
       });
     }
   };
@@ -71,6 +75,8 @@ const SettingsForm: React.FC<IProps> = (props) => {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+
+  const handleAdmit = () => {};
 
   const rangeConfig = {
     rules: [
@@ -83,79 +89,138 @@ const SettingsForm: React.FC<IProps> = (props) => {
   };
 
   return (
-    <Form
-      name="setting-form"
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      className="setting-form"
-    >
-      <Form.Item
-        name={'productName'}
-        label="活动名称"
-        rules={[{ required: true, message: '必须填写活动名称' }]}
+    <>
+      <Form
+        name="setting-form"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        className="setting-form"
       >
-        <Input />
-      </Form.Item>
-      <ConfigProvider locale={zhCN}>
-        <Form.Item name={'actDuration'} label="选择时间" {...rangeConfig}>
-          <DatePicker.RangePicker
-            disabledDate={(current) =>
-              current && current < moment().endOf('day')
-            }
-            showTime={{
-              hideDisabledOptions: true,
-              defaultValue: [
-                moment('00:00:00', 'HH:mm:ss'),
-                moment('00:00:00', 'HH:mm:ss'),
-              ],
-            }}
-            format="YYYY-MM-DD HH:mm:ss"
+        <Form.Item
+          name={'productName'}
+          label="活动名称"
+          rules={[{ required: true, message: '必须填写活动名称' }]}
+        >
+          <Input />
+        </Form.Item>
+        <ConfigProvider locale={zhCN}>
+          <Form.Item name={'actDuration'} label="选择时间" {...rangeConfig}>
+            <DatePicker.RangePicker
+              disabledDate={(current) =>
+                current && current < moment().endOf('day')
+              }
+              showTime={{
+                hideDisabledOptions: true,
+                defaultValue: [
+                  moment('00:00:00', 'HH:mm:ss'),
+                  moment('00:00:00', 'HH:mm:ss'),
+                ],
+              }}
+              format="YYYY-MM-DD HH:mm:ss"
+            />
+          </Form.Item>
+        </ConfigProvider>
+
+        <Form.Item
+          name={'price'}
+          label="产品单价"
+          rules={[{ required: true, message: '需要设置产品单价' }]}
+        >
+          <InputNumber prefix="￥" />
+        </Form.Item>
+        <Form.Item
+          name={'num'}
+          label="产品数量"
+          rules={[{ required: true, message: '需要设置产品售卖数量' }]}
+        >
+          <InputNumber min={1} />
+        </Form.Item>
+        <Form.Item
+          name="isAdmit"
+          valuePropName="checked"
+          label="初筛"
+          rules={[{ required: false, message: '必须设置是否需要初筛' }]}
+        >
+          <Button onClick={() => setIsModalVisible(true)}>选择初筛条件</Button>
+        </Form.Item>
+        <Form.Item name="productDescription" label="产品描述">
+          <Input.TextArea
+            placeholder="请输入活动描述"
+            showCount
+            maxLength={500}
           />
         </Form.Item>
-      </ConfigProvider>
-
-      <Form.Item
-        name={'price'}
-        label="产品单价"
-        rules={[{ required: true, message: '需要设置产品单价' }]}
+        <Form.Item name="imgUrl" label="上传产品图片">
+          <AvatarUpload
+            onCreateImg={(img) => {
+              baseImgUrl.current = img;
+            }}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            提交
+          </Button>
+        </Form.Item>
+      </Form>
+      <Modal
+        title="选择初筛条件"
+        visible={isModalVisible}
+        onOk={() => {
+          setIsModalVisible(false);
+        }}
+        onCancel={() => {
+          setIsModalVisible(false);
+        }}
+        style={{
+          maxWidth: '300px',
+        }}
       >
-        <InputNumber prefix="￥" />
-      </Form.Item>
-      <Form.Item
-        name={'num'}
-        label="产品数量"
-        rules={[{ required: true, message: '需要设置产品售卖数量' }]}
-      >
-        <InputNumber min={1} />
-      </Form.Item>
-      <Form.Item
-        name="isAdmit"
-        valuePropName="checked"
-        label="需要初筛"
-        rules={[{ required: false, message: '必须设置是否需要初筛' }]}
-      >
-        <Checkbox className="form-checkbox" />
-      </Form.Item>
-      <Form.Item name="productDescription" label="产品描述">
-        <Input.TextArea
-          placeholder="请输入活动描述"
-          showCount
-          maxLength={500}
-        />
-      </Form.Item>
-      <Form.Item name="imgUrl" label="上传产品图片">
-        <AvatarUpload
-          onCreateImg={(img) => {
-            baseImgUrl.current = img;
+        <div
+          className="modal"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
-        />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          提交
-        </Button>
-      </Form.Item>
-    </Form>
+        >
+          <div className="switch">
+            <label>是否已婚: </label>
+            <Switch
+              checkedChildren="已婚"
+              unCheckedChildren="未婚"
+              defaultChecked
+            />
+          </div>
+          <div className="switch">
+            <label>子嗣情况: </label>
+            <Switch
+              checkedChildren="已有子嗣"
+              unCheckedChildren="未有子嗣"
+              defaultChecked
+            />
+          </div>
+          <div className="switch">
+            <label>工作情况: </label>
+            <Switch
+              checkedChildren="已工作"
+              unCheckedChildren="待业"
+              defaultChecked
+            />
+          </div>
+          <div className="switch">
+            <label>年龄限制: </label>
+            <InputNumber />
+            <Switch
+              checkedChildren="大于"
+              unCheckedChildren="小于"
+              defaultChecked
+            />
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 };
 export default SettingsForm;
