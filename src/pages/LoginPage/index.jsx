@@ -1,9 +1,8 @@
 import React from 'react';
 import { withRouter, Route } from 'react-router-dom';
-import LoginContainer from 'components/Login/LoginContainer';
+import LoginContainer from '../../components/Login/LoginContainer/index';
 import "./index.scss"
-// import LoginForm from '../LoginForm';
-// import RegistrationForm from '../RegistrationForm';
+
 
 const LoginPage = (props) => {
 

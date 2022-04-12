@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import LoginForm from '../LoginForm';
-import RegistrationForm from '../RegistrationForm';
+import LoginForm from './LoginForm';
+import RegistrationForm from './RegistrationForm';
 import { Button } from 'antd';
 import { withRouter, Link, Route } from 'react-router-dom';
 import './index.scss'

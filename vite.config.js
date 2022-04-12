@@ -8,20 +8,15 @@ export default defineConfig({
   plugins: [react(), eslintPlugin()],
   server: {
     proxy: {
-      // "/api": {
-      //   target: "https://www.fastmock.site/mock/3ffed8b4724efef894113d023582584d/api",
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/api/, ""),
-      // },
-      "/api2": {
+      "/api1": {
         target: "http://192.168.177.137:8000/glimmer-bank/platform/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api2/, ""),
+        rewrite: (path) => path.replace(/^\/api1/, ""),
       },
-      "/api3": {
+      "/api2": {
         target: "http://192.168.177.137:8000/glimmer-bank/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api3/, ""),
+        rewrite: (path) => path.replace(/^\/api2/, ""),
       },
     },
   },
@@ -30,8 +25,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
       pages: path.resolve(__dirname, "src/pages"),
       components: path.resolve(__dirname, "src/components"),
-      styles: path.resolve(__dirname, "src/styles"),
-      store:path.resolve(__dirname, "src/store"),
+      store: path.resolve(__dirname, "src/store"),
     },
   },
 });

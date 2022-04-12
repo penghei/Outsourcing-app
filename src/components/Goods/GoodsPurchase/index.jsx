@@ -29,7 +29,7 @@ const GoodsPurchase = ({ history }) => {
   } = goodsInfo;
 
   const [ifOnTime, setIfOnTime] = useState("before");
-  const [ifCanBuy, setIfCanBuy] = useState();
+  const [ifCanBuy, setIfCanBuy] = useState(true);
 
   const setLoading = useSetRecoilState(GoodsPageLoading);
 
@@ -79,7 +79,7 @@ const GoodsPurchase = ({ history }) => {
   /**请求商品数据 */
   const getSeckillingGoods = async () => {
     try {
-      let { data } = await service.get(`/api2/customer/getProduct`);
+      let { data } = await service.get(`/api1/customer/getProduct`);
       // if (!data.success) {
       //   getStorage("goodsInfo") && setSelectedGoods(getStorage("goodsInfo"));
       //   setIfCanBuy(false)
@@ -110,10 +110,12 @@ const GoodsPurchase = ({ history }) => {
         />
       </aside>
       <main className="goods-buy">
+      <p className="goods-name">平安养老基金365天</p>
         <p className="goods-price-number">￥{price}</p>
-        <p className="goods-name">{productName}</p>
+        {/* <p className="goods-name">{productName}</p> */}
+        
         <main className="goods-amount">
-          <p>产品数量：{num}</p>
+          <p>秒杀数量：{num}</p>
           {/* <div><InputNumber min={1} defaultValue={1} onChange={handleAmountChange} size='large' /></div> */}
         </main>
         <Countdown

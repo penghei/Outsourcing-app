@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import service from '@/myaxios/interceptors.js'
 import './index.scss'
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { SeckillingGoodsInfo } from '../../../store/atoms';
 
 
@@ -42,7 +42,7 @@ const ConfirmGoodsPurchase = ({ history }) => {
         } else {
             try {
                 setIsLoading(true)
-                const res = await service.get(`/api2/customer/product/sale/url?productId=${productId}`)
+                const res = await service.get(`/api1/customer/product/sale/url?productId=${productId}`)
                 // const res = await service('/api/trade')
                 const { success, data: url } = res.data;
                 console.log(url)
@@ -55,9 +55,10 @@ const ConfirmGoodsPurchase = ({ history }) => {
                     saleUrl.current = url
                 } else {
                     message.error(`当前活动不在秒杀时间`)
+                    return
                 }
 
-                const { data } = await service.post(`/api2/customer/product/kill/${saleUrl.current}?productId=${productId}`)
+                const { data } = await service.post(`/api1/customer/product/kill/${saleUrl.current}?productId=${productId}`)
                 setIsLoading(false)
                 console.log(data)
                 if (data.success) {
@@ -72,6 +73,7 @@ const ConfirmGoodsPurchase = ({ history }) => {
                 console.log(err)
                 message.error('购买请求失败，请稍后再试')
             } finally {
+                // setModal(true)
                 setIsLoading(false)
             }
 

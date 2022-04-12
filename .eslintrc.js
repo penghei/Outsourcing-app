@@ -18,13 +18,13 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
-    "no-unused-vars": "off",
-    "react/prop-types": "off",
-    "no-undef": "warn",
-    eqeqeq: "warn",
-    "no-alert": "warn",
-    "no-redeclare": "warn",
-    "no-var": "warn",
-    "no-const-assign": "warn",
+    "no-unused-vars": "off", // 不能有声明但未使用的变量
+    "react/prop-types": "off", // props必须使用
+    "no-undef": "warn", // 不能未声明就使用变量
+    eqeqeq: "warn", // 不能用双等号
+    "no-alert": "warn", // 不能用`alert()`函数
+    "no-redeclare": "warn", // 不能重新声明变量
+    "no-var": "warn", // 不能用var声明变量
+    "no-const-assign": "error", // const声明的变量不能更改
   },
 };

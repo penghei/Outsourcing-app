@@ -1,17 +1,12 @@
 import React, { lazy, Suspense } from "react";
-import { Route, withRouter } from "react-router-dom";
-import NavList from "components/Layouts/NavList";
-import Footer from "components/Layouts/Footer";
-import FloatingBar from "components/Layouts/FloatingBar";
-import Userinfopage from "pages/MainPages/UserInfoPage";
-import GoodsPage from "pages/MainPages/GoodsPage";
-import ConfirmPage from "pages/MainPages/ConfirmPage";
-
+import { Route, withRouter,Switch, Redirect } from "react-router-dom";
+import NavList from "../../components/Layouts/TheNavList";
+import Footer from "../../components/Layouts/TheFooter";
+import FloatingBar from "../../components/Layouts/TheFloatingBar";
+import Loading from "../../components/Layouts/TheLoading";
 import "./index.scss";
-import { Switch, Redirect } from "react-router-dom";
-import Loading from "../../components/Layouts/Loading";
 
-const LazyConfirmPage = lazy(() => import("pages/MainPages/ConfirmPage"));
+const LazyConfirmPage = lazy(() => import("../MainPages/ConfirmPage"));
 const LazyGoodsPage = lazy(() => import("../MainPages/GoodsPage"));
 
 const Homepage = ({ history }) => {

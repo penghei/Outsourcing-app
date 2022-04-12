@@ -1,30 +1,13 @@
-import React,{useEffect} from 'react';
-import ConfirmGoodsTable from 'components/Confirm/ConfirmGoodsTabel';
+import React from 'react';
+import ConfirmGoodsPurchase from '../../../components/Confirm/ConfirmGoodsPurchase';
+import ComfirmGoodsDetail from '../../../components/Confirm/ComfirmGoodsDetail';
 import './index.scss'
-import ConfirmGoodsPurchase from 'components/Confirm/ConfirmGoodsPurchase';
-import ConfirmGoodsRemarks from 'components/Confirm/ComfirmGoodsRemarks';
-import GoodsPurchase from '../../../components/Goods/GoodsPurchase'
-import { SeckillingGoodsInfo, GoodsPageLoading, AllGoodsList } from 'store/atoms';
-import { useRecoilValue } from 'recoil';
-import { Card } from 'antd';
-import ComfirmGoods from '../../../components/Confirm/ComfirmGoods';
-
 
 /**抢购成功购买确认页面 */
 const ConfirmPage = () => {
-    const goodsInfo = useRecoilValue(SeckillingGoodsInfo);
-
-    useEffect(()=>{
-        console.log('confirm page has mounted')
-    },[])
     return (
         <div className='confirm-block'>
-            <ComfirmGoods gooodsInfo={goodsInfo} />
-            <aside className='table-remarks'>
-                {/* <ConfirmGoodsTable goodsInfo={goodsInfo} /> */}
-                {/* <ConfirmGoodsRemarks /> */}
-            </aside>
-            <div className='v-divider'></div>
+            {/* <ComfirmGoodsDetail gooodsInfo={goodsInfo} /> */}
             <ConfirmGoodsPurchase />
         </div>
     );

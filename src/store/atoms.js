@@ -1,9 +1,4 @@
 import { atom } from "recoil";
-import {
-  goodsInfo,
-  userInformation,
-  allGoodsListTestData
-} from "../response_data_example";
 
 /**被选的商品 */
 export const SeckillingGoodsInfo = atom({
@@ -11,17 +6,17 @@ export const SeckillingGoodsInfo = atom({
   default: {},
 });
 
-/**商品列表，即所有商品，这个可能不一定需要 */
+/**商品列表 */
 export const AllGoodsList = atom({
   key: "AllGoodsList",
-  default: allGoodsListTestData,
+  default: {},
 });
 
 
 /**用户信息*/
 export const UserInformation = atom({
   key: "UserInformation",
-  default: userInformation,
+  default: {},
 });
 
 /**登录状态（是否登录） */

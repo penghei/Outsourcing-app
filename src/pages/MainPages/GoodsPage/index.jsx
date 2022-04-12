@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import GoodsPurchase from 'components/Goods/GoodsPurchase';
-import GoodsIntroduction from 'components/Goods/GoodsDetail/GoodsIntroduction';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import GoodsPurchase from '../../../components/Goods/GoodsPurchase';
+import GoodsIntroduction from '../../../components/Goods/GoodsIntroduction';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { SeckillingGoodsInfo } from '@/store/atoms.js'
 import './index.scss'
 import axios from 'axios';
 import service from '@/myaxios/interceptors'
-import GoodsRecommand from '../../../components/Goods/GoodsDetail/GoodsRecommand';
-import { allGoodsListTestData } from '../../../response_data_example';
 import { Spin } from 'antd';
 import { AllGoodsList, GoodsPageLoading } from '../../../store/atoms';
 
@@ -26,7 +24,7 @@ const GoodsPage = () => {
     /**请求商品数据 */
     const getSeckillingGoods = async () => {
         try {
-            let {data} = await service.get(`/api2/customer/getProduct`)
+            let {data} = await service.get(`/api1/customer/getProduct`)
             // let {data} = await service.get(`/api/goods`)
             const goods = data.data;//goods才是真实数据,应该是个数组
             setSelectedGoods(goods[0])//这里应该是goods[0]
@@ -53,12 +51,6 @@ const GoodsPage = () => {
                 <main className='goods-details'>
                     <GoodsIntroduction/>
                 </main>
-                {/* <footer className='goods-recommand'>
-                    <header>
-                        看看其它
-                    </header>
-                    <GoodsRecommand recommandList={allGoodsList} />
-                </footer> */}
             </div>
 
         </>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFormatTime } from "@/hooks/useFormatTime.js";
 //displayArr是方便map显示图片的数组
-import { displayArr } from "@/response_data_example";
 import "./index.scss";
 import { withRouter } from "react-router-dom";
 import num0 from "../../../../assest/000.png";
@@ -14,6 +13,30 @@ import num6 from "../../../../assest/666.png";
 import num7 from "../../../../assest/777.png";
 import num8 from "../../../../assest/888.png";
 import num9 from "../../../../assest/999.png";
+
+const displayArr = [
+  {
+    img1: "0",
+    img2: "1",
+    text: "天",
+  },
+  {
+    img1: "2",
+    img2: "3",
+    text: "时",
+  },
+  {
+    img1: "4",
+    img2: "5",
+    text: "分",
+  },
+  {
+    img1: "6",
+    img2: "7",
+    text: "秒",
+  },
+];
+
 
 const Countdown = ({ startTime, endTime, getIfOnTime }) => {
   const [ifOnTime, setIfOnTime] = useState("before");
